@@ -10,6 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "install": "^0.13.0",
+    "link": "^1.5.1",
     "react": "18.0.0",
     "react-native": "0.69.5",
     "react-native-linear-gradient": "^2.6.2",
@@ -27,5 +29,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
   }
 }
