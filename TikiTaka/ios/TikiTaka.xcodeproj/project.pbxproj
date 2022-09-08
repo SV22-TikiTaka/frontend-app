@@ -12,6 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5C198D2428C879460071D1AA /* anton-v23-latin-regular-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C198D2328C879460071D1AA /* anton-v23-latin-regular-1.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-TikiTaka-TikiTakaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TikiTaka-TikiTakaTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		3B4392A12AC88292D35C810B /* Pods-TikiTaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka.debug.xcconfig"; path = "Target Support Files/Pods-TikiTaka/Pods-TikiTaka.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-TikiTaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka.release.xcconfig"; path = "Target Support Files/Pods-TikiTaka/Pods-TikiTaka.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-TikiTaka-TikiTakaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka-TikiTakaTests.debug.xcconfig"; path = "Target Support Files/Pods-TikiTaka-TikiTakaTests/Pods-TikiTaka-TikiTakaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C198D2328C879460071D1AA /* anton-v23-latin-regular-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "anton-v23-latin-regular-1.ttf"; path = "../../../../anton-v23-latin-regular-1.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-TikiTaka.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TikiTaka.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TikiTaka/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TikiTaka-TikiTakaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka-TikiTakaTests.release.xcconfig"; path = "Target Support Files/Pods-TikiTaka-TikiTakaTests/Pods-TikiTaka-TikiTakaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5C198D2328C879460071D1AA /* anton-v23-latin-regular-1.ttf */,
 				13B07FAE1A68108700A75B9A /* TikiTaka */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TikiTakaTests */,
@@ -244,6 +247,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5C198D2428C879460071D1AA /* anton-v23-latin-regular-1.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
