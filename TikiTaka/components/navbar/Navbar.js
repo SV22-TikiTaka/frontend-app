@@ -1,28 +1,49 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import styled from 'styled-components/native';
+import React, {useState} from 'react';
 
-const Nav = styled.View`
-  height: 70px;
-  background-color: blue;
-`;
+import {Text, View, StyleSheet, Platform} from 'react-native';
 
-const Button = styled.Button``;
+import {Image} from 'react-native';
 
-const Icon = styled.View``;
+import * as S from './style';
+import {styles} from './style';
+const ConfigIconPath = '../../assets/images/config.png';
+const Navbar = () => {
+  const [leftButton, setLeftButton] = useState(false);
+  const [rightButton, setRightButton] = useState(false);
 
-const Img = styled.Image``;
-function Navbar() {
+  function leftToggleButton() {
+    if (!leftButton) {
+      setLeftButton(true);
+    }
+
+    setRightButton(false);
+  }
+
+  function rightToggleButton() {
+    if (!rightButton) {
+      setRightButton(true);
+    }
+
+    setLeftButton(false);
+  }
+
   return (
-    <Nav>
-      <Button title="CREATE"></Button>
-      <Button title="INBOX"></Button>
-      <Icon>
-        <Img></Img>
-      </Icon>
-    </Nav>
+    <S.Nav style={styles.shadow}>
+      <S.LeftText
+        onPress={leftToggleButton}
+        style={{color: leftButton ? '#FF8F8F' : '#CFCFCF'}}>
+        CREATE
+      </S.LeftText>
+      <S.LightText
+        onPress={rightToggleButton}
+        style={{color: rightButton ? '#779874' : '#CFCFCF'}}>
+        INBOX
+      </S.LightText>
+      <S.ConfigView>
+        <S.ConfigIcon source={require(ConfigIconPath)} />
+      </S.ConfigView>
+    </S.Nav>
   );
-}
+};
 
 export default Navbar;
-const styles = StyleSheet.create({});
