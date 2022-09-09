@@ -11,11 +11,12 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components/native';
 import Login from './Pages/Login/Login';
+import Main from './Pages/Main/Main';
 
 const App = () => {
   return (
     <View>
-      <Login />
+      <Main />
     </View>
   );
 };
