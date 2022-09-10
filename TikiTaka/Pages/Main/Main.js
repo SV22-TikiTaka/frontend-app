@@ -20,11 +20,11 @@ export default function Main() {
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
       <Navbar />
-      <S.Taps>
-        <S.Atap style={styles.shadow}></S.Atap>
-        <S.Btap style={styles.shadow}></S.Btap>
-        <S.Ctap style={styles.shadow}></S.Ctap>
-      </S.Taps>
+      <S.Tabs>
+        <S.Atab style={styles.shadow}></S.Atab>
+        <S.Btab style={styles.shadow}></S.Btab>
+        <S.Ctab style={styles.shadow}></S.Ctab>
+      </S.Tabs>
       <S.QuestionBox style={styles.shadow}>
         <LinearGradient
           colors={['#FF8F8F', '#BCBCBC']}
