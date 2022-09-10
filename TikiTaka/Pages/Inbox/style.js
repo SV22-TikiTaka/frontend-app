@@ -10,7 +10,7 @@ export const MailOutline = styled.View`
   background-color: #d9d9d9;
 `;
 
-export const AddStory = styled.TouchableOpacity`
+export const MoreMessages = styled.TouchableOpacity`
   width: 70%;
   height: 55px;
   border-radius: 20px;
@@ -21,7 +21,7 @@ export const AddStory = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const TextStory = styled.Text`
+export const StyledText = styled.Text`
   font-size: 20px;
   margin-left: 10px;
   color: #ffffff;
@@ -34,7 +34,7 @@ export const AddIcon = styled.Image`
 `;
 
 export const styles = StyleSheet.create({
-  shadow: {
+    shadow: {
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -49,7 +49,22 @@ export const styles = StyleSheet.create({
         elevation: 15,
       },
     }),
-  },
+    },
+
+    list:{
+        flex: 1,
+        width:"100%",
+        backgroundColor:"transparent",
+    },
+
+    stylegridView:{
+        flexDirection:"row",
+        flexWrap:"wrap",
+        paddingHorizontal:16,
+        paddingTop:10,
+        justifyContent:"space-between",
+        paddingBottom:80,
+    },
 });
 
 
