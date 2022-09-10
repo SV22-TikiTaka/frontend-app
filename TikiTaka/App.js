@@ -6,11 +6,12 @@ import {Colors, DebugInstructions, Header,LearnMoreLinks, ReloadInstructions,} f
 import styled from 'styled-components/native';
 import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
+import Inbox from './Pages/Inbox/Inbox';
 
 const App = () => {
   return (
     <View>
-      <Main />
+      <Inbox />
     </View>
   );
 };
