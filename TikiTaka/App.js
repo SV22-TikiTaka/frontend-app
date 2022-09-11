@@ -9,11 +9,12 @@ import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
 import Inbox from './Pages/Inbox/Inbox';
 import Settings from './Pages/Settings/Settings';
+import UserReply from './Pages/UserReply/UserReply';
 
 const App = () => {
   return (
     <View>
-      <Settings />
+      <UserReply></UserReply>
     </View>
   );
 };
