@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-export const Taps = styled.View`
+export const Tabs = styled.View`
   flex-direction: row;
   height: 35px;
   margin-top: 30px;
   margin-left: 50px;
 `;
 
-export const Atap = styled.TouchableOpacity`
+export const Atab = styled.TouchableOpacity`
   height: 35px;
   width: 60px;
   background-color: #ff8f8f;
@@ -16,11 +16,11 @@ export const Atap = styled.TouchableOpacity`
   margin: 0 2px;
 `;
 
-export const Btap = styled(Atap)`
+export const Btab = styled(Atab)`
   background-color: #ffd8d8;
 `;
 
-export const Ctap = styled(Atap)`
+export const Ctab = styled(Atab)`
   background-color: #b3ffac;
 `;
 

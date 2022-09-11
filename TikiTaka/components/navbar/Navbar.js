@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 
 import {Text, View, StyleSheet, Platform} from 'react-native';
 
-import {Image} from 'react-native';
-
 import * as S from './style';
 import {styles} from './style';
 const ConfigIconPath = '../../assets/images/config.png';
