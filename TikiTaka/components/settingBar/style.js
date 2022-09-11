@@ -11,6 +11,7 @@ export const Nav = styled.View`
 
 export const Title = styled.Text`
   font-size: 26px;
+  font-family: 'anton-v23-latin-regular-1';
 `;
 
 export const HomeIcon = styled.Image`

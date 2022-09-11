@@ -2,23 +2,18 @@ import React from 'react';
 
 import {View} from 'react-native';
 import Navbar from './components/navbar/Navbar';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// prettier-ignore
+import {Colors,DebugInstructions,Header,LearnMoreLinks,ReloadInstructions} from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components/native';
 import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
 import Inbox from './Pages/Inbox/Inbox';
-import UserConfig from './Pages/UserConfig/UserConfig';
+import Settings from './Pages/Settings/Settings';
 
 const App = () => {
   return (
     <View>
-      <UserConfig></UserConfig>
+      <Settings />
     </View>
   );
 };

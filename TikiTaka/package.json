@@ -16,7 +16,8 @@
     "react-native": "0.69.5",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-shadow-2": "^7.0.5",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
