@@ -13,10 +13,11 @@ import styled from 'styled-components/native';
 import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
 import UserConfig from './Pages/UserConfig/UserConfig';
+import UserReply from './Pages/UserReply/UserReply';
 const App = () => {
   return (
     <View>
-      <UserConfig></UserConfig>
+      <UserReply></UserReply>
     </View>
   );
 };
