@@ -14,24 +14,34 @@ export const MoreMessages = styled.TouchableOpacity`
   width: 70%;
   height: 55px;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 30px auto;
+  padding-left: 30px;
+  padding-right: 30px;
   background-color: #779874;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 `;
 
 export const StyledText = styled.Text`
   font-size: 20px;
-  margin-left: 10px;
   color: #ffffff;
   font-family: anton-v23-latin-regular-1;
+  align-items: center;
 `;
 
 export const AddIcon = styled.Image`
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
+  margin-top: 6px;
 `;
+
+export const closedMail = styled.Image`
+  width: 25%;
+  height: 95px;
+  margin: 30px 15px 0px 15px;
+`;
+
 
 export const styles = StyleSheet.create({
     shadow: {
@@ -60,10 +70,7 @@ export const styles = StyleSheet.create({
     stylegridView:{
         flexDirection:"row",
         flexWrap:"wrap",
-        paddingHorizontal:16,
-        paddingTop:10,
-        justifyContent:"space-between",
-        paddingBottom:80,
+        justifyContent:"center"
     },
 });
 

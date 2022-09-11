@@ -6,32 +6,33 @@
  * @flow strict-local
  */
  import React from 'react';
- import {Text, View, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
- 
- import LinearGradient from 'react-native-linear-gradient';
+ import {View, ScrollView, Image} from 'react-native';
  import * as S from './style.js';
+ import closedmail from '../../assets/images/closedmail.png'
+ import openmail from '../../assets/images/openmail.png'
  import Navbar from '../../components/navbar/Navbar.js';
  import {styles} from './style';
- import { MoreMessage } from './style';
+import { closedMail } from './style';
 
  export default function Inbox() {
-   const AddIconPath = '../../assets/images/add.png';
+   const AddIcon = '../../assets/images/add.png';
+
    return (
      <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
        <Navbar />
-       <S.MailOutline></S.MailOutline>
-       <ScrollView horizontal={false} style={S.styles.list}>
+       <ScrollView>
             <View style={S.styles.stylegridView}>
-                <S.MailOutline></S.MailOutline>
-                <S.MailOutline></S.MailOutline>
-                <S.MailOutline></S.MailOutline>
-                <S.MailOutline></S.MailOutline>
-                <S.MailOutline></S.MailOutline>
+               <S.closedMail source={closedmail}></S.closedMail>
+               <S.closedMail source={closedmail}></S.closedMail>
+               <S.closedMail source={closedmail}></S.closedMail>
+               <S.closedMail source={closedmail}></S.closedMail>
+               <S.closedMail source={openmail}></S.closedMail>
+               <S.closedMail source={openmail}></S.closedMail>
             </View>
        </ScrollView>
        
        <S.MoreMessages style={styles.shadow}>
-         <S.AddIcon source={require(AddIconPath)}></S.AddIcon>
+         <S.AddIcon source={require(AddIcon)}></S.AddIcon>
          <S.StyledText>
            GET MORE MESSAGES!
          </S.StyledText>

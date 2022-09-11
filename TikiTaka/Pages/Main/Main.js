@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import React from 'react';
-import {Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
