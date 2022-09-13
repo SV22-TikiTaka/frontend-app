@@ -10,11 +10,12 @@ import Main from './Pages/Main/Main';
 import Inbox from './Pages/Inbox/Inbox';
 import Settings from './Pages/Settings/Settings';
 import UserReply from './Pages/UserReply/UserReply';
+import { Setting } from './Pages/Settings/style';
 
 const App = () => {
   return (
     <View>
-      <UserReply></UserReply>
+      <Settings/>
     </View>
   );
 };

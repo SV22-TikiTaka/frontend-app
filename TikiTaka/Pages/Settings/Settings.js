@@ -6,8 +6,11 @@ import {styles} from './style';
 
 
 const Settings = () => {
+  
   const [isEnabled, setIsEnabled] = useState(false);
+
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  
   const UserImagePath = '../../assets/images/User.png';
 
   return (
@@ -27,7 +30,19 @@ const Settings = () => {
           <S.Setting>
             <S.ToggleWrapper>
               <S.SettingContent>PUSH NOTIFICATIONS</S.SettingContent>
+              <Switch
+                 name = "NotificationsToggle"
+                style = {styles.toggle}
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                thumbColor={isEnabled ? S.thumbColorOn : S.thumbColorOff}
+                trackColor={{ false: S.trackColorOff, true: S.trackColorOn }}
+                ios_backgroundColor={S.trackColorOff} />
+            </S.ToggleWrapper>
+            <S.ToggleWrapper>
+              <S.SettingContent>DARK MODE</S.SettingContent>
               <Switch 
+                name = "DarkModeToggle"
                 style = {styles.toggle}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
