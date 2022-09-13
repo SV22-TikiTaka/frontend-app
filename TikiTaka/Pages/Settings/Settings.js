@@ -7,10 +7,12 @@ import {styles} from './style';
 
 const Settings = () => {
   
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [NotificationsToggle, setNotificationsToggle] = useState(false);
+  const [DarkToggle, setDarkToggle] = useState(false);
 
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  
+  const NotificationsToggleSwitch = () => setNotificationsToggle(previousState => !previousState);
+  const DarkToggleSwitch = () => setDarkToggle(previousState => !previousState);
+
   const UserImagePath = '../../assets/images/User.png';
 
   return (
@@ -31,11 +33,10 @@ const Settings = () => {
             <S.ToggleWrapper>
               <S.SettingContent>PUSH NOTIFICATIONS</S.SettingContent>
               <Switch
-                 name = "NotificationsToggle"
                 style = {styles.toggle}
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                thumbColor={isEnabled ? S.thumbColorOn : S.thumbColorOff}
+                onValueChange={NotificationsToggleSwitch}
+                value={NotificationsToggle}
+                thumbColor={NotificationsToggle ? S.thumbColorOn : S.thumbColorOff}
                 trackColor={{ false: S.trackColorOff, true: S.trackColorOn }}
                 ios_backgroundColor={S.trackColorOff} />
             </S.ToggleWrapper>
@@ -44,9 +45,9 @@ const Settings = () => {
               <Switch 
                 name = "DarkModeToggle"
                 style = {styles.toggle}
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                thumbColor={isEnabled ? S.thumbColorOn : S.thumbColorOff}
+                onValueChange={DarkToggleSwitch}
+                value={DarkToggle}
+                thumbColor={DarkToggle ? S.thumbColorOn : S.thumbColorOff}
                 trackColor={{ false: S.trackColorOff, true: S.trackColorOn }}
                 ios_backgroundColor={S.trackColorOff} />
             </S.ToggleWrapper>
