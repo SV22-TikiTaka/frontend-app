@@ -43,7 +43,6 @@ export const UserName = styled.Text`
 
 export const Setting = styled.View`
   width: 80%;
-  height: 200px;
   border-radius: 20px;
   margin-top: 5px;
   background-color: #D9D9D9;
@@ -59,16 +58,11 @@ export const SettingTitle = styled.Text`
 `;
 export const ToggleWrapper = styled.View`
   width: 100%;
-  border-radius: 20px;
   flex-direction: row;
   justify-content: flex-start;
   justify-content: space-between;
-  border-bottom : black;
-  border-bottom-width: 1px;
-  padding: 5px 0px;
+  padding: 10px 0px 10px 10px;
 `;
-
-
 
 export const SettingContent = styled.Text`
   font-size: 20px;
