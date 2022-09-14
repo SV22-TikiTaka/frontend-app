@@ -18,36 +18,67 @@ import Modall from '../../components/modal/Modall.js';
 export default function Inbox() {
   const AddIcon = '../../assets/images/add.png';
   const [isModalVisible, setModalVisible] = useState(false);
-  const [letters, setLetters] = useState([]);
-  const toggleModal = () => {
+  const [currentLetter, setCurrentLetter] = useState({});
+  const [letters, setLetters] = useState([
+    {
+      reply: '가',
+      isOpen: true,
+    },
+    {
+      reply: '나',
+      isOpen: true,
+    },
+    {
+      reply: '다',
+      isOpen: true,
+    },
+    {
+      reply: '라',
+      isOpen: false,
+    },
+    {
+      reply: '마',
+      isOpen: false,
+    },
+    {
+      reply: '바',
+      isOpen: false,
+    },
+    {
+      reply: '사',
+      isOpen: true,
+    },
+  ]);
+
+  const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);
+    setCurrentLetter(() => letter);
+
+    if (index) {
+      let left = letters.slice(0, index);
+      let right = letters.slice(index + 1);
+
+      setLetters([...left, {reply: letter.reply, isOpen: true}, ...right]);
+    }
   };
+
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
       <Navbar />
       <ScrollView>
         <View style={S.styles.stylegridView}>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={closedmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={closedmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={closedmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={closedmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={openmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={openmail}></S.closedMail>
-          </S.MailBox>
-          <S.MailBox onPress={toggleModal}>
-            <S.closedMail source={closedmail}></S.closedMail>
-          </S.MailBox>
+          {letters.map((letter, index) => {
+            return (
+              <>
+                <S.MailBox onPress={() => toggleModal(letter, index)}>
+                  <S.closedMail
+                    source={
+                      letter.isOpen ? openmail : closedmail
+                    }></S.closedMail>
+                </S.MailBox>
+              </>
+            );
+          })}
         </View>
       </ScrollView>
 
@@ -55,7 +86,9 @@ export default function Inbox() {
         <S.AddIcon source={require(AddIcon)}></S.AddIcon>
         <S.StyledText>GET MORE MESSAGES!</S.StyledText>
       </S.MoreMessages>
-      {isModalVisible ? <Modall toggleModal={toggleModal} /> : null}
+      {isModalVisible ? (
+        <Modall currentLetter={currentLetter} toggleModal={toggleModal} />
+      ) : null}
     </View>
   );
 }

@@ -13,21 +13,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
 import Navbar from '../../components/navbar/Navbar.js';
 
-export default function Modall({toggleModal}) {
-  const [replyText, setReplyText] = useState('');
-
-  //text에 쓴거 저장
-  const onChangeReply = e => {
-    if (e?.target.value) {
-      setReplyText(() => e.target.value);
-    }
-  };
+export default function Modall({toggleModal, currentLetter}) {
+  const CloseIconPath = '../../assets/images/CloseIcon.png';
+  const {reply} = currentLetter;
 
   return (
     <S.Main>
       <S.ReplyBox style={S.styles.shadow}>
         <S.CloseButton onPress={toggleModal}>
-          <Text>닫기</Text>
+          <S.CloseButtonImage
+            source={require(CloseIconPath)}></S.CloseButtonImage>
         </S.CloseButton>
         <LinearGradient
           colors={['#8F8F8F', '#FF8F8F']}
@@ -39,12 +34,7 @@ export default function Modall({toggleModal}) {
           </S.Question>
         </LinearGradient>
         <S.ReplyInput>
-          <S.ReplyInputText
-            style={{flexShrink: 1}}
-            multiline={true}
-            numberOfLines={2}
-            maxLength={100}
-            onChangeText={() => onChangeReply}></S.ReplyInputText>
+          <S.ReplyInputText> {reply}</S.ReplyInputText>
         </S.ReplyInput>
       </S.ReplyBox>
 

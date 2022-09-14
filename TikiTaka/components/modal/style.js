@@ -1,12 +1,16 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
+import {Dimensions} from 'react-native';
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 
 export const Main = styled.SafeAreaView`
   flex: 1;
   font-family: anton-v23-latin-regular-1;
   position: absolute;
   width: 100%;
-  height: 120%;
+  height: 200%;
   background-color: 'rgba(52, 52, 52, 0.5)';
 `;
 
@@ -42,9 +46,6 @@ export const ReplyInput = styled.View`
   border-bottom-right-radius: 15px;
   flex-grow: 1;
   flex-shrink: 1;
-`;
-
-export const ReplyInputText = styled.TextInput`
   font-size: 18px;
   width: 100%;
   height: 300px;
@@ -53,6 +54,15 @@ export const ReplyInputText = styled.TextInput`
   padding-right: 30px;
   font-weight: bold;
   color: black;
+`;
+
+export const ReplyInputText = styled.Text`
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
 `;
 
 export const ReplyButton = styled.TouchableHighlight`
@@ -71,16 +81,15 @@ export const ReplyButtonText = styled.Text`
 `;
 
 export const CloseButton = styled.TouchableHighlight`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background-color: red;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   z-index: 1;
-  right: -10;
-  top: -10;
+  right: -5;
+  top: -5;
+`;
+
+export const CloseButtonImage = styled.Image`
+  width: 40px;
+  height: 40px;
 `;
 
 export const styles = StyleSheet.create({
