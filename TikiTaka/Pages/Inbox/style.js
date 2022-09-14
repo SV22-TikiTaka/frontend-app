@@ -37,14 +37,18 @@ export const AddIcon = styled.Image`
 `;
 
 export const closedMail = styled.Image`
+  width: 100%;
+  height: 100%;
+`;
+
+export const MailBox = styled.TouchableOpacity`
   width: 25%;
   height: 95px;
   margin: 30px 15px 0px 15px;
 `;
 
-
 export const styles = StyleSheet.create({
-    shadow: {
+  shadow: {
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -59,19 +63,18 @@ export const styles = StyleSheet.create({
         elevation: 15,
       },
     }),
-    },
+  },
 
-    list:{
-        flex: 1,
-        width:"100%",
-        backgroundColor:"transparent",
-    },
+  list: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'transparent',
+  },
 
-    stylegridView:{
-        flexDirection:"row",
-        flexWrap:"wrap",
-        justifyContent:"center"
-    },
+  stylegridView: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    marginLeft: 15,
+  },
 });
-
-

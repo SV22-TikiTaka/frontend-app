@@ -7,13 +7,13 @@
  */
 import React, {useState} from 'react';
 // prettier-ignore
-import {Text,View,Image,StyleSheet,TouchableOpacity,SafeAreaView,TouchableHightlight} from 'react-native';
+import {Text,View,Image,StyleSheet,TouchableOpacity,SafeAreaView,TouchableHightlight,Button} from 'react-native';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
 import Navbar from '../../components/navbar/Navbar.js';
 
-export default function UserReply() {
+export default function Modall({toggleModal}) {
   const [replyText, setReplyText] = useState('');
 
   //text에 쓴거 저장
@@ -25,8 +25,10 @@ export default function UserReply() {
 
   return (
     <S.Main>
-      <Navbar />
       <S.ReplyBox style={S.styles.shadow}>
+        <S.CloseButton onPress={toggleModal}>
+          <Text>닫기</Text>
+        </S.CloseButton>
         <LinearGradient
           colors={['#8F8F8F', '#FF8F8F']}
           start={{x: 1.0, y: 0.0}}

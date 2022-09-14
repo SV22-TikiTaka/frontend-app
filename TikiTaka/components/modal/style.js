@@ -4,6 +4,10 @@ import {StyleSheet} from 'react-native';
 export const Main = styled.SafeAreaView`
   flex: 1;
   font-family: anton-v23-latin-regular-1;
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  background-color: 'rgba(52, 52, 52, 0.5)';
 `;
 
 export const Reply = styled.View``;
@@ -36,8 +40,6 @@ export const ReplyInput = styled.View`
   align-items: center;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  border-width: 0.2px;
-  border-bottom: gray;
   flex-grow: 1;
   flex-shrink: 1;
 `;
@@ -68,6 +70,19 @@ export const ReplyButtonText = styled.Text`
   font-family: anton-v23-latin-regular-1;
 `;
 
+export const CloseButton = styled.TouchableHighlight`
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  right: -10;
+  top: -10;
+`;
+
 export const styles = StyleSheet.create({
   gradient: {
     height: 65,
@@ -90,8 +105,8 @@ export const styles = StyleSheet.create({
   },
   replyBoxGrediant: {
     height: 80,
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
   },
   replyBoxContainer: {},
 });
