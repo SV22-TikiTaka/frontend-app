@@ -16,7 +16,7 @@ import Modall from './components/modal/Modall';
 const App = () => {
   return (
     <View>
-      <Inbox />
+      <Settings />
     </View>
   );
 };

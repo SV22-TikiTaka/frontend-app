@@ -3,8 +3,11 @@ import {View, Switch} from 'react-native';
 import SettingBar from '../../components/settingBar/SettingBar';
 import * as S from './style.js';
 import {styles} from './style';
+import Navbar from '../../components/navbar/Navbar';
 
 const Settings = () => {
+  const Title = 'SETTINGS';
+  const TitleColor = '#779874';
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
   const [DarkToggle, setDarkToggle] = useState(false);
 
@@ -16,7 +19,7 @@ const Settings = () => {
 
   return (
     <View style={{fontFamily: '"anton-v23-latin-regular-1"'}}>
-      <SettingBar></SettingBar>
+      <Navbar Title={Title} TitleColor={TitleColor}></Navbar>
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account>
