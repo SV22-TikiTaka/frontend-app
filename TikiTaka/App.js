@@ -10,12 +10,13 @@ import Main from './Pages/Main/Main';
 import Inbox from './Pages/Inbox/Inbox';
 import Settings from './Pages/Settings/Settings';
 import UserReply from './Pages/UserReply/UserReply';
-import { Setting } from './Pages/Settings/style';
+import {Setting} from './Pages/Settings/style';
+import Modall from './components/modal/Modall';
 
 const App = () => {
   return (
     <View>
-      <Settings/>
+      <Inbox />
     </View>
   );
 };
