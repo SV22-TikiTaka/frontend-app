@@ -14,12 +14,14 @@ import Navbar from '../../components/navbar/Navbar.js';
 import {styles} from './style';
 
 export default function Main() {
+  const Title = 'CREATE';
+  const TitleColor = '#ff8f8f';
   const RollIconPath = '../../assets/images/roll.png';
   const PencilIconPath = '../../assets/images/pencil.png';
   const AddIconPath = '../../assets/images/add.png';
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
-      <Navbar />
+      <Navbar Title={Title} TitleColor={TitleColor} />
       <S.Tabs>
         <S.Atab style={styles.shadow}></S.Atab>
         <S.Btab style={styles.shadow}></S.Btab>

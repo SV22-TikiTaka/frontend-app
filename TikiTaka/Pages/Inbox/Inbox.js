@@ -16,6 +16,8 @@ import {closedMail} from './style';
 import Modall from '../../components/modal/Modall.js';
 
 export default function Inbox() {
+  const Title = 'INBOX';
+  const TitleColor = '#779874';
   const AddIcon = '../../assets/images/add.png';
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
@@ -64,7 +66,7 @@ export default function Inbox() {
 
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
-      <Navbar />
+      <Navbar Title={Title} TitleColor={TitleColor} />
       <ScrollView>
         <View style={S.styles.stylegridView}>
           {letters.map((letter, index) => {
