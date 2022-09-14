@@ -11,6 +11,7 @@ export const Main = styled.SafeAreaView`
   position: absolute;
   width: 100%;
   height: 200%;
+  z-index: 1;
   background-color: 'rgba(52, 52, 52, 0.5)';
 `;
 
@@ -73,6 +74,7 @@ export const ReplyButton = styled.TouchableHighlight`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  z-index: 10;
 `;
 
 export const ReplyButtonText = styled.Text`
