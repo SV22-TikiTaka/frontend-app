@@ -12,7 +12,6 @@
  import openmail from '../../assets/images/openmail.png'
  import Navbar from '../../components/navbar/Navbar.js';
  import {styles} from './style';
-import { closedMail } from './style';
 
  export default function Inbox() {
    const AddIcon = '../../assets/images/add.png';
