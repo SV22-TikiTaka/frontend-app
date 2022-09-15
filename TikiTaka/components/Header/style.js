@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     }),
   },
 });
-export const Nav = styled.View`
+export const Header = styled.View`
   height: 60px;
   flex-direction: row;
   justify-content: center;

@@ -11,9 +11,8 @@ import {Text,View,Image,StyleSheet,TouchableOpacity,SafeAreaView,TouchableHightl
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
-import Navbar from '../../components/navbar/Navbar.js';
 
-export default function Modall({toggleModal, currentLetter}) {
+export default function Modal({toggleModal, currentLetter}) {
   const CloseIconPath = '../../assets/images/CloseIcon.png';
   const {reply} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
