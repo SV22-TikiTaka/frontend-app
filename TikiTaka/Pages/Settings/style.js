@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 export const Container = styled.View`
   width: 100%;
-  margin: 10px auto;
+  margin: 30px auto;
   align-items: center;
 `;
 
@@ -17,9 +17,9 @@ export const Account = styled.View`
   padding: 0px 20px;
 `;
 export const AccountTitle = styled.Text`
-  font-size: 24px;
+  font-size: 18px;
   color: #ff8f8f;
-  font-family: 'anton-v23-latin-regular-1';
+  font-family: 'SB 어그로 B';
   align-self: flex-start;
   margin-left: 40px;
 `;
@@ -27,7 +27,7 @@ export const InfoWrapper = styled.View`
   width: 100%;
   border-radius: 20px;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: center;
 `;
 export const UserImage = styled.Image`
   width: 40px;
@@ -35,10 +35,9 @@ export const UserImage = styled.Image`
 `;
 
 export const UserName = styled.Text`
-  font-size: 20px;
+  font-size: 13px;
   margin-left: 15px;
-  color: black;
-  font-family: 'anton-v23-latin-regular-1';
+  font-family: 'SB 어그로 M';
 `;
 
 export const Setting = styled.View`
@@ -46,33 +45,34 @@ export const Setting = styled.View`
   border-radius: 20px;
   margin-top: 5px;
   background-color: #D9D9D9;
-  padding: 5px 20px;
+  padding: 5px 20px 10px 20px;
 `;
 
 export const SettingTitle = styled.Text`
   color: #779874;
-  font-size: 24px;
+  font-size: 18px;
   align-self: flex-start;
   margin-left: 40px;
-  font-family: 'anton-v23-latin-regular-1';
+  font-family: 'SB 어그로 B';
+  margin-top: 30px;
 `;
 export const ToggleWrapper = styled.View`
   width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
   justify-content: space-between;
   padding: 10px 0px 10px 10px;
 `;
 
 export const SettingContent = styled.Text`
-  font-size: 20px;
-  font-family: 'anton-v23-latin-regular-1';
+  font-size: 13px;
+  font-family: 'SB 어그로 M';
+  margin-top: 9px;
+  letter-spacing: -1px;
 `
 export const LogoutButton = styled.TouchableOpacity`
   width: 70%;
   height: 55px;
   margin: 20px auto;
-  padding-bottom: 3px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
@@ -81,9 +81,10 @@ export const LogoutButton = styled.TouchableOpacity`
 `;
 
 export const LogoutText = styled.Text`
-  font-size: 22px;
+  font-size: 16px;
   color: black;
-  font-family: 'anton-v23-latin-regular-1';
+  font-family: 'SB 어그로 B';
+  letter-spacing: -1px;
 `;
 
 export const thumbColorOn = Platform.OS === "android" ? "#ff8f8f" : "#ff8f8f"

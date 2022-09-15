@@ -27,8 +27,6 @@ const Settings = () => {
             <S.UserName>Wendi_S2</S.UserName>
           </S.InfoWrapper>
         </S.Account>
-      </S.Container>
-      <S.Container>
         <S.SettingTitle>SETTINGS</S.SettingTitle>
         <S.Setting>
           <S.ToggleWrapper>

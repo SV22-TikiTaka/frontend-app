@@ -4,6 +4,7 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView, But
 import Header from '../../components/Header/Header';
 import * as S from './style.js';
 import {styles} from './style';
+import { set } from 'react-native-reanimated';
 
 //Dummy content
 const DATA = [
@@ -60,23 +61,23 @@ const ExpandableComponent = ({item, onClickFuntion}) => {
     
     return (
         <S.Container>
-            <S.listContainer style = {styles.item} onPress = {onClickFuntion}>
-                <S.QuestionText style ={styles.itemText}>
+            <S.QuestionContainer onPress = {onClickFuntion}>
+                <S.QuestionText>
                     {item.question}
                 </S.QuestionText>
-            </S.listContainer>
-            <View style = {{height: layoutHeight, overflow: 'hidden'}}>
+            </S.QuestionContainer>
+            <S.AnswerContainer style = {{height: layoutHeight, overflow: 'hidden'}}>
                 {
                     item.answer.map((item, key) => (
-                        <TouchableOpacity key ={key} style = {styles.content}>
-                            <Text style = {styles.text}>
-                                {key +1}. {item.val}
-                            </Text>
-                            <View style = {styles.separator}/>
-                        </TouchableOpacity>
+                            <S.AnswerList key ={key}>
+                                <S.AnswerText style = {styles.text}>
+                                    {key+1}. {item.val}
+                                </S.AnswerText>
+                                <View style = {styles.separator}/>
+                            </S.AnswerList>
                     ))
                 }
-            </View>
+            </S.AnswerContainer>
         </S.Container>
     )
 }
@@ -105,7 +106,7 @@ const History = () => {
                         key = {item.question} 
                         item = {item}
                         onClickFuntion = {() => {
-                            updateLayout(key) 
+                            updateLayout(key)
                         }}/>
                     ))
                 }
