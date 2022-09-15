@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
           height: 1.5,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 5,
+        shadowRadius: 2,
       },
       android: {
         elevation: 20,
@@ -20,33 +20,9 @@ export const styles = StyleSheet.create({
   },
 });
 export const Header = styled.View`
-  height: 60px;
+  padding: 10px 0px 5px 0px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom-color: gray;
-  border-bottom-width: 2px;
-`;
 
-export const LeftText = styled.Text`
-  font-family: 'anton-v23-latin-regular-1';
-  font-size: 26px;
-  margin-bottom: 5px;
-`;
-
-export const LightText = styled(LeftText)`
-  margin-left: 35px;
-`;
-
-export const ConfigView = styled.View`
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 12.5;
-  right: 5;
-`;
-
-export const ConfigIcon = styled.Image`
-  width: 32.5px;
-  height: 32.5px;
 `;
