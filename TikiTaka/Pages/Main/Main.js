@@ -10,7 +10,7 @@ import {View} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
-import Navbar from '../../components/navbar/Navbar.js';
+import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 
 export default function Main() {
@@ -21,7 +21,7 @@ export default function Main() {
   const AddIconPath = '../../assets/images/add.png';
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
-      <Navbar Title={Title} TitleColor={TitleColor} />
+      <Header Title={Title} TitleColor={TitleColor} />
       <S.Tabs>
         <S.Atab style={styles.shadow}></S.Atab>
         <S.Btab style={styles.shadow}></S.Btab>

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {View, Switch} from 'react-native';
-import SettingBar from '../../components/settingBar/SettingBar';
 import * as S from './style.js';
 import {styles} from './style';
-import Navbar from '../../components/navbar/Navbar';
+import Header from '../../components/Header/Header';
 import processCount from '../../utils/processCount';
 
 const Settings = () => {
@@ -20,7 +19,7 @@ const Settings = () => {
 
   return (
     <View style={{fontFamily: '"anton-v23-latin-regular-1"'}}>
-      <Navbar Title={Title} TitleColor={TitleColor}></Navbar>
+      <Header Title={Title} TitleColor={TitleColor}/>
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account>
@@ -41,8 +40,6 @@ const Settings = () => {
             </S.UserFollowingBox>
           </S.InfoWrapper>
         </S.Account>
-      </S.Container>
-      <S.Container>
         <S.SettingTitle>SETTINGS</S.SettingTitle>
         <S.Setting>
           <S.ToggleWrapper>

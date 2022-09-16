@@ -6,14 +6,14 @@
  * @flow strict-local
  */
 import React, {useState} from 'react';
-import {View, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import * as S from './style.js';
 import closedmail from '../../assets/images/closedmail.png';
 import openmail from '../../assets/images/openmail.png';
-import Navbar from '../../components/navbar/Navbar.js';
+import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import {closedMail} from './style';
-import Modall from '../../components/modal/Modall.js';
+import Modal from '../../components/modal/Modal.js';
 
 export default function Inbox() {
   const Title = 'INBOX';
@@ -66,7 +66,7 @@ export default function Inbox() {
 
   return (
     <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
-      <Navbar Title={Title} TitleColor={TitleColor} />
+      <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
         <View style={S.styles.stylegridView}>
           {letters.map((letter, index) => {
@@ -89,7 +89,7 @@ export default function Inbox() {
         <S.StyledText>GET MORE MESSAGES!</S.StyledText>
       </S.MoreMessages>
       {isModalVisible ? (
-        <Modall currentLetter={currentLetter} toggleModal={toggleModal} />
+        <Modal currentLetter={currentLetter} toggleModal={toggleModal} />
       ) : null}
     </View>
   );
