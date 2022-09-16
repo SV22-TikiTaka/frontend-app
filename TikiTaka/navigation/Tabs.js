@@ -17,6 +17,7 @@ export default function Tabs(){
     return(
         <Tab.Navigator screenOptions={{
         headerShown:false,
+        tabBarShowLabel: false,
         tabBarStyle: {
             position: 'absolute',
             paddingBottom: 20,
@@ -24,7 +25,7 @@ export default function Tabs(){
             borderColor:'#d9d9d9',
             borderTopWidth:2
         }
-    }} tabBarOptions= {{ showLabel: false}} >
+    }}  >
             <Tab.Screen name = 'Main' component={Main} options = {{
                 tabBarIcon : ({focused}) => (
                     <View style = {{alignItems: 'center', justifyContent:'center', top:10}}>
