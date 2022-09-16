@@ -26,7 +26,9 @@ const Settings = () => {
         <S.Account>
           <S.InfoWrapper>
             <S.UserImage source={require(UserImagePath)}></S.UserImage>
-            <S.UserName>Wendi_S2</S.UserName>
+            <S.UserName numberOfLines={2} ellipsizeMode="tail">
+              Wendi_S2
+            </S.UserName>
             <S.UserFollowBox>
               <S.UserFollow>Follow</S.UserFollow>
               <S.UserFollowNumber>{processCount(101323221)}</S.UserFollowNumber>

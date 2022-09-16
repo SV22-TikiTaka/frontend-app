@@ -41,6 +41,7 @@ export const UserImage = styled.Image`
 export const UserName = styled.Text`
   font-size: 25px;
   margin-right: 20px;
+  width: 100px;
   color: black;
   font-family: 'anton-v23-latin-regular-1';
 `;
@@ -61,7 +62,7 @@ export const UserFollow = styled.Text`
 
 export const UserFollowing = styled(UserFollow)``;
 export const UserFollowingBox = styled(UserFollowBox)``;
-export const UserFollowingNumber = styled(UserFollowNumber)``;
+export const UserFollowingNumber = styled(UserFollowNumber)`3232`;
 
 export const Setting = styled.View`
   width: 80%;
