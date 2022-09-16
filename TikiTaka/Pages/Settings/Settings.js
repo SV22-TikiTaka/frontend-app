@@ -4,6 +4,7 @@ import SettingBar from '../../components/settingBar/SettingBar';
 import * as S from './style.js';
 import {styles} from './style';
 import Navbar from '../../components/navbar/Navbar';
+import processCount from '../../utils/processCount';
 
 const Settings = () => {
   const Title = 'SETTINGS';
@@ -25,7 +26,19 @@ const Settings = () => {
         <S.Account>
           <S.InfoWrapper>
             <S.UserImage source={require(UserImagePath)}></S.UserImage>
-            <S.UserName>Wendi_S2</S.UserName>
+            <S.UserName numberOfLines={2} ellipsizeMode="tail">
+              Wendi_S2
+            </S.UserName>
+            <S.UserFollowBox>
+              <S.UserFollow>Follow</S.UserFollow>
+              <S.UserFollowNumber>{processCount(101323221)}</S.UserFollowNumber>
+            </S.UserFollowBox>
+            <S.UserFollowingBox>
+              <S.UserFollowing>Following</S.UserFollowing>
+              <S.UserFollowingNumber>
+                {processCount(4234)}
+              </S.UserFollowingNumber>
+            </S.UserFollowingBox>
           </S.InfoWrapper>
         </S.Account>
       </S.Container>

@@ -42,7 +42,7 @@ export default function Main() {
           <S.PencilButton style={styles.shadow}>
             <S.RollIcon source={require(RollIconPath)} />
           </S.PencilButton>
-          <S.RollButton>
+          <S.RollButton style={styles.shadow}>
             <S.PencilIcon source={require(PencilIconPath)} />
           </S.RollButton>
         </S.InputBox>
