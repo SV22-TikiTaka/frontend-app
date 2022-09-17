@@ -6,19 +6,21 @@
  * @flow strict-local
  */
 import React, {useState,useRef,useEffect} from 'react';
-import { View, StyleSheet, Text, SafeAreaView, TextInput, Platform, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, SafeAreaView, TextInput, Platform, Image,ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import Challenge from '../../assets/images/Challenge.png';
+import Anything from '../../assets/images/Anything.png';
+
 
 //박스(일반 질문, 챌린지)
 const data = [
   {
     key:0,
-    box: <QuestionBox QuestionBoxTitle={Challenge} QuestionBoxColor= {'black'}/>,
+    box: <QuestionBox QuestionBoxTitle={Anything} QuestionBoxColor= {'#8f81b5'}/>,
   },
   {
     key:1,
