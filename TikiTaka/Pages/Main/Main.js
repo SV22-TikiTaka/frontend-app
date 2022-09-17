@@ -31,8 +31,6 @@ const data = [
 export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
-  const diceIcon = <Icon name ="shuffle-outline" size={26} color = 'black'/>;
-  const pencilIcon = <Icon name = "pencil-outline" size={24} color = 'black'/>;
   const addIcon = <Icon name = "add-circle-outline" size={26} color='white'/>;
 
   const arrowRight = <Icon name = "chevron-forward-outline" size={20} color = '#ff8f8f'/>;
@@ -66,8 +64,7 @@ export default function Main() {
               )
             }}>
             </FlatList>
-      </View>
-      <View style = {styles.buttonContainer}>
+            <View style = {styles.buttonContainer}>
       <TouchableOpacity style = {styles.button}
       onPress={()=>{
         if (index === 0){
@@ -87,7 +84,7 @@ export default function Main() {
           <Text> {arrowRight}</Text>
         </TouchableOpacity>
         </View>
-
+      </View>
       <S.AddStory style={styles.shadow}>
         <S.TextStory>{addIcon}</S.TextStory>
         <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>

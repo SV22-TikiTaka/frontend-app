@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const DATA = [
     {
@@ -24,8 +25,12 @@ const DATA = [
     },
 ]
 const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor}) =>{
+    const diceIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
+    const pencilIcon = <Icon name = "pencil-outline" size={24} color = 'black'/>;
+  
     const[text, onChangeText] =useState(null);
     const[random, setRandom] = useState(0);
+
     return (
         <View style= {[styles.component, styles.shadow , {borderColor:QuestionBoxColor, borderWidth:1}]}>
         <View style = {[styles.componentTop, {backgroundColor: QuestionBoxColor}]}>
@@ -38,8 +43,12 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor}) =>{
             value={text}
             multiline = {true}
             placeholder="Type In Here..."
-            keyboardType="alphabetic"
+            maxLength={100}
           />
+          <TouchableOpacity style = {styles.shuffle}>
+            <Text>{diceIcon}</Text>
+          </TouchableOpacity>
+          
         </View>
       </View>
     );
@@ -64,34 +73,48 @@ const styles = StyleSheet.create({
       }),
     },
     component:{
-      height: 180,
-      width: 290,
-      borderRadius:15,
-      marginTop: 10,
-      marginHorizontal: 20,
+        height: 190,
+        width: 290,
+        borderRadius:15,
+        marginVertical: 10,
+        marginHorizontal: 20,
     },
     componentTop:{
-      flex:4,
-      borderTopRightRadius: 15,
-      borderTopLeftRadius: 15,
-      alignItems:'center'
+        flex:4,
+        borderTopRightRadius: 15,
+        borderTopLeftRadius: 15,
+        alignItems:'center'
       
     },
     componentBottom:{
-      flex:5,
-      backgroundColor:'white',
-      borderBottomRightRadius: 15,
-      borderBottomLeftRadius: 15,
+        flex:5,
+        backgroundColor:'white',
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        flexDirection:'column'
     },
     input: {
-      padding: 10,
-      fontFamily: 'SB 어그로 M'
+        textAlignVertical: 'top',
+        flex: 1,
+        padding: 10,
+        fontFamily: 'SB 어그로 M'
     },
     image:{
         flex:1,
         width: 250,
         height: null,
         resizeMode: 'contain',
+    },
+    shuffle:{ 
+        height:30,
+        width:30,
+        backgroundColor:'rgba(0,0,0,0.1)',
+        borderRadius:15,
+        alignSelf:'flex-end',
+        alignItems:'center',
+        justifyContent: 'center',
+        marginBottom:10,
+        marginRight:10
     }
-  })
+})
   

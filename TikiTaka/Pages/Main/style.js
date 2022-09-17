@@ -67,8 +67,8 @@ export const styles = StyleSheet.create({
 
   },
   flatListContainer:{
-    height: 205,
-    marginTop: 15,
+ 
+    marginTop: 10,
     paddingHorizontal:30,
   },
   component:{
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
   buttonContainer:{
     flexDirection:'row',
     justifyContent:'flex-end',
-    marginRight: 40,
+    marginRight: 10,
   },
   button:{
     padding :4,
