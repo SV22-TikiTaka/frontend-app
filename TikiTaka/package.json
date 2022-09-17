@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/material-bottom-tabs": "^6.2.3",
     "@react-navigation/native": "^6.0.12",
+    "axios": "^0.27.2",
     "install": "^0.13.0",
     "link": "^1.5.1",
     "react": "18.0.0",
