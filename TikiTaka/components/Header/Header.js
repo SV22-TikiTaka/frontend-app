@@ -20,7 +20,7 @@ const Header = ({Title, TitleColor}) => {
     font-family: 'SB 어그로 B' ;
     color: ${props => props.TitleColor};
     font-size: ${props => {
-      if (props.Title === 'CREATE') {
+      if (props.Title === 'MAIN') {
         return '25px';
       } else if (props.Title === 'INBOX') {
         return '25px';

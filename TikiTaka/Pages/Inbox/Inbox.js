@@ -14,11 +14,12 @@ import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import {closedMail} from './style';
 import Modal from '../../components/modal/Modal.js';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Inbox() {
   const Title = 'INBOX';
   const TitleColor = '#779874';
-  const AddIcon = '../../assets/images/add.png';
+  const addIcon = <Icon name = "add-circle-outline" size={26} color='white'/>;
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
   const [letters, setLetters] = useState([
@@ -85,7 +86,7 @@ export default function Inbox() {
       </ScrollView>
 
       <S.MoreMessages style={styles.shadow}>
-        <S.AddIcon source={require(AddIcon)}></S.AddIcon>
+        <S.StyledText>{addIcon}</S.StyledText>
         <S.StyledText>GET MORE MESSAGES!</S.StyledText>
       </S.MoreMessages>
       {isModalVisible ? (

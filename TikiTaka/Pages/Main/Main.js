@@ -5,55 +5,96 @@
  * @format
  * @flow strict-local
  */
-import * as React from 'react';
-import {View,Text} from 'react-native';
-
-import LinearGradient from 'react-native-linear-gradient';
+import React, {useState,useRef,useEffect} from 'react';
+import { View, StyleSheet, Text, SafeAreaView, TextInput, Platform, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
+import QuestionBox from '../../components/QuestionBox/QuestionBox';
+import Challenge from '../../assets/images/Challenge.png';
+
+//박스(일반 질문, 챌린지)
+const data = [
+  {
+    key:0,
+    box: <QuestionBox QuestionBoxTitle={Challenge} QuestionBoxColor= {'black'}/>,
+  },
+  {
+    key:1,
+    box: <QuestionBox QuestionBoxTitle={Challenge} QuestionBoxColor= {'black'}/>,
+  }
+]
 
 export default function Main() {
-  const Title = 'CREATE';
+  const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
   const diceIcon = <Icon name ="shuffle-outline" size={26} color = 'black'/>;
   const pencilIcon = <Icon name = "pencil-outline" size={24} color = 'black'/>;
   const addIcon = <Icon name = "add-circle-outline" size={26} color='white'/>;
+
+  const arrowRight = <Icon name = "chevron-forward-outline" size={20} color = '#ff8f8f'/>;
+  const arrowLeft = <Icon name = "chevron-back-outline" size={20} color = '#ff8f8f'/>;
+
+  const ref = useRef(null);
+  const [index, setIndex] = useState(0);
+  
+  useEffect(() => {
+    ref.current?.scrollToIndex({
+      index,
+      animated:true
+    })
+  },[index])
+ 
   return (
-    <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
+    <View>
       <Header Title={Title} TitleColor={TitleColor} />
-      <S.Tabs>
-        <S.Atab style={styles.shadow}></S.Atab>
-        <S.Btab style={styles.shadow}></S.Btab>
-        <S.Ctab style={styles.shadow}></S.Ctab>
-      </S.Tabs>
-      <S.QuestionBox style={styles.shadow}>
-        <LinearGradient
-          colors={['#FF8F8F', '#BCBCBC']}
-          start={{x: 0.0, y: 1.0}}
-          end={{x: 1.0, y: 1.0}}
-          style={{
-            borderTopLeftRadius: 25,
-            borderTopRightRadius: 25,
-          }}>
-          <S.TypeBox />
-        </LinearGradient>
-        <S.InputBox>
-          <S.Question>
-            여기에 질문이 들어간다. 대충 이런식으로 글씨가 써지겠지?
-          </S.Question>
-          <S.buttonContainer>
-            <S.Iconbutton style={styles.shadow}>
-              <Text>{pencilIcon}</Text>
-            </S.Iconbutton>
-            <S.Iconbutton style={styles.shadow}>
-              <Text>{diceIcon}</Text>
-            </S.Iconbutton>
-          </S.buttonContainer>
-        </S.InputBox>
-      </S.QuestionBox>
-      <S.JustBox></S.JustBox>
+      <View style = {styles.flatListContainer}>
+          <FlatList 
+            ref = {ref}
+            initialScrollIndex = {index}
+            data = {data}
+            keyExtractor = {(item) => item.key}
+            contentContainerStyle = {{paddingLeft:5}}
+            showsHorizontalScrollIndicator = {false}
+            horizontal
+            renderItem={({item, index: findex}) => {
+              return (
+                <View>{item.box}</View> 
+              )
+            }}>
+            </FlatList>
+      </View>
+      <View style = {styles.buttonContainer}>
+      <TouchableOpacity style = {styles.button}
+      onPress={()=>{
+        if (index === 0){
+          return;
+        }else{
+          setIndex(index-1);
+        }}}>
+          <Text>{arrowLeft} </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.button}
+        onPress={()=>{
+        if (index === data.length-1){
+          return;
+        }else{
+          setIndex(index+1);
+        }}}>
+          <Text> {arrowRight}</Text>
+        </TouchableOpacity>
+        </View>
+
+      <S.AddStory style={styles.shadow}>
+        <S.TextStory>{addIcon}</S.TextStory>
+        <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
+           ADD  TO  YOUR  STORY !
+        </S.TextStory>
+      </S.AddStory>
+
+      <S.JustBox>
+      </S.JustBox>
       <S.AddStory style={styles.shadow}>
         <S.TextStory>{addIcon}</S.TextStory>
         <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
