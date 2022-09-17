@@ -1,86 +1,48 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-export const Tabs = styled.View`
+
+export const buttonContainer = styled.View`
+  width: 95%;
+  align-items: flex-end;
   flex-direction: row;
-  height: 35px;
-  margin-top: 30px;
-  margin-left: 50px;
-`;
-
-export const Atab = styled.TouchableOpacity`
-  height: 35px;
-  width: 60px;
-  background-color: #ff8f8f;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  margin: 0 2px;
-`;
-
-export const Btab = styled(Atab)`
-  background-color: #ffd8d8;
-`;
-
-export const Ctab = styled(Atab)`
-  background-color: #b3ffac;
-`;
-
-export const QuestionBox = styled.View`
-  height: 210px;
-  width: 85%;
-  margin: 0 auto;
-`;
-
-export const TypeBox = styled.View`
-  height: 90px;
-  width: 100%;
-`;
-
-export const InputBox = styled.View`
-  box-sizing: border-box;
-  height: 120px;
-  width: 100%;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border: 0.2px solid black;
-`;
-
-export const PencilButton = styled.TouchableOpacity`
-  width: 50px;
-  height: 50px;
-  border-radius: 50;
+  justify-content: flex-end;
+`
+export const Iconbutton =  styled.TouchableOpacity`
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
   background-color: #d9d9d9;
-  position: absolute;
   justify-content: center;
   align-items: center;
-  top: 55.5;
-  right: 10;
-`;
-
-export const RollButton = styled(PencilButton)`
-  right: 65;
-`;
-
-export const RollIcon = styled.Image`
-  width: 35.5px;
-  height: 35.5px;
-`;
-
-export const PencilIcon = styled(RollIcon)`
-  width: 26.5px;
-  height: 26.5px;
-`;
-
+  margin-right: 10px;
+`
 export const AddStory = styled.TouchableOpacity`
   width: 70%;
-  height: 55px;
+  height: 50px;
   border-radius: 20px;
-  margin: 0 auto;
-  background-color: #ff8f8f;
+  margin: 10px auto;
   flex-direction: row;
+  background-color: #ff8f8f;
   justify-content: center;
   align-items: center;
 `;
 
+export const JustBox = styled.View`
+  width: 75%;
+  height: 200px;
+  margin: 10px auto;
+  border-radius: 25px;
+  background-color: #d9d9d9;
+`;
+
+export const TextStory = styled.Text`
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: -1px;
+  justify-content: space-between;
+  margin-left: 3px;
+  margin-right: 3px;
+`;
 export const styles = StyleSheet.create({
   shadow: {
     ...Platform.select({
@@ -94,28 +56,56 @@ export const styles = StyleSheet.create({
         shadowRadius: 5,
       },
       android: {
-        elevation: 15,
+        elevation: 5,
       },
     }),
   },
+  container:{
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems:'center',
+
+  },
+  flatListContainer:{
+ 
+    marginTop: 10,
+    paddingHorizontal:30,
+  },
+  component:{
+    height: 160,
+    width: 290,
+    borderRadius:15,
+    marginTop: 20,
+  },
+  componentTop:{
+    flex:4,
+    backgroundColor: '#FF8F8F',
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    
+  },
+  componentBottom:{
+    flex:5,
+    backgroundColor:'white',
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+  },
+  input: {
+    padding: 10,
+    fontFamily: 'SB 어그로 M'
+  },
+  buttonContainer:{
+    flexDirection:'row',
+    justifyContent:'flex-end',
+    marginRight: 10,
+  },
+  button:{
+    padding :4,
+    flexDirection:'row',
+    marginHorizontal: 5,
+    height: 35,
+    justifyContent:'center',
+    alignItems:'center'
+  }
+  
 });
-
-export const JustBox = styled.View`
-  width: 85%;
-  height: 200px;
-
-  margin: 15px auto;
-  border-radius: 25px;
-  background-color: #d9d9d9;
-`;
-
-export const AddIcon = styled.Image`
-  width: 25px;
-  height: 25px;
-`;
-
-export const TextStory = styled.Text`
-  font-size: 20px;
-  margin-left: 10px;
-  color: #ffffff;
-`;

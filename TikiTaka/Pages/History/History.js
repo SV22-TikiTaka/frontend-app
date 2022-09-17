@@ -43,7 +43,7 @@ const DATA = [
             {id:3, val: '오늘 저녁 뭐 먹을꺼야?'},
             {id:4, val: '고양이 이름 뭐야?'},
             {id:5, val: '전공이 뭐야?'},
-            {id:5, val: '가장 좋아하는 계절은?'},
+            {id:6, val: '가장 좋아하는 계절은?'},
         ]
     },
 ]
@@ -97,7 +97,7 @@ const History = () => {
     }
 
     return(
-        <View style={{fontFamily: "BlackHanSans-Regular"}}>
+        <View>
             <Header Title={Title} TitleColor={TitleColor}/>
             <ScrollView>
                 {
