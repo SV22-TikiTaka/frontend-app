@@ -15,18 +15,16 @@ import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 
+//Random Normal questions dummy data
+const NDATA = ['아무거나 물어봐!','평소에 나한테 못 한 말은?','내 첫인상은?',
+'다른 사람으로 살 수 있다면 누구로 살아보고싶어?', '갖고 싶은 초능력은?',
+'내 장점 3가지!','내 단점 3가지!','MBTI 적고 가!']
 
-//박스(일반 질문, 챌린지)
-const data = [
-  {
-    key:0,
-    box: <QuestionBox QuestionBoxTitle={Anything} QuestionBoxColor= {'#8f81b5'}/>,
-  },
-  {
-    key:1,
-    box: <QuestionBox QuestionBoxTitle={Challenge} QuestionBoxColor= {'black'}/>,
-  }
-]
+//Random challenge questions dummy data
+const CDATA = 
+['시키는거 다 할게!', '살면서 가장 쪽팔렸던 경험?', '🔞가장 아찔했던 순간은🔞?', 
+'아주 사소한 물건이라도 도둑질해본 적 있다/없다?','하루아침에 성별이 바뀌었다면 제일 먼저 나는…',
+ '가장 좋은 관계 타이밍 (아침,점심,저녁)']
 
 export default function Main() {
   const Title = 'MAIN';
@@ -36,6 +34,7 @@ export default function Main() {
   const arrowRight = <Icon name = "chevron-forward-outline" size={20} color = '#ff8f8f'/>;
   const arrowLeft = <Icon name = "chevron-back-outline" size={20} color = '#ff8f8f'/>;
 
+  //this is for swiping the component box
   const ref = useRef(null);
   const [index, setIndex] = useState(0);
   
@@ -45,7 +44,51 @@ export default function Main() {
       animated:true
     })
   },[index])
- 
+
+  //challenge random text
+const [normalindex, setNormalIndex] =useState(0);
+const [normal, setNormal] = useState(null);
+  
+  const randomNormal = () =>{
+      if(normalindex !== NDATA.length-1){
+          setNormalIndex(normalindex + 1);
+          setNormal(NDATA[normalindex]);
+      }else{
+          setNormalIndex(0);
+          setNormal(NDATA[normalindex]);
+      }
+  }
+
+//challenge random text
+const [challengeindex, setChallengeIndex] =useState(0);
+const [challenge, setChallenge] = useState(null);
+  
+  const randomChallenge = () =>{
+      if(challengeindex !== CDATA.length-1){
+          setChallengeIndex(challengeindex + 1);
+          setChallenge(CDATA[challengeindex]);
+      }else{
+          setChallengeIndex(0);
+          setChallenge(CDATA[challengeindex]);
+      }
+  }
+ //박스(일반 질문, 챌린지)
+const data = [
+  {
+    key:0,
+    box: <QuestionBox 
+    QuestionBoxTitle={Anything} QuestionBoxColor= '#8f81b5' 
+    questionType={normal} setquestionType = {setNormal} 
+    randomeQuestion = {randomNormal}/>,
+  },
+  {
+    key:1,
+    box: <QuestionBox QuestionBoxTitle={Challenge} QuestionBoxColor= {'black'} 
+    questionType={challenge} setquestionType = {setChallenge} 
+    randomeQuestion = {randomChallenge}/>,
+  }
+]
+  
   return (
     <View>
       <Header Title={Title} TitleColor={TitleColor} />

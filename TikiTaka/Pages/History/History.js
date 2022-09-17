@@ -97,7 +97,7 @@ const History = () => {
     }
 
     return(
-        <View style={{fontFamily: "BlackHanSans-Regular"}}>
+        <View>
             <Header Title={Title} TitleColor={TitleColor}/>
             <ScrollView>
                 {

@@ -1,35 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect,useRef} from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { lessThan } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const DATA = [
-    {
-        key:0,
-        challenge: '시키는거 다 할게!'
-    },
-    {
-        key:1,
-        challenge: '살면서 가장 쪽팔렸던 경험?'
-    },{
-        key:2,
-        challenge: '🔞가장 아찔했던 순간은🔞?'
-    },{
-        key:3,
-        challenge: '아주 사소한 물건이라도 도둑질해본 적 있다/없다?'
-    },{
-        key:4,
-        challenge: '하루아침에 성별이 바뀌었다면 제일 먼저 나는…'
-    },{
-        key:5,
-        challenge: '가장 좋은 관계 타이밍 (아침,점심,저녁)'
-    },
-]
-const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor}) =>{
+const CDATA = 
+['시키는거 다 할게!', '살면서 가장 쪽팔렸던 경험?', '🔞가장 아찔했던 순간은🔞?', 
+'아주 사소한 물건이라도 도둑질해본 적 있다/없다?','하루아침에 성별이 바뀌었다면 제일 먼저 나는…',
+ '가장 좋은 관계 타이밍 (아침,점심,저녁)']
+
+
+const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquestionType, randomeQuestion}) =>{
     const diceIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
-    const pencilIcon = <Icon name = "pencil-outline" size={24} color = 'black'/>;
-  
-    const[text, onChangeText] =useState(null);
-    const[random, setRandom] = useState(0);
 
     return (
         <View style= {[styles.component, styles.shadow , {borderColor:QuestionBoxColor, borderWidth:1}]}>
@@ -39,13 +20,13 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor}) =>{
         <View style={styles.componentBottom}>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
+            onChangeText={setquestionType}
+            value={questionType}
             multiline = {true}
             placeholder="Type In Here..."
             maxLength={100}
           />
-          <TouchableOpacity style = {styles.shuffle}>
+          <TouchableOpacity style = {styles.shuffle} onPress={randomeQuestion}>
             <Text>{diceIcon}</Text>
           </TouchableOpacity>
           
