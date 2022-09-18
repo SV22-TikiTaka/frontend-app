@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
+import Loading from '../../components/Loading/Loading.js';
 
 export default function Main() {
   const Title = 'CREATE';
