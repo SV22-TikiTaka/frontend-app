@@ -54,6 +54,7 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     padding: 10,
+    color: '#FF8F8F',
   },
   separator: {
     height: 0.5,

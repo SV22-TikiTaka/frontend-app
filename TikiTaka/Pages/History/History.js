@@ -61,17 +61,16 @@ const DATA = [
       {id: 6, val: '가장 좋아하는 계절은?'},
     ],
   },
+  //vote
+  //id val count
   {
     isExpanded: false,
-    question: '한식 vs 일식',
+    question: '강아지 vs 고양이 vs 토끼',
     type: 'vote',
     answer: [
-      {id: 1, val: '마지막으로 연락한 사람은?'},
-      {id: 2, val: '만나는 사람 있어?'},
-      {id: 3, val: '오늘 저녁 뭐 먹을꺼야?'},
-      {id: 4, val: '고양이 이름 뭐야?'},
-      {id: 5, val: '전공이 뭐야?'},
-      {id: 6, val: '가장 좋아하는 계절은?'},
+      {id: 1, val: '강아지', count: 3},
+      {id: 2, val: '고양이', count: 5},
+      {id: 3, val: '토끼', count: 1},
     ],
   },
   {
@@ -79,12 +78,8 @@ const DATA = [
     question: '엄마 vs 아빠!',
     type: 'vote',
     answer: [
-      {id: 1, val: '마지막으로 연락한 사람은?'},
-      {id: 2, val: '만나는 사람 있어?'},
-      {id: 3, val: '오늘 저녁 뭐 먹을꺼야?'},
-      {id: 4, val: '고양이 이름 뭐야?'},
-      {id: 5, val: '전공이 뭐야?'},
-      {id: 6, val: '가장 좋아하는 계절은?'},
+      {id: 1, val: '엄마', count: 7},
+      {id: 2, val: '아빠', count: 10},
     ],
   },
 ];
@@ -127,6 +122,7 @@ const ExpandableComponent = ({item, onClickFuntion}) => {
             </>
           );
         } else if (item.type === 'vote') {
+          //{id: 3, val: '토끼', count: 1},
           return (
             <>
               <S.QuestionContainer
@@ -141,7 +137,7 @@ const ExpandableComponent = ({item, onClickFuntion}) => {
                 {item.answer.map((item, key) => (
                   <S.AnswerList key={key}>
                     <S.AnswerText style={styles.voteText}>
-                      {key + 1}. {item.val}
+                      {item.val}:{item.count}
                     </S.AnswerText>
                     <View style={styles.separator} />
                   </S.AnswerList>
