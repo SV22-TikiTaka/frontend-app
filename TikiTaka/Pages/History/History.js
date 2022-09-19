@@ -16,7 +16,7 @@ import Header from '../../components/Header/Header';
 import * as S from './style.js';
 import {styles} from './style';
 import {set} from 'react-native-reanimated';
-import {DATA} from '../../data/historyData';
+import DATA from './data';
 
 const ExpandableComponent = ({item, onClickFuntion}) => {
   const [layoutHeight, setlayoutHeight] = useState(0);
