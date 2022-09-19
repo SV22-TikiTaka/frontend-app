@@ -1,13 +1,18 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
 
+export const Main = styled.View`
+  flex: 1;
+  flex-grow: 1;
+`;
+
 export const buttonContainer = styled.View`
   width: 95%;
   align-items: flex-end;
   flex-direction: row;
   justify-content: flex-end;
-`
-export const Iconbutton =  styled.TouchableOpacity`
+`;
+export const Iconbutton = styled.TouchableOpacity`
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -15,7 +20,7 @@ export const Iconbutton =  styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-`
+`;
 export const AddStory = styled.TouchableOpacity`
   width: 70%;
   height: 50px;
@@ -28,10 +33,11 @@ export const AddStory = styled.TouchableOpacity`
 `;
 
 export const VoteContainer = styled.View`
-  width:100%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 70px;
 `;
 
 export const TextStory = styled.Text`
@@ -59,27 +65,28 @@ export const styles = StyleSheet.create({
       },
     }),
   },
-  container:{
+  container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems:'center',
+    alignItems: 'center',
   },
-  flatListContainer:{
+  flatListContainer: {
     marginTop: 10,
-    paddingHorizontal:30,
+    paddingHorizontal: 30,
+    flex: 1,
+    flexGrow: 1,
   },
-  buttonContainer:{
-    flexDirection:'row',
-    justifyContent:'flex-end',
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     marginRight: 10,
   },
-  button:{
-    padding :4,
-    flexDirection:'row',
+  button: {
+    padding: 4,
+    flexDirection: 'row',
     marginHorizontal: 5,
     height: 35,
-    justifyContent:'center',
-    alignItems:'center'
-  }
-  
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
