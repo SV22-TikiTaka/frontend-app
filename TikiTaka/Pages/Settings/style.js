@@ -19,10 +19,12 @@ export const Account = styled.View`
   height: 120px;
   margin-top: 5px;
   border-radius: 20px;
-  background-color: #d9d9d9;
+  background-color: transparent;
   align-items: center;
   justify-content: center;
   padding: 0px 20px;
+  border-width: 2px;
+  border-color: #ff8f8f;
 `;
 
 export const InfoWrapper = styled.View`
@@ -40,7 +42,9 @@ export const UserImage = styled.Image`
 export const UserName = styled.Text`
   font-size: 13px;
   margin-left: 15px;
+  margin-right: 15px;
   font-family: 'SB 어그로 M';
+  width: 80px;
 `;
 
 export const UserFollowBox = styled.View`
@@ -59,14 +63,16 @@ export const UserFollow = styled.Text`
 
 export const UserFollowing = styled(UserFollow)``;
 export const UserFollowingBox = styled(UserFollowBox)``;
-export const UserFollowingNumber = styled(UserFollowNumber)`3232`;
+export const UserFollowingNumber = styled(UserFollowNumber)``;
 
 export const Setting = styled.View`
   width: 80%;
   border-radius: 20px;
   margin-top: 5px;
-  background-color: #D9D9D9;
+  background-color: transparent;
   padding: 5px 20px 10px 20px;
+  border-width: 2px;
+  border-color: #779874;
 `;
 
 export const SettingTitle = styled.Text`
@@ -89,7 +95,7 @@ export const SettingContent = styled.Text`
   font-family: 'SB 어그로 M';
   margin-top: 9px;
   letter-spacing: -1px;
-`
+`;
 export const LogoutButton = styled.TouchableOpacity`
   width: 70%;
   height: 55px;

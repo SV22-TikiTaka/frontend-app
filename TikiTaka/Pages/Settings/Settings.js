@@ -18,8 +18,8 @@ const Settings = () => {
   const UserImagePath = '../../assets/images/User.png';
 
   return (
-    <View style={{fontFamily: '"anton-v23-latin-regular-1"'}}>
-      <Header Title={Title} TitleColor={TitleColor}/>
+    <View style={{fontFamily: 'SB 어그로 B '}}>
+      <Header Title={Title} TitleColor={TitleColor} />
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account>
