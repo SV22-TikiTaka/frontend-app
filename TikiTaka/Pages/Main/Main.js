@@ -12,6 +12,7 @@ import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
+import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 
@@ -92,6 +93,7 @@ const data = [
   return (
     <View>
       <Header Title={Title} TitleColor={TitleColor} />
+      <ScrollView>
       <View style = {styles.flatListContainer}>
           <FlatList 
             ref = {ref}
@@ -134,15 +136,16 @@ const data = [
            ADD  TO  YOUR  STORY !
         </S.TextStory>
       </S.AddStory>
-
-      <S.JustBox>
-      </S.JustBox>
-      <S.AddStory style={styles.shadow}>
-        <S.TextStory>{addIcon}</S.TextStory>
-        <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
-           ADD  TO  YOUR  STORY !
-        </S.TextStory>
-      </S.AddStory>
+      <S.VoteContainer>
+        <VoteBox/>
+        <S.AddStory style={styles.shadow}>
+            <S.TextStory>{addIcon}</S.TextStory>
+            <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
+              ADD  TO  YOUR  STORY !
+            </S.TextStory>
+        </S.AddStory>
+      </S.VoteContainer>
+      </ScrollView>
     </View>
   );
 }
