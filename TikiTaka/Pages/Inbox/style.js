@@ -21,6 +21,7 @@ export const MoreMessages = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 80px;
 `;
 
 export const StyledText = styled.Text`

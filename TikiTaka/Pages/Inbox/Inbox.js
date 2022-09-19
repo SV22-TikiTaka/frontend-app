@@ -15,43 +15,15 @@ import {styles} from './style';
 import {closedMail} from './style';
 import Modal from '../../components/modal/Modal.js';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {data} from './data.js';
 
 export default function Inbox() {
   const Title = 'INBOX';
   const TitleColor = '#779874';
-  const addIcon = <Icon name = "add-circle-outline" size={26} color='white'/>;
+  const addIcon = <Icon name="add-circle-outline" size={26} color="white" />;
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
-  const [letters, setLetters] = useState([
-    {
-      reply: '가',
-      isOpen: true,
-    },
-    {
-      reply: '나',
-      isOpen: true,
-    },
-    {
-      reply: '다',
-      isOpen: true,
-    },
-    {
-      reply: '라',
-      isOpen: false,
-    },
-    {
-      reply: '마',
-      isOpen: false,
-    },
-    {
-      reply: '바',
-      isOpen: false,
-    },
-    {
-      reply: '사',
-      isOpen: true,
-    },
-  ]);
+  const [letters, setLetters] = useState(data);
 
   const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);
@@ -66,7 +38,8 @@ export default function Inbox() {
   };
 
   return (
-    <View style={{fontFamily: "'anton-v23-latin-regular-1'"}}>
+    <View
+      style={{fontFamily: "'anton-v23-latin-regular-1'", flex: 1, flexGrow: 1}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
         <View style={S.styles.stylegridView}>
