@@ -1,12 +1,18 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import Tabs from './navigation/Tabs';
-import { View } from 'react-native';
+import History from './Pages/History/History';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import Loading from './components/Loading/Loading';
 
-export default function App(){
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
+    <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <Tabs />
       </NavigationContainer>
+    </QueryClientProvider>
   );
-};
+}

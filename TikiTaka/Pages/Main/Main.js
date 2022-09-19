@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
+import Loading from '../../components/Loading/Loading.js';
 
 //Random Normal questions dummy data
 const NDATA = ['아무거나 물어봐!','평소에 나한테 못 한 말은?','내 첫인상은?',
