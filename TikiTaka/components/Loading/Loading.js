@@ -13,14 +13,14 @@ const Background = styled.View`
   justify-content: center;
 `;
 
-const LoadinText = styled.Text`
+const LoadingText = styled.Text`
   text-align: center;
 `;
 export const Loading = () => {
   return (
     <Background>
       <ActivityIndicator size="large" color="#0000ff" />
-      <LoadinText>Loading...</LoadinText>
+      <LoadingText>Loading...</LoadingText>
     </Background>
   );
 };
