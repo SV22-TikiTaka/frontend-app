@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c39641a3-8e11-42ce-9c75-101cc22668c1" name="Changes" comment="" />
+    <list default="true" id="c39641a3-8e11-42ce-9c75-101cc22668c1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/android/app/src/main/java/com/tikitaka/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/android/app/src/main/java/com/tikitaka/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/android/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TikiTaka/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/TikiTaka/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
