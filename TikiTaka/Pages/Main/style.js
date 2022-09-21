@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
 
 export const Main = styled.SafeAreaView`
   flex-grow: 1;
