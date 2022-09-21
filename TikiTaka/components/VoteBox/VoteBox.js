@@ -10,8 +10,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './style';
 
 const VoteBox = () => {
-  const addIcon = <Icon name="add-circle-outline" size={23} color="black" />;
-  const deleteIcon = <Icon name="trash-outline" size={23} color="red" />;
+  const addIcon = <Icon name="add-outline" size={23} color="grey" />;
+  const deleteIcon = <Icon name="trash-outline" size={23} color="red"/>;
 
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
@@ -68,7 +68,7 @@ const VoteBox = () => {
               {index === 0 ? null : (
                 <TouchableOpacity
                   onPress={() => removeField(index)}
-                  style={styles.deleteInput}>
+                  style={styles.deleteIcon}>
                   <Text>{deleteIcon}</Text>
                 </TouchableOpacity>
               )}
@@ -105,17 +105,15 @@ const styles = StyleSheet.create({
     }),
   },
   addInput: {
-    lineHeight: 23,
-    paddingVertical: 2,
-    fontFamily: 'SBAggroM',
-    borderColor: 'black',
+    borderColor: 'grey',
     borderRadius: 15,
-    borderWidth: 1,
+    borderWidth: 2,
+    borderStyle: 'dashed',
     paddingHorizontal: 10,
     marginTop: 10,
     marginLeft: 10,
     width: 245,
-    height: 33,
+    paddingVertical: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     width: 245,
   },
-  deleteInput: {
+  deleteIcon: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 8,
