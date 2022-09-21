@@ -7,7 +7,18 @@
  */
 import React, {useState, useRef, useEffect} from 'react';
 //Prettier-ignore
-import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TextInput,
+  Platform,
+  Image,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -17,7 +28,7 @@ import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
-Icon.loadFont()
+Icon.loadFont();
 
 //Random Normal questions dummy data
 const NDATA = [
@@ -168,7 +179,7 @@ export default function Main() {
         </S.AddStory>
         <S.VoteContainer>
           <VoteBox />
-          <S.AddStory style={styles.shadow}>
+          <S.AddStory style={[styles.shadow, styles.lastAddButton]}>
             <S.TextStory>{addIcon}</S.TextStory>
             <S.TextStory style={{fontFamily: 'SBAggroM'}}>
               ADD TO YOUR STORY !
