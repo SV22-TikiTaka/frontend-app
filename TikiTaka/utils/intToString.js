@@ -1,4 +1,4 @@
-export default function intToString(num) {
+const intToString = (num) => {
     num = num.toString().replace(/[^0-9.]/g, '');
     if (num < 1000) {
         return num;
@@ -19,3 +19,4 @@ export default function intToString(num) {
     }
     return (num / si[index].v).toFixed(1).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") + si[index].s;
 }
+export default intToString;

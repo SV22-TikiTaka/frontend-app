@@ -42,37 +42,42 @@ export const UserContainer = styled.View`
   flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
-  font-family: 'SBAggroM';
   width: 80px;
 `;
+
+export const UserID = styled.Text`
+  margin-top: 3px;
+  font-size: 12px;
+  font-family: 'SBAggroM';
+  color:black;
+`;
+
 export const UserName = styled.Text`
   margin-top: 3px;
   font-size: 10px;
-  font-family: 'SB 어그로 L';
-`
+  font-family: 'SBAggroL';
+`;
 export const FollowingContainer = styled.View`
   flex-direction: row;
   flex:2;
   justify-content: space-around;
-`
+`;
 export const FollowingInfo = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-`
+`;
 export const FollowingNumberText = styled.Text`
   font-size: 11px;
   color: black;
-  font-family: "SB 어그로 L";
+  font-family: "SBAggroL";
   margin-top: 5px;
 `;
 export const FollowingText = styled.Text`
   font-size: 11px;
-  font-family: "SB 어그로 M";
+  font-family: "SBAggroM";
   letter-spacing: -0.5px;
 `;
-
 
 export const Setting = styled.View`
   width: 80%;
