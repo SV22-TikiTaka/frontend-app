@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Switch} from 'react-native';
+import {SafeAreaView, Switch} from 'react-native';
 import * as S from './style.js';
 import {styles} from './style';
 import Header from '../../components/Header/Header';
@@ -18,7 +18,7 @@ const Settings = () => {
   const UserImagePath = '../../assets/images/User.png';
 
   return (
-    <View style={{fontFamily: 'SBAggroB'}}>
+    <SafeAreaView style = {{flex:1, backgroundColor :'white'}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
@@ -72,7 +72,7 @@ const Settings = () => {
       <S.LogoutButton>
         <S.LogoutText>LOGOUT</S.LogoutText>
       </S.LogoutButton>
-    </View>
+    </SafeAreaView>
   );
 };
 

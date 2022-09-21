@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import React, {useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View,SafeAreaView, ScrollView} from 'react-native';
 import * as S from './style.js';
 import closedmail from '../../assets/images/closedmail.png';
 import openmail from '../../assets/images/openmail.png';
@@ -38,11 +38,10 @@ export default function Inbox() {
   };
 
   return (
-    <View
-      style={{fontFamily: "'anton-v23-latin-regular-1'", flex: 1, flexGrow: 1}}>
+    <S.InboxContainer>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
-        <View style={S.styles.stylegridView}>
+        <View style={S.styles.gridView}>
           {letters.map((letter, index) => {
             return (
               <>
@@ -57,14 +56,15 @@ export default function Inbox() {
           })}
         </View>
       </ScrollView>
-
+      <S.buttonContainer>
       <S.MoreMessages style={styles.shadow}>
         <S.StyledText>{addIcon}</S.StyledText>
         <S.StyledText>GET MORE MESSAGES!</S.StyledText>
       </S.MoreMessages>
+      </S.buttonContainer>
       {isModalVisible ? (
         <Modal currentLetter={currentLetter} toggleModal={toggleModal} />
       ) : null}
-    </View>
+    </S.InboxContainer>
   );
 }

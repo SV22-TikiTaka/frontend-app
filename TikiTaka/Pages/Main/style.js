@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 
-export const Main = styled.View`
-  flex: 1;
+export const Main = styled.SafeAreaView`
   flex-grow: 1;
+  background-color: white;
 `;
 
 export const buttonContainer = styled.View`
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   flatListContainer: {
-    marginTop: 10,
+    marginTop: 30,
     paddingHorizontal: 30,
     flex: 1,
     flexGrow: 1,

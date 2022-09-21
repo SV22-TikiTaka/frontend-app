@@ -8,9 +8,9 @@ export const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {
           width: 1.5,
-          height: 1.5,
+          height: 5,
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.1,
         shadowRadius: 2,
       },
       android: {

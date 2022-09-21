@@ -1,40 +1,37 @@
 import styled from 'styled-components/native';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 
+export const InboxContainer = styled.SafeAreaView`
+  flex: 1;
+  background-color: white;
+
+`
 export const MailOutline = styled.View`
   width: 25%;
   height: 95px;
-
   margin: 15px auto;
   border-radius: 25px;
   background-color: #d9d9d9;
 `;
 
+export const buttonContainer = styled.View`
+  margin-bottom: 70px;
+  align-items: center;
+  justify-content: center;
+`
 export const MoreMessages = styled.TouchableOpacity`
-  width: 70%;
-  height: 55px;
   border-radius: 20px;
-  margin: 30px auto;
-  padding-left: 30px;
-  padding-right: 30px;
   background-color: #779874;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  margin-bottom: 80px;
+  justify-content: center;
+  padding: 12px 30px;
 `;
 
 export const StyledText = styled.Text`
-  font-size: 20px;
+  font-size: 15px;
   color: #ffffff;
   font-family: 'SBAggroM';
-  align-items: center;
-`;
-
-export const AddIcon = styled.Image`
-  width: 22px;
-  height: 22px;
-  margin-top: 6px;
 `;
 
 export const closedMail = styled.Image`
@@ -66,13 +63,8 @@ export const styles = StyleSheet.create({
     }),
   },
 
-  list: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
-  },
-
-  stylegridView: {
+  gridView: {
+    flex:3,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',

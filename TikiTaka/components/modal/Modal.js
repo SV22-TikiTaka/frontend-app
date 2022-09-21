@@ -6,11 +6,9 @@
  * @flow strict-local
  */
 import React, {useState} from 'react';
-// prettier-ignore
-import {Text,View,Image,StyleSheet,TouchableOpacity,SafeAreaView,TouchableHightlight,Button, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
-import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
+import {styles} from './style'
 
 export default function Modal({toggleModal, currentLetter}) {
   const CloseIconPath = '../../assets/images/CloseIcon.png';
@@ -21,42 +19,30 @@ export default function Modal({toggleModal, currentLetter}) {
     height: 100%;
     z-index: 3;
   `;
-  const BackClose = styled.View`
+  const Close = styled.View`
     position: absolute;
     width: 100%;
     height: 100%;
   `;
   return (
-    <S.Main>
+    <S.Modal>
       <BackClickClose onPress={toggleModal}>
-        <BackClose></BackClose>
+        <Close></Close>
       </BackClickClose>
-      <S.ReplyBox style={S.styles.shadow}>
-        <LinearGradient
-          colors={['#8F8F8F', '#FF8F8F']}
-          start={{x: 1.0, y: 0.0}}
-          end={{x: 0.0, y: 1.0}}
-          style={S.styles.replyBoxGrediant}>
-          <S.Question style={S.styles.replyBoxContainer}>
-            <S.QuestionText>QUESTION GOES HERE</S.QuestionText>
-          </S.Question>
-        </LinearGradient>
-        <S.ReplyInput>
-          <S.ReplyInputText> {reply}</S.ReplyInputText>
-        </S.ReplyInput>
+      <S.ReplyBox>
+          <S.ComponentTop>
+            <S.TopText>QUESTION GOES HERE</S.TopText>
+          </S.ComponentTop>
+        <S.ComponentBottom>
+          <S.BottomText> {reply}</S.BottomText>
+        </S.ComponentBottom>
       </S.ReplyBox>
 
-      <LinearGradient
-        colors={['#8F8F8F', '#FF8F8F']}
-        start={{x: 0.0, y: 1.0}}
-        end={{x: 1.0, y: 1.0}}
-        style={S.styles.gradient}>
         <S.ReplyButton
           onPress={() => alert('hi')}
-          style={S.styles.buttonContainer}>
-          <S.ReplyButtonText>REPLY!</S.ReplyButtonText>
+          style={styles.buttonContainer}>
+          <S.ButtonText>REPLY</S.ButtonText>
         </S.ReplyButton>
-      </LinearGradient>
-    </S.Main>
+    </S.Modal>
   );
 }
