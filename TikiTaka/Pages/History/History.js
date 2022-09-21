@@ -100,7 +100,7 @@ const History = () => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
         {data.map((item, key) => (

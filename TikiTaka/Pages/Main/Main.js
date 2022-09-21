@@ -6,19 +6,8 @@
  * @flow strict-local
  */
 import React, {useState, useRef, useEffect} from 'react';
-//Prettier-ignore
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  Image,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+//prettier-ignore
+import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -171,12 +160,6 @@ export default function Main() {
             </TouchableOpacity>
           </View>
         </View>
-        <S.AddStory style={styles.shadow}>
-          <S.TextStory>{addIcon}</S.TextStory>
-          <S.TextStory style={{fontFamily: 'SBAggroM'}}>
-            ADD TO YOUR STORY !
-          </S.TextStory>
-        </S.AddStory>
         <S.VoteContainer>
           <VoteBox />
           <S.AddStory style={[styles.shadow, styles.lastAddButton]}>
