@@ -7,6 +7,7 @@ export const DATA = [
     answer: [
       {id: 1, val: '강아지 상이였어'},
       {id: 2, val: '귀여웠어'},
+      {id: 2, val: '음성파일', type: 'url'},
     ],
   },
   {
