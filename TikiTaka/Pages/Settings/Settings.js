@@ -3,8 +3,7 @@ import {SafeAreaView, Switch} from 'react-native';
 import * as S from './style.js';
 import {styles} from './style';
 import Header from '../../components/Header/Header';
-import processCount from '../../utils/processCount';
-import intToString from '../../utils/intToString.js';
+import intToString from '../../utils/intToString';
 
 const Settings = () => {
   const Title = 'SETTINGS';
@@ -12,8 +11,7 @@ const Settings = () => {
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
   const [DarkToggle, setDarkToggle] = useState(false);
 
-  const NotificationsToggleSwitch = () =>
-    setNotificationsToggle(previousState => !previousState);
+  const NotificationsToggleSwitch = () => setNotificationsToggle(previousState => !previousState);
   const DarkToggleSwitch = () => setDarkToggle(previousState => !previousState);
 
   const UserImagePath = '../../assets/images/User.png';
@@ -76,6 +74,6 @@ const Settings = () => {
       </S.LogoutButton>
     </SafeAreaView>
   );
-};
+}
 
 export default Settings;
