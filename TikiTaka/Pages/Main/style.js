@@ -37,7 +37,7 @@ export const VoteContainer = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 70px;
+  margin-bottom: 90px;
 `;
 
 export const TextStory = styled.Text`
@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
   shadow: {
     ...Platform.select({
       ios: {
+        marginBottom: 20,
         shadowColor: '#000',
         shadowOffset: {
           width: 1.5,
@@ -61,6 +62,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 5,
       },
       android: {
+        marginBottom: 20,
         elevation: 5,
       },
     }),
@@ -88,5 +90,13 @@ export const styles = StyleSheet.create({
     height: 35,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  lastAddButton: {
+    ...Platform.select({
+      android: {
+        marginBottom: 55,
+        elevation: 5,
+      },
+    }),
   },
 });
