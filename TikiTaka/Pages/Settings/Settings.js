@@ -4,6 +4,7 @@ import * as S from './style.js';
 import {styles} from './style';
 import Header from '../../components/Header/Header';
 import processCount from '../../utils/processCount';
+import intToString from '../../utils/intToString.js';
 
 const Settings = () => {
   const Title = 'SETTINGS';
@@ -22,26 +23,27 @@ const Settings = () => {
       <Header Title={Title} TitleColor={TitleColor} />
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
-        <S.Account>
+        <S.Account style={styles.shadow}> 
+          <S.UserImage source={require(UserImagePath)}></S.UserImage>
           <S.InfoWrapper>
-            <S.UserImage source={require(UserImagePath)}></S.UserImage>
-            <S.UserName numberOfLines={2} ellipsizeMode="tail">
-              Wendi_S2
-            </S.UserName>
-            <S.UserFollowBox>
-              <S.UserFollow>Follow</S.UserFollow>
-              <S.UserFollowNumber>{processCount(101323221)}</S.UserFollowNumber>
-            </S.UserFollowBox>
-            <S.UserFollowingBox>
-              <S.UserFollowing>Following</S.UserFollowing>
-              <S.UserFollowingNumber>
-                {processCount(4234)}
-              </S.UserFollowingNumber>
-            </S.UserFollowingBox>
+            <S.UserContainer>
+              <S.UserID numberOfLines={2} ellipsizeMode="tail">Wendi_S2</S.UserID>
+              <S.UserName numberOfLines={2} ellipsizeMode="tail">Son Seung-Wan</S.UserName>
+            </S.UserContainer>
+            <S.FollowingContainer>
+              <S.FollowingInfo>
+                <S.FollowingText>Followers</S.FollowingText>
+                <S.FollowingNumberText>{intToString(101323221)}</S.FollowingNumberText>
+              </S.FollowingInfo>
+              <S.FollowingInfo>
+                <S.FollowingText>Following</S.FollowingText>
+                <S.FollowingNumberText>{intToString(4234)}</S.FollowingNumberText>
+              </S.FollowingInfo>
+            </S.FollowingContainer>
           </S.InfoWrapper>
         </S.Account>
         <S.SettingTitle>SETTINGS</S.SettingTitle>
-        <S.Setting>
+        <S.Setting style = {styles.shadow}>
           <S.ToggleWrapper>
             <S.SettingContent>PUSH NOTIFICATIONS</S.SettingContent>
             <Switch
@@ -69,7 +71,7 @@ const Settings = () => {
           </S.ToggleWrapper>
         </S.Setting>
       </S.Container>
-      <S.LogoutButton>
+      <S.LogoutButton style={styles.shadow}>
         <S.LogoutText>LOGOUT</S.LogoutText>
       </S.LogoutButton>
     </SafeAreaView>

@@ -12,64 +12,73 @@ export const AccountTitle = styled.Text`
   color: #ff8f8f;
   font-family: 'SBAggroB';
   align-self: flex-start;
-  margin-left: 40px;
+  margin-left: 50px;
 `;
 export const Account = styled.View`
   width: 80%;
   height: 120px;
-  margin-top: 5px;
+  margin-top: 10px;
   border-radius: 20px;
-  background-color: transparent;
+  background-color: white;
   align-items: center;
   justify-content: center;
-  padding: 0px 20px;
+  padding: 20px 20px;
   border-width: 2px;
   border-color: #ff8f8f;
+  flex-direction: row;
 `;
 
 export const InfoWrapper = styled.View`
-  width: 100%;
-  border-radius: 20px;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  flex:2;
 `;
 export const UserImage = styled.Image`
-  width: 70px;
-  height: 70px;
-  margin-right: 10px;
+  width: 85px;
+  height: 85px;
 `;
 
-export const UserName = styled.Text`
-  font-size: 13px;
+export const UserContainer = styled.View`
+  flex:3;
+  flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
   font-family: 'SBAggroM';
   width: 80px;
 `;
-
-export const UserFollowBox = styled.View`
-  font-size: 12px;
-  margin-right: 10px;
+export const UserName = styled.Text`
+  margin-top: 3px;
+  font-size: 10px;
+  font-family: 'SB 어그로 L';
+`
+export const FollowingContainer = styled.View`
+  flex-direction: row;
+  flex:2;
+  justify-content: space-around;
+`
+export const FollowingInfo = styled.View`
+  flex-direction: column;
   align-items: center;
-`;
+  justify-content: center;
 
-export const UserFollowNumber = styled.Text`
-  font-size: 12px;
+`
+export const FollowingNumberText = styled.Text`
+  font-size: 11px;
   color: black;
+  font-family: "SB 어그로 L";
+  margin-top: 5px;
 `;
-export const UserFollow = styled.Text`
-  font-size: 12.5px;
+export const FollowingText = styled.Text`
+  font-size: 11px;
+  font-family: "SB 어그로 M";
+  letter-spacing: -0.5px;
 `;
 
-export const UserFollowing = styled(UserFollow)``;
-export const UserFollowingBox = styled(UserFollowBox)``;
-export const UserFollowingNumber = styled(UserFollowNumber)``;
 
 export const Setting = styled.View`
   width: 80%;
   border-radius: 20px;
-  margin-top: 5px;
-  background-color: transparent;
+  margin-top: 10px;
+  background-color: white;
   padding: 5px 20px 10px 20px;
   border-width: 2px;
   border-color: #779874;
@@ -103,8 +112,9 @@ export const LogoutButton = styled.TouchableOpacity`
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  border-color: #ff0000;
+  border-color: red;
   border-width: 2px;
+  background-color: white;
 `;
 
 export const LogoutText = styled.Text`
@@ -122,5 +132,21 @@ export const trackColorOff = Platform.OS === 'android' ? '#000000' : '#000000';
 export const styles = StyleSheet.create({
   toggle: {
     justifyContent: 'flex-end',
+  },
+  shadow: {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 1.5,
+          height: 1.5,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
 });
