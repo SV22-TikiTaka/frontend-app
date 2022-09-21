@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
     width: 245,
-    height: 33.7,
+    height: 33,
     alignItems: 'center',
     justifyContent: 'center',
   },
