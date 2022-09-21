@@ -21,7 +21,7 @@ export const QuestionContainer = styled.TouchableOpacity`
 `;
 export const QuestionText = styled.Text`
   font-size: 16px;
-  font-family: 'SB 어그로 M';
+  font-family: 'SBAggroM';
   font-weight: normal;
   text-transform: uppercase;
   color: ${props => props.typeColor};
@@ -34,7 +34,7 @@ export const AnswerContainer = styled.View`
 export const AnswerList = styled.View``;
 export const AnswerText = styled.Text`
   font-size: 12px;
-  font-family: 'SB 어그로 M';
+  font-family: 'SBAggroM';
   padding: 10px;
 `;
 

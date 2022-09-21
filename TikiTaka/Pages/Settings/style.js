@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const AccountTitle = styled.Text`
   font-size: 18px;
   color: #ff8f8f;
-  font-family: 'SB 어그로 B';
+  font-family: 'SBAggroB';
   align-self: flex-start;
   margin-left: 40px;
 `;
@@ -43,7 +43,7 @@ export const UserName = styled.Text`
   font-size: 13px;
   margin-left: 15px;
   margin-right: 15px;
-  font-family: 'SB 어그로 M';
+  font-family: 'SBAggroM';
   width: 80px;
 `;
 
@@ -80,7 +80,7 @@ export const SettingTitle = styled.Text`
   font-size: 18px;
   align-self: flex-start;
   margin-left: 40px;
-  font-family: 'SB 어그로 B';
+  font-family: 'SBAggroB';
   margin-top: 30px;
 `;
 export const ToggleWrapper = styled.View`
@@ -92,7 +92,7 @@ export const ToggleWrapper = styled.View`
 
 export const SettingContent = styled.Text`
   font-size: 13px;
-  font-family: 'SB 어그로 M';
+  font-family: 'SBAggroM';
   margin-top: 9px;
   letter-spacing: -1px;
 `;
@@ -110,7 +110,7 @@ export const LogoutButton = styled.TouchableOpacity`
 export const LogoutText = styled.Text`
   font-size: 16px;
   color: black;
-  font-family: 'SB 어그로 B';
+  font-family: 'SBAggroB';
   letter-spacing: -1px;
 `;
 

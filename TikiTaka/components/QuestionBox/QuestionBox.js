@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         marginTop:5,
         flex: 1,
         padding: 10,
-        fontFamily: 'SB 어그로 M'
+        fontFamily: 'SBAggroM'
     },
     image:{
         flex:1,

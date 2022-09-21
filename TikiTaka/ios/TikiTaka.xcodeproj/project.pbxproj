@@ -12,6 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		254001CB940A7A9C78BF9E76 /* libPods-TikiTaka-TikiTakaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B549BE2EE6D7C201AA96CBD4 /* libPods-TikiTaka-TikiTakaTests.a */; };
+		43156B1328DA851B003B0356 /* SBAggroB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43156B1028DA851B003B0356 /* SBAggroB.ttf */; };
+		43156B1428DA851B003B0356 /* SBAggroL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43156B1128DA851B003B0356 /* SBAggroL.ttf */; };
+		43156B1528DA851B003B0356 /* SBAggroM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43156B1228DA851B003B0356 /* SBAggroM.ttf */; };
 		63D7EC35A249F702B6D893A3 /* libPods-TikiTaka.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19938BEC7BAC0EC3AD28AC2F /* libPods-TikiTaka.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -38,7 +41,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TikiTaka/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TikiTaka/main.m; sourceTree = "<group>"; };
 		19938BEC7BAC0EC3AD28AC2F /* libPods-TikiTaka.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TikiTaka.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C198D2328C879460071D1AA /* anton-v23-latin-regular-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "anton-v23-latin-regular-1.ttf"; path = "../../../../anton-v23-latin-regular-1.ttf"; sourceTree = "<group>"; };
+		43156B1028DA851B003B0356 /* SBAggroB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SBAggroB.ttf; path = fonts/SBAggroB.ttf; sourceTree = "<group>"; };
+		43156B1128DA851B003B0356 /* SBAggroL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SBAggroL.ttf; path = fonts/SBAggroL.ttf; sourceTree = "<group>"; };
+		43156B1228DA851B003B0356 /* SBAggroM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SBAggroM.ttf; path = fonts/SBAggroM.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TikiTaka/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D3BF5333878715BA45BA2F3 /* Pods-TikiTaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka.debug.xcconfig"; path = "Target Support Files/Pods-TikiTaka/Pods-TikiTaka.debug.xcconfig"; sourceTree = "<group>"; };
 		A84356B48BF07701D9F3FC32 /* Pods-TikiTaka-TikiTakaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikiTaka-TikiTakaTests.release.xcconfig"; path = "Target Support Files/Pods-TikiTaka-TikiTakaTests/Pods-TikiTaka-TikiTakaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +122,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				5C198D2328C879460071D1AA /* anton-v23-latin-regular-1.ttf */,
+				43156B1028DA851B003B0356 /* SBAggroB.ttf */,
+				43156B1128DA851B003B0356 /* SBAggroL.ttf */,
+				43156B1228DA851B003B0356 /* SBAggroM.ttf */,
 				13B07FAE1A68108700A75B9A /* TikiTaka */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TikiTakaTests */,
@@ -244,8 +251,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43156B1328DA851B003B0356 /* SBAggroB.ttf in Resources */,
+				43156B1428DA851B003B0356 /* SBAggroL.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				43156B1528DA851B003B0356 /* SBAggroM.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,7 +27,7 @@ export const MoreMessages = styled.TouchableOpacity`
 export const StyledText = styled.Text`
   font-size: 20px;
   color: #ffffff;
-  font-family: anton-v23-latin-regular-1;
+  font-family: 'SBAggroM';
   align-items: center;
 `;
 

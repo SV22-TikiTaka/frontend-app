@@ -6,18 +6,8 @@
  * @flow strict-local
  */
 import React, {useState, useRef, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  Image,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+//Prettier-ignore
+import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -27,6 +17,7 @@ import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
+Icon.loadFont()
 
 //Random Normal questions dummy data
 const NDATA = [
@@ -171,7 +162,7 @@ export default function Main() {
         </View>
         <S.AddStory style={styles.shadow}>
           <S.TextStory>{addIcon}</S.TextStory>
-          <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
+          <S.TextStory style={{fontFamily: 'SBAggroM'}}>
             ADD TO YOUR STORY !
           </S.TextStory>
         </S.AddStory>
@@ -179,7 +170,7 @@ export default function Main() {
           <VoteBox />
           <S.AddStory style={styles.shadow}>
             <S.TextStory>{addIcon}</S.TextStory>
-            <S.TextStory style={{fontFamily: 'SB 어그로 M'}}>
+            <S.TextStory style={{fontFamily: 'SBAggroM'}}>
               ADD TO YOUR STORY !
             </S.TextStory>
           </S.AddStory>

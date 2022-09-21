@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
     },
     text:{
-        fontFamily: 'SB 어그로 M'
+        fontFamily: 'SBAggroM'
     },
     inputContainer:{
         flexDirection: 'row',
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     input:{
         lineHeight:23,
         paddingVertical:2,
-        fontFamily: 'SB 어그로 M',
+        fontFamily: 'SBAggroM',
         borderColor: 'black',
         borderRadius: 15,
         borderWidth:1,

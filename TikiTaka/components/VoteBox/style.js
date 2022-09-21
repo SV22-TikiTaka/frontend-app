@@ -22,7 +22,7 @@ export const componentBottom = styled.View`
     flex-direction: column;
 `
 export const styledText = styled.Text`
-    font-family: 'SB 어그로 B';
+    font-family: 'SBAggroB';
     font-size: 25px;
     color: white
 `

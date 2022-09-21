@@ -47,7 +47,7 @@ export const Sign = styled.View`
 `;
 
 export const LoginText = styled.Text`
-  font-family: 'anton-v23-latin-regular-1';
+  font-family: 'SBAggroB';
   font-style: normal;
   font-size: 21px;
   margin-left: 2px;

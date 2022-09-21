@@ -39,7 +39,9 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>anton-v23-latin-regular-1.ttf</string>
+		<string>SBAggroB.ttf</string>
+		<string>SBAggroM.ttf</string>
+		<string>SBAggroL.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
