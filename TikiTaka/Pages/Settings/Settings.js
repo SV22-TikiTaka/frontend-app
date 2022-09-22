@@ -1,23 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView, Switch} from 'react-native';
 import * as S from './style.js';
 import {styles} from './style';
 import Header from '../../components/Header/Header';
 import intToString from '../../utils/intToString';
+import {EventRegister} from 'react-native-event-listeners';
+import themeContext from '../../config/themeContext.js';
+
 
 const Settings = () => {
   const Title = 'SETTINGS';
   const TitleColor = '#779874';
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
-  const [DarkToggle, setDarkToggle] = useState(false);
-
   const NotificationsToggleSwitch = () => setNotificationsToggle(previousState => !previousState);
-  const DarkToggleSwitch = () => setDarkToggle(previousState => !previousState);
+  
+  const [DarkToggle, setDarkToggle] = useState(false);
+  const theme =  useContext(themeContext);
 
   const UserImagePath = '../../assets/images/User.png';
 
   return (
-    <SafeAreaView style = {{flex:1, backgroundColor :'white'}}>
+    <SafeAreaView style = {{flex:1, backgroundColor :theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
@@ -60,7 +63,7 @@ const Settings = () => {
             <Switch
               name="DarkModeToggle"
               style={styles.toggle}
-              onValueChange={DarkToggleSwitch}
+              onValueChange={(value) => {setDarkToggle(value); EventRegister.emit('changeTheme', value)}}
               value={DarkToggle}
               thumbColor={DarkToggle ? S.thumbColorOn : S.thumbColorOff}
               trackColor={{false: S.trackColorOff, true: S.trackColorOn}}
