@@ -162,14 +162,7 @@ export default function Main() {
             }}></FlatList>
           </View>
         <S.VoteContainer>
-
           <VoteBox />
-          <S.AddStory style={[styles.shadow, styles.lastAddButton]}>
-            <S.TextStory>{addIcon}</S.TextStory>
-            <S.TextStory style={{fontFamily: 'SBAggroM'}}>
-              ADD TO YOUR STORY !
-            </S.TextStory>
-          </S.AddStory>
         </S.VoteContainer>
       </ScrollView>
     </S.Main>

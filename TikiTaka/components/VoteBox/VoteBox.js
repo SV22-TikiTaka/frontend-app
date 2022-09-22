@@ -1,13 +1,10 @@
-import React, {useState, useRef} from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  TextInput,
-} from 'react-native';
+import React, {useState, useRef,useEffect} from 'react';
+//prettier-ignore
+import {View,StyleSheet,TouchableOpacity,Text,TextInput,} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './style';
+import {captureRef} from 'react-native-view-shot';
+import Share from 'react-native-share'
 
 const VoteBox = () => {
   const addIcon = <Icon name="add-outline" size={23} color="grey" />;
@@ -40,9 +37,39 @@ const VoteBox = () => {
     newVal.splice(i, 1);
     setText(newVal);
   };
+
+  //share to instagram
+  const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
+
+  const[showInstagramStory, setShowInstagramStory] = useState(false);
+  const viewRef = useRef();
+
+  useEffect(() => {
+    {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
+  :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}
+  })
+  const shareQuestionBox = async() => {
+    try{
+      const uri = await captureRef(viewRef, {
+        format: 'png',
+        quality:0.7
+      });
+      if(showInstagramStory){
+        await Share.shareSingle({
+          stickerImage: uri,
+          method: Share.InstagramStories.SHARE_STICKER_IMAGE,
+          social: Share.Social.INSTAGRAM_STORIES,
+        })
+      }
+      await Share.open({url: uri});
+    } catch(err){
+      console.error(err);
+    }
+    }
+
   return (
     <View style={{flex: 1}}>
-      <S.component style={styles.shadow}>
+      <S.component ref = {viewRef} style={styles.shadow}>
         <S.componentTop>
           <S.styledText>HEY, YOU! VOTE!</S.styledText>
         </S.componentTop>
@@ -83,6 +110,12 @@ const VoteBox = () => {
           )}
         </S.componentBottom>
       </S.component>
+          <S.ShareButton style = {styles.shadow} onPress = {shareQuestionBox} >
+            <S.ButtonText>{shareIcon}</S.ButtonText>
+            {showInstagramStory? 
+            <S.ButtonText> SHARE TO INSTAGRAM STORY</S.ButtonText> 
+            : <S.ButtonText> SHARE</S.ButtonText>}
+          </S.ShareButton> 
     </View>
   );
 };

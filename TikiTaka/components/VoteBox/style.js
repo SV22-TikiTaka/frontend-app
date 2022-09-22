@@ -2,8 +2,11 @@ import styled from 'styled-components/native';
 
 export const component = styled.View`
   width: 290px;
+  min-height: 190px;
   border-radius: 15px;
-  margin: 20px 10px 20px 10px;
+  margin: 10px 10px 10px 10px;
+  border-color: #779874;
+  border-width: 1px;
 `;
 export const componentTop = styled.View`
   flex: 2;
