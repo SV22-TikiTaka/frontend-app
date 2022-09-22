@@ -47,10 +47,10 @@ export default function Main() {
   const addIcon = <Icon name="add-circle-outline" size={26} color="white" />;
 
   const arrowRight = (
-    <Icon name="chevron-forward-outline" size={20} color="#ff8f8f" />
+    <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
   const arrowLeft = (
-    <Icon name="chevron-back-outline" size={20} color="#ff8f8f" />
+    <Icon name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
 
   //this is for swiping the component box
@@ -123,7 +123,32 @@ export default function Main() {
     <S.Main>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
-        <View style={styles.flatListContainer}>
+       
+        <View style={styles.flatListContainer}> 
+        <S.buttonContainer> 
+          <TouchableOpacity
+              style={styles.buttonLeft}
+              onPress={() => {
+                if (index === 0) {
+                  return;
+                } else {
+                  setIndex(index - 1);
+                }
+              }}>
+              <Text>{arrowLeft} </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonRight}
+              onPress={() => {
+                if (index === data.length - 1) {
+                  return;
+                } else {
+                  setIndex(index + 1);
+                }
+              }}>
+              <Text> {arrowRight}</Text>
+            </TouchableOpacity>
+          </S.buttonContainer>
           <FlatList
             ref={ref}
             initialScrollIndex={index}
@@ -135,32 +160,9 @@ export default function Main() {
             renderItem={({item, index: findex}) => {
               return <View>{item.box}</View>;
             }}></FlatList>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                if (index === 0) {
-                  return;
-                } else {
-                  setIndex(index - 1);
-                }
-              }}>
-              <Text>{arrowLeft} </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                if (index === data.length - 1) {
-                  return;
-                } else {
-                  setIndex(index + 1);
-                }
-              }}>
-              <Text> {arrowRight}</Text>
-            </TouchableOpacity>
           </View>
-        </View>
         <S.VoteContainer>
+
           <VoteBox />
           <S.AddStory style={[styles.shadow, styles.lastAddButton]}>
             <S.TextStory>{addIcon}</S.TextStory>

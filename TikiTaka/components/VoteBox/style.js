@@ -27,3 +27,25 @@ export const styledText = styled.Text`
   font-size: 25px;
   color: white;
 `;
+
+export const ShareButton = styled.TouchableOpacity`
+    border-radius: 20px;
+    margin: 10px auto;
+    flex-direction: row;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-color: #ff8f8f;
+    border-width: 2px;
+`;
+
+export const ButtonText = styled.Text`
+    font-size: 12px;
+    color: black;
+    letter-spacing: -0.3px;
+    justify-content: space-between;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-family: 'SBAggroM';
+`

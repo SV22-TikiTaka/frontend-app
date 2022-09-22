@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         height: 190,
         width: 290,
         borderRadius:15,
-        marginVertical: 10,
+        marginBottom: 10,
         marginHorizontal: 20,
     },
     componentTop:{
