@@ -61,7 +61,7 @@ export default function Modal({toggleModal, currentLetter}) {
             />
           ) : null}
 
-          {replay ? <S.BottomText>{reply}</S.BottomText> : null}
+          {reply ? <S.BottomText>{reply}</S.BottomText> : null}
         </S.ComponentBottom>
       </S.ReplyBox>
 
