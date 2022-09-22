@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
 
 export const InboxContainer = styled.SafeAreaView`
   flex: 1;
@@ -13,8 +13,8 @@ export const StyledText = styled.Text`
 
 export const MailBox = styled.TouchableOpacity`
   margin: 15px;
-  background-color: #E9E9E9;
-  padding:15px;
+  background-color: #e9e9e9;
+  padding: 15px;
   border-radius: 20px;
   align-items: center;
   justify-content: center;
@@ -38,11 +38,12 @@ export const styles = StyleSheet.create({
     }),
   },
   gridView: {
-    flex:3,
+    flex: 3,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     marginVertical: 20,
-    marginHorizontal:15
+    marginHorizontal: 15,
+    marginLeft: 25,
   },
 });
