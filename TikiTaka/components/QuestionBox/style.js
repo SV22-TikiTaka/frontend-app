@@ -4,7 +4,6 @@ export const ShareButton = styled.TouchableOpacity`
     border-radius: 20px;
     margin: 10px auto;
     flex-direction: row;
-    background-color: white;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -14,7 +13,6 @@ export const ShareButton = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
     font-size: 12px;
-    color: black;
     letter-spacing: -0.3px;
     justify-content: space-between;
     margin-left: 3px;

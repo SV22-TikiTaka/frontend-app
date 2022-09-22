@@ -1,14 +1,17 @@
-import React, {useState,useEffect,useRef} from 'react';
+import React, {useState,useEffect,useRef,useContext} from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share'
+import themeContext from '../../config/themeContext.js';
 
 import * as S from './style';
 
 const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquestionType, randomeQuestion}) =>{
     const diceIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
     const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
+
+    const theme =  useContext(themeContext);
 
     const[showInstagramStory, setShowInstagramStory] = useState(false);
     const viewRef = useRef();
@@ -56,11 +59,11 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquest
           </TouchableOpacity>
         </View>
         </View>
-          <S.ShareButton style = {styles.shadow} onPress = {shareQuestionBox} >
+          <S.ShareButton style = {[styles.shadow,{backgroundColor:theme.background}]} onPress = {shareQuestionBox} >
             <S.ButtonText>{shareIcon}</S.ButtonText>
             {showInstagramStory? 
-            <S.ButtonText> SHARE TO INSTAGRAM STORY</S.ButtonText> 
-            : <S.ButtonText> SHARE</S.ButtonText>}
+            <S.ButtonText style = {{color:theme.color}}> SHARE TO INSTAGRAM STORY</S.ButtonText> 
+            : <S.ButtonText style = {{color:theme.color}}> SHARE</S.ButtonText>}
           </S.ShareButton>
         </View>
     );

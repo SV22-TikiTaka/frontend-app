@@ -19,7 +19,6 @@ export const Account = styled.View`
   height: 120px;
   margin-top: 10px;
   border-radius: 20px;
-  background-color: white;
   align-items: center;
   justify-content: center;
   padding: 20px 20px;
@@ -42,14 +41,13 @@ export const UserContainer = styled.View`
   flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
-  width: 80px;
+  width: 200px;
 `;
 
 export const UserID = styled.Text`
   margin-top: 3px;
   font-size: 12px;
   font-family: 'SBAggroM';
-  color:black;
 `;
 
 export const UserName = styled.Text`
@@ -83,7 +81,6 @@ export const Setting = styled.View`
   width: 80%;
   border-radius: 20px;
   margin-top: 10px;
-  background-color: white;
   padding: 5px 20px 10px 20px;
   border-width: 2px;
   border-color: #779874;
@@ -117,22 +114,16 @@ export const LogoutButton = styled.TouchableOpacity`
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  border-color: red;
   border-width: 2px;
-  background-color: white;
+  border-color:red;
 `;
 
 export const LogoutText = styled.Text`
   font-size: 16px;
-  color: black;
   font-family: 'SBAggroB';
   letter-spacing: -1px;
+  color:black;
 `;
-
-export const thumbColorOn = Platform.OS === 'android' ? '#ff8f8f' : '#ff8f8f';
-export const thumbColorOff = Platform.OS === 'android' ? '#D9D9D9' : '#D9D9D9';
-export const trackColorOn = Platform.OS === 'android' ? '#779874' : '#779874';
-export const trackColorOff = Platform.OS === 'android' ? '#000000' : '#000000';
 
 export const styles = StyleSheet.create({
   toggle: {

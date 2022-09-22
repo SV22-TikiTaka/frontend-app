@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 //prettier-ignore
 import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
 import * as S from './style.js';
@@ -17,6 +17,8 @@ import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
+import themeContext from '../../config/themeContext.js';
+
 Icon.loadFont();
 
 //Random Normal questions dummy data
@@ -44,7 +46,7 @@ const CDATA = [
 export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
-  const addIcon = <Icon name="add-circle-outline" size={26} color="white" />;
+  const theme =  useContext(themeContext);
 
   const arrowRight = (
     <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
@@ -120,7 +122,7 @@ export default function Main() {
   ];
 
   return (
-    <S.Main>
+    <S.Main style={{backgroundColor: theme.background }}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
        

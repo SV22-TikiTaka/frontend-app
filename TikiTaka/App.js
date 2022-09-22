@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DarkTheme, DefaultTheme} from '@react-navigation/native';
 import Tabs from './navigation/Tabs';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import SplashScreen from 'react-native-splash-screen';
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <themeContext.Provider value = {DarkMode === true? theme.dark : theme.light}>
-      <NavigationContainer>
+      <NavigationContainer value = {DarkMode === true? theme.dark : theme.light}>
         <Tabs />
       </NavigationContainer>
       </themeContext.Provider>

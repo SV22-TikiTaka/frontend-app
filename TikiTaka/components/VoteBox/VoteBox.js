@@ -1,14 +1,17 @@
-import React, {useState, useRef,useEffect} from 'react';
+import React, {useState, useRef,useEffect,useContext} from 'react';
 //prettier-ignore
 import {View,StyleSheet,TouchableOpacity,Text,TextInput,} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './style';
 import {captureRef} from 'react-native-view-shot';
-import Share from 'react-native-share'
+import Share from 'react-native-share';
+import themeContext from '../../config/themeContext.js';
 
 const VoteBox = () => {
   const addIcon = <Icon name="add-outline" size={23} color="grey" />;
   const deleteIcon = <Icon name="trash-outline" size={23} color="red"/>;
+
+  const theme =  useContext(themeContext);
 
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
@@ -110,11 +113,11 @@ const VoteBox = () => {
           )}
         </S.componentBottom>
       </S.component>
-          <S.ShareButton style = {styles.shadow} onPress = {shareQuestionBox} >
+          <S.ShareButton style = {[styles.shadow,{backgroundColor:theme.background}]} onPress = {shareQuestionBox} >
             <S.ButtonText>{shareIcon}</S.ButtonText>
             {showInstagramStory? 
-            <S.ButtonText> SHARE TO INSTAGRAM STORY</S.ButtonText> 
-            : <S.ButtonText> SHARE</S.ButtonText>}
+            <S.ButtonText style = {{color:theme.color}}> SHARE TO INSTAGRAM STORY</S.ButtonText> 
+            : <S.ButtonText style = {{color:theme.color}}> SHARE</S.ButtonText>}
           </S.ShareButton> 
     </View>
   );

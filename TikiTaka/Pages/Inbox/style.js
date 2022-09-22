@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const InboxContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: white;
 `;
 export const StyledText = styled.Text`
   font-size: 15px;
@@ -13,7 +12,6 @@ export const StyledText = styled.Text`
 
 export const MailBox = styled.TouchableOpacity`
   margin: 15px;
-  background-color: #E9E9E9;
   padding:15px;
   border-radius: 20px;
   align-items: center;
