@@ -1,6 +1,6 @@
 import React, {useState, useRef,useEffect,useContext} from 'react';
 //prettier-ignore
-import {View,StyleSheet,TouchableOpacity,Text,TextInput,} from 'react-native';
+import {View,StyleSheet,TouchableOpacity,Text,TextInput,Platform, Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as S from './style';
 import {captureRef} from 'react-native-view-shot';
