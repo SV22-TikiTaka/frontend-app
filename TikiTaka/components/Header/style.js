@@ -24,5 +24,5 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  border-bottom-width: 1px;
 `;

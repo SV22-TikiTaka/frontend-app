@@ -1,19 +1,47 @@
-import React, {useState,useEffect,useRef} from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
-import { lessThan } from 'react-native-reanimated';
+import React, {useState,useEffect,useRef,useContext} from 'react';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {captureRef} from 'react-native-view-shot';
+import Share from 'react-native-share'
+import themeContext from '../../config/themeContext.js';
 
-const CDATA = 
-['시키는거 다 할게!', '살면서 가장 쪽팔렸던 경험?', '🔞가장 아찔했던 순간은🔞?', 
-'아주 사소한 물건이라도 도둑질해본 적 있다/없다?','하루아침에 성별이 바뀌었다면 제일 먼저 나는…',
- '가장 좋은 관계 타이밍 (아침,점심,저녁)']
-
+import * as S from './style';
 
 const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquestionType, randomeQuestion}) =>{
     const diceIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
+    const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
+
+    const theme =  useContext(themeContext);
+
+    const[showInstagramStory, setShowInstagramStory] = useState(false);
+    const viewRef = useRef();
+
+    useEffect(() => {
+      {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
+    :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}
+    })
+    const shareQuestionBox = async() => {
+      try{
+        const uri = await captureRef(viewRef, {
+          format: 'png',
+          quality:0.7
+        });
+        if(showInstagramStory){
+          await Share.shareSingle({
+            stickerImage: uri,
+            method: Share.InstagramStories.SHARE_STICKER_IMAGE,
+            social: Share.Social.INSTAGRAM_STORIES,
+          })
+        }
+        await Share.open({url: uri});
+      } catch(err){
+        console.error(err);
+      }
+    }
 
     return (
-        <View style= {[styles.component, styles.shadow , {borderColor:QuestionBoxColor, borderWidth:1}]}>
+      <View>
+        <View ref = {viewRef} style= {[styles.component, styles.shadow , {borderColor:QuestionBoxColor, borderWidth:1}]}>
         <View style = {[styles.componentTop, {backgroundColor: QuestionBoxColor}]}>
             <Image source={QuestionBoxTitle} style = {styles.image} ></Image>
         </View>
@@ -29,9 +57,15 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquest
           <TouchableOpacity style = {styles.shuffle} onPress={randomeQuestion}>
             <Text>{diceIcon}</Text>
           </TouchableOpacity>
-          
         </View>
-      </View>
+        </View>
+          <S.ShareButton style = {[styles.shadow,{backgroundColor:theme.background}]} onPress = {shareQuestionBox} >
+            <S.ButtonText>{shareIcon}</S.ButtonText>
+            {showInstagramStory? 
+            <S.ButtonText style = {{color:theme.color}}> SHARE TO INSTAGRAM STORY</S.ButtonText> 
+            : <S.ButtonText style = {{color:theme.color}}> SHARE</S.ButtonText>}
+          </S.ShareButton>
+        </View>
     );
 };
 export default QuestionBox;
@@ -57,7 +91,7 @@ const styles = StyleSheet.create({
         height: 190,
         width: 290,
         borderRadius:15,
-        marginVertical: 10,
+        marginBottom: 10,
         marginHorizontal: 20,
     },
     componentTop:{

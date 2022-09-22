@@ -1,25 +1,16 @@
-import React, {useState, useEffect} from 'react';
-//ignore prettier
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  Button,
-  LayoutAnimation,
-  Platform,
-  UIManager,
-} from 'react-native';
+import React, {useState, useEffect,useContext} from 'react';
+//prettier-ignore
+import {View,Text,ScrollView,TouchableOpacity,StyleSheet,SafeAreaView,Button,LayoutAnimation,Platform,UIManager,} from 'react-native';
 import Header from '../../components/Header/Header';
 import * as S from './style.js';
 import {styles} from './style';
 import {set} from 'react-native-reanimated';
 import {DATA} from './data';
+import themeContext from '../../config/themeContext.js';
 
 const ExpandableComponent = ({item, onClickFuntion}) => {
   const [layoutHeight, setlayoutHeight] = useState(0);
+  const theme =  useContext(themeContext);
 
   useEffect(() => {
     if (item.isExpanded) {
@@ -36,6 +27,7 @@ const ExpandableComponent = ({item, onClickFuntion}) => {
           return (
             <>
               <S.QuestionContainer
+                style = {{backgroundColor:theme.background}}
                 typeColor={'#FF8F8F'}
                 onPress={onClickFuntion}>
                 <S.QuestionText typeColor={'#FF8F8F'}>
@@ -60,6 +52,7 @@ const ExpandableComponent = ({item, onClickFuntion}) => {
           return (
             <>
               <S.QuestionContainer
+                style = {{backgroundColor:theme.background}}
                 typeColor={'#008f7a'}
                 onPress={onClickFuntion}>
                 <S.QuestionText typeColor={'#008f7a'}>
@@ -88,6 +81,7 @@ const History = () => {
   const Title = 'HISTORY';
   const TitleColor = '#FF8F8F';
   const [data, setData] = useState(DATA);
+  const theme =  useContext(themeContext);
 
   if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -100,7 +94,7 @@ const History = () => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
         {data.map((item, key) => (

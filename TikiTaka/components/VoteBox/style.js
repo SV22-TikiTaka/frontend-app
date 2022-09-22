@@ -2,8 +2,11 @@ import styled from 'styled-components/native';
 
 export const component = styled.View`
   width: 290px;
+  min-height: 190px;
   border-radius: 15px;
-  margin: 20px 10px 20px 10px;
+  margin: 10px 10px 10px 10px;
+  border-color: #779874;
+  border-width: 1px;
 `;
 export const componentTop = styled.View`
   flex: 2;
@@ -27,3 +30,25 @@ export const styledText = styled.Text`
   font-size: 25px;
   color: white;
 `;
+
+export const ShareButton = styled.TouchableOpacity`
+    border-radius: 20px;
+    margin: 10px auto;
+    flex-direction: row;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-color: #ff8f8f;
+    border-width: 2px;
+`;
+
+export const ButtonText = styled.Text`
+    font-size: 12px;
+    color: black;
+    letter-spacing: -0.3px;
+    justify-content: space-between;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-family: 'SBAggroM';
+`

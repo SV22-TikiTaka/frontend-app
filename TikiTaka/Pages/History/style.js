@@ -10,7 +10,6 @@ export const Container = styled.View`
 `;
 
 export const QuestionContainer = styled.TouchableOpacity`
-  background-color: white;
   padding: 10px 10px 10px 20px;
   margin-top: 10px;
   margin-left: 20px;

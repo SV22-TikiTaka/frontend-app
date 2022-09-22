@@ -7,10 +7,12 @@ export const Main = styled.SafeAreaView`
 `;
 
 export const buttonContainer = styled.View`
-  width: 95%;
-  align-items: flex-end;
+  width: 117%;
+  top: 120px;
+  right:28px;
+  position: relative;
+  justify-content: space-between;
   flex-direction: row;
-  justify-content: flex-end;
 `;
 export const Iconbutton = styled.TouchableOpacity`
   width: 40px;
@@ -73,7 +75,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   flatListContainer: {
-    marginTop: 30,
     paddingHorizontal: 30,
     flex: 1,
     flexGrow: 1,
@@ -83,13 +84,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: 10,
   },
-  button: {
+  buttonLeft: {
+    alignSelf: 'flex-start',
     padding: 4,
-    flexDirection: 'row',
-    marginHorizontal: 5,
-    height: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  buttonRight: {
+    alignSelf: 'flex-end',
+    padding: 4,
   },
   lastAddButton: {
     ...Platform.select({

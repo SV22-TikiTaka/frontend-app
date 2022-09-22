@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 
 import {Text, View, StyleSheet, Platform} from 'react-native';
 import styled from 'styled-components/native';
 import * as S from './style';
 import {styles} from './style';
+import themeContext from '../../config/themeContext.js';
+
 const Header = ({Title, TitleColor}) => {
-  const font1 = 'SBAggroB'
+  const theme =  useContext(themeContext);
 
   //if문안에서 font-size조절 가능해여
   // 폰트1~5 적용했을때 가장이쁜거 골라주세요 저는 4번
@@ -25,7 +27,7 @@ const Header = ({Title, TitleColor}) => {
     }};
   `;
   return (
-    <S.Header style={[styles.shadow]}>
+    <S.Header style={[styles.shadow, {backgroundColor : theme.background, borderColor: theme.borderColor}]}>
       <HeaderTitle TitleColor={TitleColor} Title={Title}>
         {Title}
       </HeaderTitle>

@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Main from '../Pages/Main/Main';
 import Inbox from '../Pages/Inbox/Inbox';
 import Settings from '../Pages/Settings/Settings';
 import History from '../Pages/History/History';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import themeContext from '../config/themeContext.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,6 +14,8 @@ export default function Tabs() {
   const InboxIcon = '../assets/Icons/Inbox.png';
   const HistoryIcon = '../assets/Icons/History.png';
   const SettingsIcon = '../assets/Icons/Settings.png';
+
+  const theme =  useContext(themeContext);
 
   return (
     <Tab.Navigator
@@ -23,8 +26,8 @@ export default function Tabs() {
           position: 'absolute',
           paddingBottom: 20,
           height: 70,
-          borderColor: '#d9d9d9',
           borderTopWidth: 2,
+          backgroundColor: theme.background,
           ...Platform.select({
             ios: {
               height: 80,
@@ -48,11 +51,11 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#FF8F8F' : '#000000',
+                  tintColor: focused ? '#FF8F8F' : theme.navcolor,
                 }}
               />
               <Text
-                style={{color: focused ? '#FF8F8F' : '#000000', fontSize: 12}}>
+                style={{color: focused ? '#FF8F8F' : theme.navcolor, fontSize: 10, fontFamily:'SBAggroM', marginTop:3}}>
                 MAIN
               </Text>
             </View>
@@ -72,11 +75,11 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#779874' : '#000000',
+                  tintColor: focused ? '#779874' : theme.navcolor,
                 }}
               />
               <Text
-                style={{color: focused ? '#779874' : '#000000', fontSize: 12}}>
+                style={{color: focused ? '#779874' : theme.navcolor, fontSize: 10, fontFamily:'SBAggroM', marginTop:3}}>
                 INBOX
               </Text>
             </View>
@@ -96,11 +99,11 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#FF8F8F' : '#000000',
+                  tintColor: focused ? '#FF8F8F' : theme.navcolor,
                 }}
               />
               <Text
-                style={{color: focused ? '#FF8F8F' : '#000000', fontSize: 12}}>
+                style={{color: focused ? '#FF8F8F' : theme.navcolor, fontSize: 10, fontFamily:'SBAggroM', marginTop:4}}>
                 HISTORY
               </Text>
             </View>
@@ -120,11 +123,11 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#779874' : '#000000',
+                  tintColor: focused ? '#779874' : theme.navcolor,
                 }}
               />
               <Text
-                style={{color: focused ? '#779874' : '#000000', fontSize: 12}}>
+                style={{color: focused ? '#779874' : theme.navcolor, fontSize: 10, fontFamily:'SBAggroM', marginTop:3}}>
                 SETTINGS
               </Text>
             </View>
@@ -137,7 +140,7 @@ export default function Tabs() {
 
 const styles = StyleSheet.create({
   shadow: {
-    shadowColor: '#7f5df0',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 10,

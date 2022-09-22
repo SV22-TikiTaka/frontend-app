@@ -5,20 +5,9 @@
  * @format
  * @flow strict-local
  */
-import React, {useState, useRef, useEffect} from 'react';
-//Prettier-ignore
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  Image,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState, useRef, useEffect, useContext} from 'react';
+//prettier-ignore
+import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -28,6 +17,8 @@ import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
+import themeContext from '../../config/themeContext.js';
+
 Icon.loadFont();
 
 //Random Normal questions dummy data
@@ -55,13 +46,13 @@ const CDATA = [
 export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
-  const addIcon = <Icon name="add-circle-outline" size={26} color="white" />;
+  const theme =  useContext(themeContext);
 
   const arrowRight = (
-    <Icon name="chevron-forward-outline" size={20} color="#ff8f8f" />
+    <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
   const arrowLeft = (
-    <Icon name="chevron-back-outline" size={20} color="#ff8f8f" />
+    <Icon name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
 
   //this is for swiping the component box
@@ -131,10 +122,35 @@ export default function Main() {
   ];
 
   return (
-    <S.Main>
+    <S.Main style={{backgroundColor: theme.background }}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
-        <View style={styles.flatListContainer}>
+       
+        <View style={styles.flatListContainer}> 
+        <S.buttonContainer> 
+          <TouchableOpacity
+              style={styles.buttonLeft}
+              onPress={() => {
+                if (index === 0) {
+                  return;
+                } else {
+                  setIndex(index - 1);
+                }
+              }}>
+              <Text>{arrowLeft} </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonRight}
+              onPress={() => {
+                if (index === data.length - 1) {
+                  return;
+                } else {
+                  setIndex(index + 1);
+                }
+              }}>
+              <Text> {arrowRight}</Text>
+            </TouchableOpacity>
+          </S.buttonContainer>
           <FlatList
             ref={ref}
             initialScrollIndex={index}
@@ -146,45 +162,9 @@ export default function Main() {
             renderItem={({item, index: findex}) => {
               return <View>{item.box}</View>;
             }}></FlatList>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                if (index === 0) {
-                  return;
-                } else {
-                  setIndex(index - 1);
-                }
-              }}>
-              <Text>{arrowLeft} </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                if (index === data.length - 1) {
-                  return;
-                } else {
-                  setIndex(index + 1);
-                }
-              }}>
-              <Text> {arrowRight}</Text>
-            </TouchableOpacity>
           </View>
-        </View>
-        <S.AddStory style={styles.shadow}>
-          <S.TextStory>{addIcon}</S.TextStory>
-          <S.TextStory style={{fontFamily: 'SBAggroM'}}>
-            ADD TO YOUR STORY !
-          </S.TextStory>
-        </S.AddStory>
         <S.VoteContainer>
           <VoteBox />
-          <S.AddStory style={[styles.shadow, styles.lastAddButton]}>
-            <S.TextStory>{addIcon}</S.TextStory>
-            <S.TextStory style={{fontFamily: 'SBAggroM'}}>
-              ADD TO YOUR STORY !
-            </S.TextStory>
-          </S.AddStory>
         </S.VoteContainer>
       </ScrollView>
     </S.Main>
