@@ -14,6 +14,7 @@ export const StyledText = styled.Text`
 export const MailBox = styled.TouchableOpacity`
   margin: 15px;
   background-color: #e9e9e9;
+  width: 25%;
   padding: 15px;
   border-radius: 20px;
   align-items: center;
@@ -41,9 +42,10 @@ export const styles = StyleSheet.create({
     flex: 3,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginVertical: 20,
     marginHorizontal: 15,
-    marginLeft: 25,
+    marginLeft: 20,
+    marginBottom: 70,
   },
 });

@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import React, {useState} from 'react';
-import {View,SafeAreaView, ScrollView,Text} from 'react-native';
+import {View, SafeAreaView, ScrollView, Text} from 'react-native';
 import * as S from './style.js';
 import closedmail from '../../assets/images/closedmail.png';
 import openmail from '../../assets/images/openmail.png';
@@ -15,14 +15,14 @@ import {styles} from './style';
 import Modal from '../../components/modal/Modal.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {data} from './data.js';
-import { closedMail } from './style';
+import {closedMail} from './style';
 
 export default function Inbox() {
   const Title = 'INBOX';
   const TitleColor = '#779874';
   const addIcon = <Icon name="add-circle-outline" size={26} color="white" />;
-  const closedMail = <Icon name = "mail-outline" size={60} color='black'/>
-  const openMail = <Icon name = "mail-open-outline" size={60} color='black'/>
+  const closedMail = <Icon name="mail-outline" size={60} color="black" />;
+  const openMail = <Icon name="mail-open-outline" size={60} color="black" />;
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
@@ -49,15 +49,18 @@ export default function Inbox() {
             return (
               <>
                 <S.MailBox onPress={() => toggleModal(letter, index)}>
-                  {letter.isOpen ? <Text>{openMail}</Text> :
-                  <Text>{closedMail}</Text>}
+                  {letter.isOpen ? (
+                    <Text>{openMail}</Text>
+                  ) : (
+                    <Text>{closedMail}</Text>
+                  )}
                 </S.MailBox>
               </>
             );
           })}
         </View>
       </ScrollView>
-     
+
       {isModalVisible ? (
         <Modal currentLetter={currentLetter} toggleModal={toggleModal} />
       ) : null}
