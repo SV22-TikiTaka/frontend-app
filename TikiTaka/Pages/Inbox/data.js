@@ -2,6 +2,7 @@ export const data = [
   {
     reply: '가',
     isOpen: true,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '나',
@@ -10,6 +11,7 @@ export const data = [
   {
     reply: '다',
     isOpen: true,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '라',
@@ -18,6 +20,7 @@ export const data = [
   {
     reply: '마',
     isOpen: false,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '바',
@@ -26,6 +29,7 @@ export const data = [
   {
     reply: '사',
     isOpen: true,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '나',
@@ -34,6 +38,7 @@ export const data = [
   {
     reply: '다',
     isOpen: true,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '라',
@@ -42,6 +47,7 @@ export const data = [
   {
     reply: '마',
     isOpen: false,
+    path: 'https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8',
   },
   {
     reply: '바',

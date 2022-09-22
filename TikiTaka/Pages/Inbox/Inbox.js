@@ -16,7 +16,6 @@ import Modal from '../../components/modal/Modal.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {data} from './data.js';
 import {closedMail} from './style';
-import SoundTest from '../../components/sound/sound.js';
 
 export default function Inbox() {
   const Title = 'INBOX';
@@ -44,7 +43,6 @@ export default function Inbox() {
   return (
     <S.InboxContainer>
       <Header Title={Title} TitleColor={TitleColor} />
-      <SoundTest />
       <ScrollView>
         <View style={styles.gridView}>
           {letters.map((letter, index) => {
