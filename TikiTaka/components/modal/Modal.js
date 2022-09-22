@@ -15,7 +15,7 @@ import Sound from 'react-native-sound';
 export default function Modal({toggleModal, currentLetter}) {
   const CloseIconPath = '../../assets/images/CloseIcon.png';
   const [toggleSound, setToggleSound] = useState(true);
-  const {reply, path = ''} = currentLetter;
+  const {reply, path} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
     position: absolute;
     width: 100%;
@@ -28,11 +28,15 @@ export default function Modal({toggleModal, currentLetter}) {
     height: 100%;
   `;
 
-  let music = new Sound(path, null, error => {
-    if (error) {
-      console.log('play failed');
-    }
-  });
+  let music = '';
+
+  if (path) {
+    music = new Sound(path, null, error => {
+      if (error) {
+        console.log('play failed');
+      }
+    });
+  }
 
   return (
     <S.Modal>
@@ -40,38 +44,25 @@ export default function Modal({toggleModal, currentLetter}) {
         <Close></Close>
       </BackClickClose>
       <S.ReplyBox>
-        {(() => {
-          if (music) {
-            return (
-              <>
-                <S.ComponentTop>
-                  <S.TopText>QUESTION GOES HERE</S.TopText>
-                </S.ComponentTop>
-                <S.ComponentBottom>
-                  <Icon
-                    onPress={() => {
-                      music.play();
-                      setToggleSound(pre => !pre);
-                    }}
-                    name={toggleSound ? 'controller-play' : 'controller-paus'}
-                    size={40}
-                  />
-                </S.ComponentBottom>
-              </>
-            );
-          } else {
-            return (
-              <>
-                <S.ComponentTop>
-                  <S.TopText>QUESTION GOES HERE</S.TopText>
-                </S.ComponentTop>
-                <S.ComponentBottom>
-                  <S.BottomText> {reply}</S.BottomText>
-                </S.ComponentBottom>
-              </>
-            );
-          }
-        })()}
+        <S.ComponentTop>
+          <S.TopText>QUESTION GOES HERE</S.TopText>
+        </S.ComponentTop>
+        <S.ComponentBottom>
+          {path ? (
+            <Icon
+              onPress={() => {
+                if (toggleSound) {
+                  music.play();
+                }
+                setToggleSound(pre => !pre);
+              }}
+              name={toggleSound ? 'controller-play' : 'controller-paus'}
+              size={40}
+            />
+          ) : null}
+
+          {replay ? <S.BottomText>{reply}</S.BottomText> : null}
+        </S.ComponentBottom>
       </S.ReplyBox>
 
       <S.ReplyButton onPress={() => alert('hi')} style={styles.buttonContainer}>

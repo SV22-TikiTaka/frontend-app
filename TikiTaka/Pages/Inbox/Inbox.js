@@ -30,13 +30,16 @@ export default function Inbox() {
 
   const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);
-    setCurrentLetter(() => letter);
 
     if (index) {
       let left = letters.slice(0, index);
       let right = letters.slice(index + 1);
-
-      setLetters([...left, {reply: letter.reply, isOpen: true}, ...right]);
+      let letter = letters.slice(index, index + 1);
+      letter[0].isOpen = true;
+      setLetters([...left, ...letter, ...right]);
+    }
+    if (letter) {
+      setCurrentLetter(() => letter);
     }
   };
 
