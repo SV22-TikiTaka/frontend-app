@@ -7,7 +7,7 @@ import themeContext from '../../config/themeContext.js';
 
 import * as S from './style';
 
-const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquestionType, randomeQuestion}) =>{
+const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setQuestionType, randomQuestion}) =>{
     const diceIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
     const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
 
@@ -48,13 +48,13 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setquest
         <View style={styles.componentBottom}>
           <TextInput
             style={styles.input}
-            onChangeText={setquestionType}
+            onChangeText={setQuestionType}
             value={questionType}
             multiline = {true}
             placeholder="Type In Here..."
             maxLength={100}
           />
-          <TouchableOpacity style = {styles.shuffle} onPress={randomeQuestion}>
+          <TouchableOpacity style = {styles.shuffle} onPress={randomQuestion}>
             <Text>{diceIcon}</Text>
           </TouchableOpacity>
         </View>
