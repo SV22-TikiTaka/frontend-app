@@ -18,30 +18,9 @@ import Challenge from '../../assets/images/Challenge.png';
 import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
 import themeContext from '../../config/themeContext.js';
+import axios from 'axios';
 
 Icon.loadFont();
-
-//Random Normal questions dummy data
-const NDATA = [
-  '아무거나 물어봐!',
-  '평소에 나한테 못 한 말은?',
-  '내 첫인상은?',
-  '다른 사람으로 살 수 있다면 누구로 살아보고싶어?',
-  '갖고 싶은 초능력은?',
-  '내 장점 3가지!',
-  '내 단점 3가지!',
-  'MBTI 적고 가!',
-];
-
-//Random challenge questions dummy data
-const CDATA = [
-  '시키는거 다 할게!',
-  '살면서 가장 쪽팔렸던 경험?',
-  '🔞가장 아찔했던 순간은🔞?',
-  '아주 사소한 물건이라도 도둑질해본 적 있다/없다?',
-  '하루아침에 성별이 바뀌었다면 제일 먼저 나는…',
-  '가장 좋은 관계 타이밍 (아침,점심,저녁)',
-];
 
 export default function Main() {
   const Title = 'MAIN';
@@ -50,7 +29,7 @@ export default function Main() {
 
   const arrowRight = (
     <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
-  );
+);
   const arrowLeft = (
     <Icon name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
@@ -66,31 +45,41 @@ export default function Main() {
     });
   }, [index]);
 
-  //challenge random text
-  const [normalindex, setNormalIndex] = useState(0);
+  //normal random text
+  const [normalIndex, setNormalIndex] = useState(0);
   const [normal, setNormal] = useState(null);
 
-  const randomNormal = () => {
-    if (normalindex !== NDATA.length - 1) {
-      setNormalIndex(normalindex + 1);
-      setNormal(NDATA[normalindex]);
+  const randomNormal = async () => {
+    const response = await axios({
+      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=normal',
+      method: 'get',
+    });
+    const normalQuestion = response.data;
+    if (normalIndex !== normalQuestion.length -1) {
+      setNormalIndex(normalIndex + 1);
+      setNormal(normalQuestion[normalIndex].content);
     } else {
       setNormalIndex(0);
-      setNormal(NDATA[normalindex]);
+      setNormal(normalQuestion[normalIndex].content);
     }
   };
 
   //challenge random text
-  const [challengeindex, setChallengeIndex] = useState(0);
+  const [challengeIndex, setChallengeIndex] = useState(0);
   const [challenge, setChallenge] = useState(null);
 
-  const randomChallenge = () => {
-    if (challengeindex !== CDATA.length - 1) {
-      setChallengeIndex(challengeindex + 1);
-      setChallenge(CDATA[challengeindex]);
+  const randomChallenge = async() => {
+    const response = await axios({
+      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=challenge',
+      method: 'get',
+    });
+    const challengeQuestion = response.data;
+    if (challengeIndex !== challengeQuestion.length - 1) {
+      setChallengeIndex(challengeIndex + 1);
+      setChallenge(challengeQuestion[challengeIndex].content);
     } else {
       setChallengeIndex(0);
-      setChallenge(CDATA[challengeindex]);
+      setChallenge(challengeQuestion[challengeIndex].content);
     }
   };
   //박스(일반 질문, 챌린지)
@@ -102,8 +91,8 @@ export default function Main() {
           QuestionBoxTitle={Anything}
           QuestionBoxColor="#8f81b5"
           questionType={normal}
-          setquestionType={setNormal}
-          randomeQuestion={randomNormal}
+          setQuestionType={setNormal}
+          randomQuestion={randomNormal}
         />
       ),
     },
@@ -114,8 +103,8 @@ export default function Main() {
           QuestionBoxTitle={Challenge}
           QuestionBoxColor={'black'}
           questionType={challenge}
-          setquestionType={setChallenge}
-          randomeQuestion={randomChallenge}
+          setQuestionType={setChallenge}
+          randomQuestion={randomChallenge}
         />
       ),
     },
