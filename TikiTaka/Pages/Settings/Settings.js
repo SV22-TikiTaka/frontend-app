@@ -7,48 +7,21 @@ import intToString from '../../utils/intToString';
 import {EventRegister} from 'react-native-event-listeners';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
-const createUser = async () => {
-  const userData = {
-    insta_id: '123',
-    username: 'Wendi_S2',
-    full_name: 'Son Seung-wan',
-    follower: 456,
-    following: 123,
-    profile_image_url:
-      'https://cdn.imweb.me/upload/S20210406ae69853331cfb/dda59999ef7a3.jpg',
-  };
-  try {
-    const result = await axios.post(
-      'http://0.0.0.0:8000/api/v1/users',
-      userData,
-    );
-    console.log(result.data);
-    return result.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const showUser = async () => {
   try {
-    const result = await axios.get(
-      `http://0.0.0.0:8000/api/v1/users/${user.id}`,
-    );
-    console.log(result.data);
+    const result = await axios.get(`http://0.0.0.0:8000/api/v1/users/1`);
+    return result;
   } catch (error) {
     console.log(error);
   }
 };
 const Settings = () => {
+  const [user, setUser] = useState({});
   useEffect(() => {
     (async () => {
-      const response = await createUser();
-      console.log(response);
-    })();
-
-    (async () => {
       const response = await showUser();
-      console.log(response);
+      setUser(response.data);
     })();
   }, []);
 
@@ -68,20 +41,20 @@ const Settings = () => {
   const trackColorOff =
     Platform.OS === 'android' ? theme.toggleTrack : theme.toggleTrack;
 
-  const UserImagePath = '../../assets/images/User.png';
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account style={[styles.shadow, {backgroundColor: theme.background}]}>
-          <S.UserImage source={require(UserImagePath)}></S.UserImage>
+          <S.UserImage source={{uri: user.profile_image_url}}></S.UserImage>
           <S.InfoWrapper>
             <S.UserContainer>
-              <S.UserID style={{color: theme.color}}>Wendi_S2</S.UserID>
+              <S.UserID style={{color: theme.color}}>
+                {user ? user.username : null}
+              </S.UserID>
               <S.UserName style={{color: theme.subcolor}}>
-                Son Seung-Wan
+                {user ? user.full_name : null}
               </S.UserName>
             </S.UserContainer>
             <S.FollowingContainer>
@@ -90,7 +63,7 @@ const Settings = () => {
                   Followers
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {intToString(101323221)}
+                  {intToString(user ? user.follower : null)}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
               <S.FollowingInfo>
@@ -98,7 +71,7 @@ const Settings = () => {
                   Following
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {intToString(4234)}
+                  {intToString(user ? user.following : null)}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
             </S.FollowingContainer>
