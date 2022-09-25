@@ -25,11 +25,11 @@ Icon.loadFont();
 export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
-  const theme =  useContext(themeContext);
+  const theme = useContext(themeContext);
 
   const arrowRight = (
     <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
-);
+  );
   const arrowLeft = (
     <Icon name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
@@ -55,7 +55,7 @@ export default function Main() {
       method: 'get',
     });
     const normalQuestion = response.data;
-    if (normalIndex !== normalQuestion.length -1) {
+    if (normalIndex !== normalQuestion.length - 1) {
       setNormalIndex(normalIndex + 1);
       setNormal(normalQuestion[normalIndex].content);
     } else {
@@ -68,7 +68,7 @@ export default function Main() {
   const [challengeIndex, setChallengeIndex] = useState(0);
   const [challenge, setChallenge] = useState(null);
 
-  const randomChallenge = async() => {
+  const randomChallenge = async () => {
     const response = await axios({
       url: 'http://0.0.0.0:8000/api/v1/questions/random?type=challenge',
       method: 'get',
@@ -111,13 +111,12 @@ export default function Main() {
   ];
 
   return (
-    <S.Main style={{backgroundColor: theme.background }}>
+    <S.Main style={{backgroundColor: theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />
       <ScrollView>
-       
-        <View style={styles.flatListContainer}> 
-        <S.buttonContainer> 
-          <TouchableOpacity
+        <View style={styles.flatListContainer}>
+          <S.buttonContainer>
+            <TouchableOpacity
               style={styles.buttonLeft}
               onPress={() => {
                 if (index === 0) {
@@ -151,7 +150,7 @@ export default function Main() {
             renderItem={({item, index: findex}) => {
               return <View>{item.box}</View>;
             }}></FlatList>
-          </View>
+        </View>
         <S.VoteContainer>
           <VoteBox />
         </S.VoteContainer>
