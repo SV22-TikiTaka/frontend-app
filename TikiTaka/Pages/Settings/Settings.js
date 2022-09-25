@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const showUser = async () => {
   try {
-    const result = await axios.get(`http://0.0.0.0:8000/api/v1/users/1`);
+    const result = await axios.get(`http://0.0.0.0:8000/api/v1/users/1`); // + user.id 로 나중에 바꿔야함.
     return result;
   } catch (error) {
     console.log(error);
