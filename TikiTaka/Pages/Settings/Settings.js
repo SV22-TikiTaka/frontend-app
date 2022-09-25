@@ -21,7 +21,7 @@ const Settings = () => {
   useEffect(() => {
     (async () => {
       const response = await showUser();
-      console.log(response);
+      console.log(response.data);
       setUser(response.data);
     })();
   }, []);
@@ -64,7 +64,7 @@ const Settings = () => {
                   Followers
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {intToString(user ? user.follower : null)}
+                  {user ? intToString(user.follower) : null}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
               <S.FollowingInfo>
@@ -72,7 +72,7 @@ const Settings = () => {
                   Following
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {intToString(user ? user.following : null)}
+                  {user ? intToString(user.following) : null}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
             </S.FollowingContainer>
