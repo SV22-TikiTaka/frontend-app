@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {SafeAreaView, Switch} from 'react-native';
+import {SafeAreaView, Switch, Platform} from 'react-native';
 import * as S from './style.js';
 import {styles} from './style';
 import Header from '../../components/Header/Header';
@@ -21,6 +21,7 @@ const Settings = () => {
   useEffect(() => {
     (async () => {
       const response = await showUser();
+      console.log(response);
       setUser(response.data);
     })();
   }, []);
