@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import React, {useState, useContext} from 'react';
-import {View, SafeAreaView, ScrollView, Text} from 'react-native';
+import {View, SafeAreaView, ScrollView, Text,Dimensions} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -15,7 +15,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {data} from './data.js';
 import themeContext from '../../config/themeContext.js';
 import styled from 'styled-components/native';
-import {Dimensions} from 'react-native';
+
+
 export default function Inbox() {
   const Title = 'INBOX';
   const TitleColor = '#779874';
