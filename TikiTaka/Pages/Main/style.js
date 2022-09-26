@@ -9,7 +9,7 @@ export const Main = styled.SafeAreaView`
 export const buttonContainer = styled.View`
   width: 117%;
   top: 120px;
-  right:28px;
+  right: 28px;
   position: relative;
   justify-content: space-between;
   flex-direction: row;

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-import {Dimensions} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 export const InboxContainer = styled.SafeAreaView`
   flex: 1;
 `;
