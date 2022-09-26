@@ -5,8 +5,8 @@
  * @format
  * @flow strict-local
  */
-import React, {useState, useContext} from 'react';
-import {View, SafeAreaView, ScrollView, Text,Dimensions} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
+import {View, SafeAreaView, ScrollView, Text, Dimensions} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
@@ -15,7 +15,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {data} from './data.js';
 import themeContext from '../../config/themeContext.js';
 import styled from 'styled-components/native';
-
+import {showUser} from '../Settings/Settings.js';
+import axios from 'axios';
 
 export default function Inbox() {
   const Title = 'INBOX';
@@ -25,19 +26,51 @@ export default function Inbox() {
   const closedMail = <Icon name="mail-outline" size={60} color="black" />;
   const openMail = <Icon name="mail-open-outline" size={60} color="black" />;
 
+  const [Datalist, setDatalist] = useState([]);
+
+  //make datalist and push questions
+  useEffect(() => {
+    axios
+      .get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
+      .then(response => {
+        const comments = response.data;
+        const datalist = [];
+
+        for (let i = 0; i < comments.length - 1; i++) {
+          const data = new Object();
+          data.isOpen = false;
+          data.question_id = comments[i].question_id;
+          data.reply = comments[i].content;
+          data.type = comments[i].type;
+
+          datalist.push(data);
+        }
+        setDatalist(datalist);
+      });
+  }, []);
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
-  const [letters, setLetters] = useState(data);
-
-  const toggleModal = (letter = '', index = '') => {
+  const [modalQuestion, setModalQuestion] = useState('');
+  const toggleModal = (letter = '', index = -1) => {
     setModalVisible(!isModalVisible);
 
-    if (index) {
-      let left = letters.slice(0, index);
-      let right = letters.slice(index + 1);
-      let letter = letters.slice(index, index + 1);
+    if (index > -1) {
+      //index가 0 이면 false라서 오류났음
+      let left = Datalist.slice(0, index);
+      let right = Datalist.slice(index + 1);
+      let letter = Datalist.slice(index, index + 1);
       letter[0].isOpen = true;
-      setLetters([...left, ...letter, ...right]);
+      setDatalist([...left, ...letter, ...right]);
+      console.log(letter);
+      let questionId = letter[0].question_id;
+      (async () =>
+        axios
+          .get(`http://0.0.0.0:8000/api/v1/questions/${questionId}`)
+          .then(res => {
+            console.log(res.data);
+            setModalQuestion(res.data.content);
+          }))();
     }
     if (letter) {
       setCurrentLetter(() => letter);
@@ -51,9 +84,10 @@ export default function Inbox() {
       <ScrollView>
         <Layout style={{width: Dimensions.get('window').width * 1}}>
           <View style={styles.gridView}>
-            {letters.map((letter, index) => {
+            {Datalist.map((letter, index) => {
               return (
                 <S.MailBox
+                  key={index}
                   style={{backgroundColor: theme.mailboxcolor}}
                   onPress={() => toggleModal(letter, index)}>
                   {letter.isOpen ? (
@@ -69,7 +103,11 @@ export default function Inbox() {
       </ScrollView>
 
       {isModalVisible ? (
-        <Modal currentLetter={currentLetter} toggleModal={toggleModal} />
+        <Modal
+          modalQuestion={modalQuestion}
+          currentLetter={currentLetter}
+          toggleModal={toggleModal}
+        />
       ) : null}
     </S.InboxContainer>
   );

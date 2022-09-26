@@ -8,7 +8,7 @@ import {EventRegister} from 'react-native-event-listeners';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
 
-const showUser = async () => {
+export const showUser = async () => {
   try {
     const result = await axios.get(`http://0.0.0.0:8000/api/v1/users/1`); // + user.id 로 나중에 바꿔야함.
     return result;
