@@ -9,11 +9,13 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import * as S from './style.js';
 import {styles} from './style';
-import Icon from 'react-native-vector-icons/Entypo';
+import {Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Sound from 'react-native-sound';
 
 export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   const CloseIconPath = '../../assets/images/CloseIcon.png';
+
   const [toggleSound, setToggleSound] = useState(true);
   const {reply, type} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
@@ -31,12 +33,24 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   let music = '';
 
   if (type == 'sound') {
-    music = new Sound(reply, null, error => {
+    let music = new Sound(reply, null, error => {
       if (error) {
         console.log('play failed');
       }
     });
   }
+  const playIcon = <Icon name="play" size={20} color="grey" />;
+  const pauseIcon = <Icon name="pause" size={20} color="grey" />;
+  //   <Icon
+  //   onPress={() => {
+  //     if (toggleSound) {
+  //       music.play();
+  //     }
+  //     setToggleSound(pre => !pre);
+  //   }}
+  //   name={toggleSound ? 'controller-play' : 'controller-paus'}
+  //   size={40}
+  // />
   console.log(currentLetter);
   return (
     <S.Modal>
@@ -53,16 +67,19 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
               return <S.BottomText>{reply}</S.BottomText>;
             } else if (type == 'sound') {
               return (
-                <Icon
+                <TouchableOpacity
                   onPress={() => {
                     if (toggleSound) {
                       music.play();
                     }
                     setToggleSound(pre => !pre);
-                  }}
-                  name={toggleSound ? 'controller-play' : 'controller-paus'}
-                  size={40}
-                />
+                  }}>
+                  {toggleSound ? (
+                    <Text>{playIcon}</Text>
+                  ) : (
+                    <Text>{pauseIcon}</Text>
+                  )}
+                </TouchableOpacity>
               );
             } else if (type == 'vote') {
               return currentLetter.count.map((item, index) => {
