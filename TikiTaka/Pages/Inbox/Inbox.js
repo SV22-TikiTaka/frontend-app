@@ -34,7 +34,6 @@ export default function Inbox() {
       .get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
       .then(response => {
         const comments = response.data;
-        console.log(comments);
         const datalist = [];
 
         for (let i = 0; i < comments.length - 1; i++) {
@@ -52,17 +51,27 @@ export default function Inbox() {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
-
+  const [modalQuestion, setModalQuestion] = useState('');
   const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);
 
-    if (index > -1) {
+    if (index > -1 && index != '') {
       //index가 0 이면 false라서 오류났음
       let left = Datalist.slice(0, index);
       let right = Datalist.slice(index + 1);
       let letter = Datalist.slice(index, index + 1);
       letter[0].isOpen = true;
       setDatalist([...left, ...letter, ...right]);
+      console.log(letter);
+      // let questionId = letter.question_id;
+      // console.log(questionId);
+      // (async () =>
+      //   axios
+      //     .get(`http://0.0.0.0:8000/api/v1/questions/${questionId}`)
+      //     .then(res => {
+      //       console.log(res);
+      //       setModalQuestion(res.content);
+      //     }))();
     }
     if (letter) {
       setCurrentLetter(() => letter);
@@ -95,7 +104,11 @@ export default function Inbox() {
       </ScrollView>
 
       {isModalVisible ? (
-        <Modal currentLetter={currentLetter} toggleModal={toggleModal} />
+        <Modal
+          modalQuestion={modalQuestion}
+          currentLetter={currentLetter}
+          toggleModal={toggleModal}
+        />
       ) : null}
     </S.InboxContainer>
   );

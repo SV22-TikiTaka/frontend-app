@@ -29,7 +29,7 @@ export const Account = styled.View`
 
 export const InfoWrapper = styled.View`
   flex-direction: column;
-  flex:2;
+  flex: 2;
 `;
 export const UserImage = styled.Image`
   width: 85px;
@@ -37,7 +37,7 @@ export const UserImage = styled.Image`
 `;
 
 export const UserContainer = styled.View`
-  flex:3;
+  flex: 3;
   flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
@@ -57,7 +57,7 @@ export const UserName = styled.Text`
 `;
 export const FollowingContainer = styled.View`
   flex-direction: row;
-  flex:2;
+  flex: 2;
   justify-content: space-around;
 `;
 export const FollowingInfo = styled.View`
@@ -68,12 +68,12 @@ export const FollowingInfo = styled.View`
 export const FollowingNumberText = styled.Text`
   font-size: 11px;
   color: black;
-  font-family: "SBAggroL";
+  font-family: 'SBAggroL';
   margin-top: 5px;
 `;
 export const FollowingText = styled.Text`
   font-size: 11px;
-  font-family: "SBAggroM";
+  font-family: 'SBAggroM';
   letter-spacing: -0.5px;
 `;
 
@@ -115,14 +115,14 @@ export const LogoutButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   border-width: 2px;
-  border-color:red;
+  border-color: red;
 `;
 
 export const LogoutText = styled.Text`
   font-size: 16px;
   font-family: 'SBAggroB';
   letter-spacing: -1px;
-  color:black;
+  color: black;
 `;
 
 export const styles = StyleSheet.create({

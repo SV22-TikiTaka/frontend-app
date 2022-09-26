@@ -8,16 +8,15 @@ import {DATA} from './data';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
 
-
 const datalist = new Array();
 
 //make datalist and push questions
 axios({
   url: 'http://0.0.0.0:8000/api/v1/questions/history/1',
-  method: "get"
-}).then((response) => {
+  method: 'get',
+}).then(response => {
   const questions = response.data;
-  for(let i = 0; i< questions.length-1;i++){
+  for (let i = 0; i < questions.length - 1; i++) {
     const data = new Object();
     data.isExpanded = false;
     data.question_id = questions.id;
@@ -28,29 +27,29 @@ axios({
 
     datalist.push(data);
   }
-})
+});
 
 //iterate through data and push comments in answer
-for(let i = 0; i < datalist.length -1; i++){
-  if (datalist[i][type] === 'normal' || datalist[i][type] === 'challenge'){
-      axios({
+for (let i = 0; i < datalist.length - 1; i++) {
+  if (datalist[i][type] === 'normal' || datalist[i][type] === 'challenge') {
+    axios({
       url: 'http://0.0.0.0:8000/api/v1/questions/' + datalist[i]['question_id'],
-      method: "get",
-  }).then((response) => {
-    const q_comments = response.data;
-    const data = new Object();
-    data.id = q_comments.id;
-    data.val = q_comments.content; //음성파일이면 S3경로가 여기, 텍스트면 일반 string
-    datalist[i][answer].push(data);
-  })
-  }else{
+      method: 'get',
+    }).then(response => {
+      const q_comments = response.data;
+      const data = new Object();
+      data.id = q_comments.id;
+      data.val = q_comments.content; //음성파일이면 S3경로가 여기, 텍스트면 일반 string
+      datalist[i][answer].push(data);
+    });
+  } else {
     axios({
       url: 'http://0.0.0.0:8000/api/v1/vote/' + datalist[i]['question_id'],
-      method: "get",
-    }).then((response) => {
+      method: 'get',
+    }).then(response => {
       const v_options = response.data.options;
       const v_count = response.data.count;
-      for(let j = 0; j < v_options.length -1; j++){
+      for (let j = 0; j < v_options.length - 1; j++) {
         const data = new Object();
         data.id = j;
         data.val = v_options[j];
@@ -58,11 +57,9 @@ for(let i = 0; i < datalist.length -1; i++){
 
         datalist[i][answer].push(data);
       }
-    })
+    });
   }
-  
-  }
- 
+}
 
 const ExpandableComponent = ({item, onClickFuntion}) => {
   const [layoutHeight, setlayoutHeight] = useState(0);
@@ -137,7 +134,7 @@ const History = () => {
   const Title = 'HISTORY';
   const TitleColor = '#FF8F8F';
   const [data, setData] = useState(datalist);
-  const theme =  useContext(themeContext);
+  const theme = useContext(themeContext);
 
   if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
