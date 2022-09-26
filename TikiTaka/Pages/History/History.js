@@ -13,7 +13,7 @@ const datalist = new Array();
 
 //make datalist and push questions
 axios({
-  url: 'http://localhost:8000/api/v1/questions/history/1',
+  url: 'http://0.0.0.0:8000/api/v1/questions/history/1',
   method: "get"
 }).then((response) => {
   const questions = response.data;
@@ -34,7 +34,7 @@ axios({
 for(let i = 0; i < datalist.length -1; i++){
   if (datalist[i][type] === 'normal' || datalist[i][type] === 'challenge'){
       axios({
-      url: 'http://localhost:8000/api/v1/questions/' + datalist[i]['question_id'],
+      url: 'http://0.0.0.0:8000/api/v1/questions/' + datalist[i]['question_id'],
       method: "get",
   }).then((response) => {
     const q_comments = response.data;
@@ -45,7 +45,7 @@ for(let i = 0; i < datalist.length -1; i++){
   })
   }else{
     axios({
-      url: 'http://localhost:8000/api/v1/vote/' + datalist[i]['question_id'],
+      url: 'http://0.0.0.0:8000/api/v1/vote/' + datalist[i]['question_id'],
       method: "get",
     }).then((response) => {
       const v_options = response.data.options;
