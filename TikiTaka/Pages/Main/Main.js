@@ -90,9 +90,10 @@ export default function Main() {
         <QuestionBox
           QuestionBoxTitle={Anything}
           QuestionBoxColor="#8f81b5"
-          questionType={normal}
-          setQuestionType={setNormal}
+          question={normal}
+          setQuestion={setNormal}
           randomQuestion={randomNormal}
+          questionType = "normal"
         />
       ),
     },
@@ -102,9 +103,10 @@ export default function Main() {
         <QuestionBox
           QuestionBoxTitle={Challenge}
           QuestionBoxColor={'black'}
-          questionType={challenge}
-          setQuestionType={setChallenge}
+          question={challenge}
+          setQuestion={setChallenge}
           randomQuestion={randomChallenge}
+          questionType = "challenge"
         />
       ),
     },
