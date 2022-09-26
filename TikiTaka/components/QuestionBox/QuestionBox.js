@@ -9,7 +9,7 @@ import themeContext from '../../config/themeContext.js';
 import * as S from './style';
 
 const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion, randomQuestion,questionType}) =>{
-    const shuffleIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
+    const shuffleIcon = <Icon name ="shuffle-outline" size={20} />;
     const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
     const [optionToggle, setOptionToggle] = useState(false);
     const OptionToggleSwitch = () => 
@@ -86,9 +86,9 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
         </View>
         </View>
         
-        <View style = {styles.utils}> 
+        <View style = {[styles.utils,{backgrounColor:theme.background}]}> 
           <View style = {styles.chosenOption}>
-          {optionToggle? <Text style={styles.optionText}>VOICE</Text>: <Text style={styles.optionText}>TEXT</Text>}
+          {optionToggle? <Text style={[styles.optionText,{color:theme.color}]}>VOICE</Text>: <Text style={[styles.optionText,{color:theme.color}]}>TEXT</Text>}
           </View> 
           <Switch
               onValueChange={OptionToggleSwitch}
@@ -98,8 +98,8 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
               ios_backgroundColor={trackColorOff}
             />
           
-          <TouchableOpacity style = {styles.shuffle} onPress={randomQuestion}>
-            <Text>{shuffleIcon}</Text>
+          <TouchableOpacity style = {[styles.shuffle, {backgroundColor:theme.shuffle}]} onPress={randomQuestion}>
+            <Text style={{color:theme.color}}>{shuffleIcon}</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
     shuffle:{ 
         height:25,
         width:45,
-        backgroundColor:'rgba(0,0,0,0.1)',
         borderRadius:12,
         alignItems:'center',
         justifyContent: 'center',
@@ -184,7 +183,6 @@ const styles = StyleSheet.create({
       borderWidth:2,
       borderRadius:20,
       paddingVertical:4,
-      backgroundColor:'white',
       borderColor:'#ff8f8f',
       marginVertical:5,
 
