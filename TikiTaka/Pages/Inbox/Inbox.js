@@ -79,6 +79,7 @@ export default function Inbox() {
             data.question_id = comments[i].question_id;
             data.count = comments[i].count;
             data.type = 'vote';
+            data.options = comments[i].options;
 
             datalist.push(data);
           }

@@ -30,14 +30,14 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
 
   let music = '';
 
-  if (path) {
-    music = new Sound(path, null, error => {
+  if (type == 'sound') {
+    music = new Sound(reply, null, error => {
       if (error) {
         console.log('play failed');
       }
     });
   }
-
+  console.log(currentLetter);
   return (
     <S.Modal>
       <BackClickClose onPress={toggleModal}>
@@ -48,20 +48,33 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
           <S.TopText>{modalQuestion}</S.TopText>
         </S.ComponentTop>
         <S.ComponentBottom>
-          {sound ? (
-            <Icon
-              onPress={() => {
-                if (toggleSound) {
-                  music.play();
-                }
-                setToggleSound(pre => !pre);
-              }}
-              name={toggleSound ? 'controller-play' : 'controller-paus'}
-              size={40}
-            />
-          ) : null}
-
-          {text ? <S.BottomText>{reply}</S.BottomText> : null}
+          {(() => {
+            if (type == 'text') {
+              return <S.BottomText>{reply}</S.BottomText>;
+            } else if (type == 'sound') {
+              return (
+                <Icon
+                  onPress={() => {
+                    if (toggleSound) {
+                      music.play();
+                    }
+                    setToggleSound(pre => !pre);
+                  }}
+                  name={toggleSound ? 'controller-play' : 'controller-paus'}
+                  size={40}
+                />
+              );
+            } else if (type == 'vote') {
+              return currentLetter.count.map((item, index) => {
+                return (
+                  <S.BottomText>
+                    {currentLetter.options[index]} :{' '}
+                    {currentLetter.count[index]}
+                  </S.BottomText>
+                );
+              });
+            }
+          })()}
         </S.ComponentBottom>
       </S.ReplyBox>
 
