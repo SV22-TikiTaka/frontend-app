@@ -8,26 +8,27 @@ import {EventRegister} from 'react-native-event-listeners';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
 
-const showUser = async () => {
-  try {
-    const result = await axios.get(`http://0.0.0.0:8000/api/v1/users/1`); // + user.id 로 나중에 바꿔야함.
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
 const Settings = () => {
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    (async () => {
-      const response = await showUser();
-      console.log(response.data);
-      setUser(response.data);
-    })();
-  }, []);
+  const [user, setUser] = useState(['https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png','username','fullname',0,0]);
+  useEffect(()=> {
+      axios.get('http://0.0.0.0:8000/api/v1/users/1') // + user.id 로 나중에 바꿔야함.
+     .then(response => {
+      const info = response.data;
+      const datalist = [];
+      datalist.push(info.profile_image_url);
+      datalist.push(info.username);
+      datalist.push(info.full_name);
+      datalist.push(info.follower);
+      datalist.push(info.following);
+      setUser(datalist)
+     });
+      console.log(user);
+    },[]);
+  
 
   const Title = 'SETTINGS';
   const TitleColor = '#779874';
+  const userimage = {uri : user[0]};
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
   const NotificationsToggleSwitch = () =>
     setNotificationsToggle(previousState => !previousState);
@@ -48,14 +49,16 @@ const Settings = () => {
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account style={[styles.shadow, {backgroundColor: theme.background}]}>
-          <S.UserImage source={{uri: user.profile_image_url}}></S.UserImage>
+          {user?
+           <S.UserImage source = {userimage}/>:
+          <S.UserImage source = {{uri: 'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png'}}/>}
           <S.InfoWrapper>
             <S.UserContainer>
               <S.UserID style={{color: theme.color}}>
-                {user ? user.username : null}
+                {user ? user[1] : null}
               </S.UserID>
               <S.UserName style={{color: theme.subcolor}}>
-                {user ? user.full_name : null}
+                {user ? user[2]: null}
               </S.UserName>
             </S.UserContainer>
             <S.FollowingContainer>
@@ -64,7 +67,7 @@ const Settings = () => {
                   Followers
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {user ? intToString(user.follower) : null}
+                  {user ? intToString(user[3]) : null}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
               <S.FollowingInfo>
@@ -72,7 +75,7 @@ const Settings = () => {
                   Following
                 </S.FollowingText>
                 <S.FollowingNumberText style={{color: theme.color}}>
-                  {user ? intToString(user.following) : null}
+                  {user ? intToString(user[4]) : null}
                 </S.FollowingNumberText>
               </S.FollowingInfo>
             </S.FollowingContainer>
