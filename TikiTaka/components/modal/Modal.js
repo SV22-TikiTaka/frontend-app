@@ -15,7 +15,7 @@ import Sound from 'react-native-sound';
 export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   const CloseIconPath = '../../assets/images/CloseIcon.png';
   const [toggleSound, setToggleSound] = useState(true);
-  const {reply, path} = currentLetter;
+  const {reply, type} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
     position: absolute;
     width: 100%;
@@ -48,7 +48,7 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
           <S.TopText>{modalQuestion}</S.TopText>
         </S.ComponentTop>
         <S.ComponentBottom>
-          {path ? (
+          {sound ? (
             <Icon
               onPress={() => {
                 if (toggleSound) {
@@ -61,7 +61,7 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
             />
           ) : null}
 
-          {reply ? <S.BottomText>{reply}</S.BottomText> : null}
+          {text ? <S.BottomText>{reply}</S.BottomText> : null}
         </S.ComponentBottom>
       </S.ReplyBox>
 
