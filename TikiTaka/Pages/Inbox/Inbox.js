@@ -57,6 +57,7 @@ export default function Inbox() {
     setModalVisible(!isModalVisible);
 
     if (index > -1) {
+      //index가 0 이면 false라서 오류났음
       let left = Datalist.slice(0, index);
       let right = Datalist.slice(index + 1);
       let letter = Datalist.slice(index, index + 1);
