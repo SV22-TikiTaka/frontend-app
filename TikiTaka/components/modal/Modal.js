@@ -14,8 +14,7 @@ import Sound from 'react-native-sound';
 import Share from 'react-native-share';
 import {captureRef} from 'react-native-view-shot';
 
-export default function Modal({toggleModal, currentLetter, modalQuestion}) {
-  const CloseIconPath = '../../assets/images/CloseIcon.png';
+export default function Modal({toggleModal, currentLetter}) {
   const [toggleSound, setToggleSound] = useState(true);
   const {reply, path} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
