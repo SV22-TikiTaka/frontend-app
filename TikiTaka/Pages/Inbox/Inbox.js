@@ -52,10 +52,10 @@ export default function Inbox() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
   const [modalQuestion, setModalQuestion] = useState('');
-  const toggleModal = (letter = '', index = '') => {
+  const toggleModal = (letter = '', index = -1) => {
     setModalVisible(!isModalVisible);
 
-    if (index > -1 && index != '') {
+    if (index > -1) {
       //index가 0 이면 false라서 오류났음
       let left = Datalist.slice(0, index);
       let right = Datalist.slice(index + 1);
@@ -63,15 +63,14 @@ export default function Inbox() {
       letter[0].isOpen = true;
       setDatalist([...left, ...letter, ...right]);
       console.log(letter);
-      // let questionId = letter.question_id;
-      // console.log(questionId);
-      // (async () =>
-      //   axios
-      //     .get(`http://0.0.0.0:8000/api/v1/questions/${questionId}`)
-      //     .then(res => {
-      //       console.log(res);
-      //       setModalQuestion(res.content);
-      //     }))();
+      let questionId = letter[0].question_id;
+      (async () =>
+        axios
+          .get(`http://0.0.0.0:8000/api/v1/questions/${questionId}`)
+          .then(res => {
+            console.log(res.data);
+            setModalQuestion(res.data.content);
+          }))();
     }
     if (letter) {
       setCurrentLetter(() => letter);
