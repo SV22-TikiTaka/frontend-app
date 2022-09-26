@@ -5,16 +5,14 @@ import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share'
 import themeContext from '../../config/themeContext.js';
 
-
 import * as S from './style';
 
 const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion, randomQuestion,questionType}) =>{
-    const shuffleIcon = <Icon name ="shuffle-outline" size={20} color = 'black'/>;
+    const shuffleIcon = <Icon name ="shuffle-outline" size={20} />;
     const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
     const [optionToggle, setOptionToggle] = useState(false);
     const OptionToggleSwitch = () => 
     setOptionToggle(previousState => !previousState);
-
 
     const theme =  useContext(themeContext);
     const thumbColorOn = Platform.OS === 'android' ? '#ff8f8f' : '#ff8f8f';
@@ -26,7 +24,6 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
 
     const[showInstagramStory, setShowInstagramStory] = useState(false);
     const viewRef = useRef();
-    
     useEffect(() => {
       {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
     :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}
@@ -48,16 +45,16 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
         console.error(err);
       }
     }
-{/* 
+  {/* 
     function createQuestion(){
       axios({
           url: 'http://0.0.0.0:8000/api/v1/questions/',
           method: 'post',
           data:{
-            "content": question,
+            "content": "오늘 저녁 뭐 먹을까?",
             "user_id": 1,
-            "type": questionType,
-            "comment_type": ,
+            "type": "normal",
+            "comment_type": "text",
           }
         }).then((response) =>{
           console.log('question created');
@@ -65,7 +62,7 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
           console.log(err);
         }); 
       }
-      //commentType 어떻게 받을지 생각
+      //content 값이랑 queston type 어떻게 받을지 생각
 */}
     return (
       <View>
@@ -86,9 +83,9 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
         </View>
         </View>
         
-        <View style = {styles.utils}> 
+        <View style = {[styles.utils,{backgrounColor:theme.background}]}> 
           <View style = {styles.chosenOption}>
-          {optionToggle? <Text style={styles.optionText}>VOICE</Text>: <Text style={styles.optionText}>TEXT</Text>}
+          {optionToggle? <Text style={[styles.optionText,{color:theme.color}]}>VOICE</Text>: <Text style={[styles.optionText,{color:theme.color}]}>TEXT</Text>}
           </View> 
           <Switch
               onValueChange={OptionToggleSwitch}
@@ -98,8 +95,8 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, question, setQuestion,
               ios_backgroundColor={trackColorOff}
             />
           
-          <TouchableOpacity style = {styles.shuffle} onPress={randomQuestion}>
-            <Text>{shuffleIcon}</Text>
+          <TouchableOpacity style = {[styles.shuffle, {backgroundColor:theme.shuffle}]} onPress={randomQuestion}>
+            <Text style={{color:theme.color}}>{shuffleIcon}</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -169,7 +166,6 @@ const styles = StyleSheet.create({
     shuffle:{ 
         height:25,
         width:45,
-        backgroundColor:'rgba(0,0,0,0.1)',
         borderRadius:12,
         alignItems:'center',
         justifyContent: 'center',
@@ -184,7 +180,6 @@ const styles = StyleSheet.create({
       borderWidth:2,
       borderRadius:20,
       paddingVertical:4,
-      backgroundColor:'white',
       borderColor:'#ff8f8f',
       marginVertical:5,
 

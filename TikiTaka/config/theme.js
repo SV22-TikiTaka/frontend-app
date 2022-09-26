@@ -13,6 +13,7 @@ const theme = {
     navPink: '#FF8F8F',
     navGreen: '#779874',
     navcolor: 'black',
+    shuffle:'rgba(0,0,0,0.1)',
   },
   dark: {
     theme: 'dark',
@@ -27,6 +28,7 @@ const theme = {
     navPink: '#FF8F8F',
     navGreen: '#779874',
     navcolor: '#d4d4d4',
+    shuffle:'rgba(225,225,225,0.3)',
   },
 };
 export default theme;
