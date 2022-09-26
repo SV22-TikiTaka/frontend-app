@@ -71,9 +71,33 @@ export default function Inbox() {
   const closedMail = <Icon name="mail-outline" size={60} color="black" />;
   const openMail = <Icon name="mail-open-outline" size={60} color="black" />;
 
+  const [Datalist, setDatalist] = useState([]);
+
+//make datalist and push questions
+  useEffect(()=>{
+    axios.get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
+    .then(response => {
+      const comments = response.data; 
+      const datalist = [];
+      
+      for(let i = 0; i< comments.length-1; i++){
+      const data = new Object();
+      data.isOpen = false;
+      data.question_id = comments[i].question_id;
+      data.reply = comments[i].content;
+      data.type = comments[i].type;
+      
+      datalist.push(data)
+      }
+      setDatalist(datalist)
+    });
+    
+    }, []); 
+    console.log(Datalist);
+   
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
-  const [letters, setLetters] = useState(data);
+  const [letters, setLetters] = useState(Datalist);
 
   const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);

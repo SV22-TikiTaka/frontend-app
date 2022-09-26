@@ -60,7 +60,6 @@ const VoteBox = () => {
       if(showInstagramStory){
         await Share.shareSingle({
           stickerImage: uri,
-          method: Share.InstagramStories.SHARE_STICKER_IMAGE,
           social: Share.Social.INSTAGRAM_STORIES,
         })
       }

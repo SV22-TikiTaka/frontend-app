@@ -16,6 +16,7 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setQuest
     const[showInstagramStory, setShowInstagramStory] = useState(false);
     const viewRef = useRef();
 
+    
     useEffect(() => {
       {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
     :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}
@@ -29,7 +30,6 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setQuest
         if(showInstagramStory){
           await Share.shareSingle({
             stickerImage: uri,
-            method: Share.InstagramStories.SHARE_STICKER_IMAGE,
             social: Share.Social.INSTAGRAM_STORIES,
           })
         }
@@ -38,7 +38,25 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setQuest
         console.error(err);
       }
     }
-
+  {/* 
+    function createQuestion(){
+      axios({
+          url: 'http://0.0.0.0:8000/api/v1/questions/',
+          method: 'post',
+          data:{
+            "content": "오늘 저녁 뭐 먹을까?",
+            "user_id": 1,
+            "type": "normal",
+            "comment_type": "text",
+          }
+        }).then((response) =>{
+          console.log('question created');
+        }).catch((err) =>{
+          console.log(err);
+        }); 
+      }
+      //content 값이랑 queston type 어떻게 받을지 생각
+*/}
     return (
       <View>
         <View ref = {viewRef} style= {[styles.component, styles.shadow , {borderColor:QuestionBoxColor, borderWidth:1}]}>
