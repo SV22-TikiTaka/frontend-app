@@ -19,51 +19,6 @@ import {showUser} from '../Settings/Settings.js';
 import axios from 'axios';
 
 export default function Inbox() {
-  const [questionData, setQuestionData] = useState([]);
-
-  (async () => {
-    const response = await axios
-      .get('http://localhost:8000/api/v1/questions/random?type=challenge')
-      .then(res => {
-        console.log(res.data);
-      });
-  })();
-
-  (async () => {
-    const response = await axios
-      .get('http://localhost:8000/api/v1/comments/questions/1')
-      .then(res => {
-        console.log(res.data);
-      });
-  })();
-
-  // useEffect(() => {
-  //     await axios
-  //       .post('http://localhost:8000/api/v1/questions', {
-  //         content: '밥 뭐먹지',
-  //         user_id: 1,
-  //         type: 'normal',
-  //         comment_type: 'comment',
-  //       })
-  //       .then(res => {
-  //         console.log(res.data);
-  //       });
-  //   })();
-
-  //   (async () => {
-  //     await axios
-  //       .post('http://localhost:8000/api/v1/questions/vote', {
-  //         content: '엄마 vs 아빠',
-  //         user_id: 1,
-  //         type: 'normal',
-  //         comment_type: 'vote',
-  //       })
-  //       .then(res => {
-  //         console.log(res.data);
-  //       });
-  //   })();
-  // }, []);
-
   const Title = 'INBOX';
   const TitleColor = '#779874';
   const theme = useContext(themeContext);
@@ -73,41 +28,40 @@ export default function Inbox() {
 
   const [Datalist, setDatalist] = useState([]);
 
-//make datalist and push questions
-  useEffect(()=>{
-    axios.get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
-    .then(response => {
-      const comments = response.data; 
-      const datalist = [];
-      
-      for(let i = 0; i< comments.length-1; i++){
-      const data = new Object();
-      data.isOpen = false;
-      data.question_id = comments[i].question_id;
-      data.reply = comments[i].content;
-      data.type = comments[i].type;
-      
-      datalist.push(data)
-      }
-      setDatalist(datalist)
-    });
-    
-    }, []); 
-    console.log(Datalist);
-   
+  //make datalist and push questions
+  useEffect(() => {
+    axios
+      .get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
+      .then(response => {
+        const comments = response.data;
+        console.log(comments);
+        const datalist = [];
+
+        for (let i = 0; i < comments.length - 1; i++) {
+          const data = new Object();
+          data.isOpen = false;
+          data.question_id = comments[i].question_id;
+          data.reply = comments[i].content;
+          data.type = comments[i].type;
+
+          datalist.push(data);
+        }
+        setDatalist(datalist);
+      });
+  }, []);
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
-  const [letters, setLetters] = useState(Datalist);
 
   const toggleModal = (letter = '', index = '') => {
     setModalVisible(!isModalVisible);
 
-    if (index) {
-      let left = letters.slice(0, index);
-      let right = letters.slice(index + 1);
-      let letter = letters.slice(index, index + 1);
+    if (index > -1) {
+      let left = Datalist.slice(0, index);
+      let right = Datalist.slice(index + 1);
+      let letter = Datalist.slice(index, index + 1);
       letter[0].isOpen = true;
-      setLetters([...left, ...letter, ...right]);
+      setDatalist([...left, ...letter, ...right]);
     }
     if (letter) {
       setCurrentLetter(() => letter);
@@ -121,7 +75,7 @@ export default function Inbox() {
       <ScrollView>
         <Layout style={{width: Dimensions.get('window').width * 1}}>
           <View style={styles.gridView}>
-            {letters.map((letter, index) => {
+            {Datalist.map((letter, index) => {
               return (
                 <S.MailBox
                   key={index}
