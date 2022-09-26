@@ -15,8 +15,6 @@ const QuestionBox = ({QuestionBoxTitle, QuestionBoxColor, questionType, setQuest
 
     const[showInstagramStory, setShowInstagramStory] = useState(false);
     const viewRef = useRef();
-
-    
     useEffect(() => {
       {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
     :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}

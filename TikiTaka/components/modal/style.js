@@ -19,8 +19,8 @@ export const Modal = styled.SafeAreaView`
 export const ReplyBox = styled.View`
   height: 180px;
   width: 70%;
-  background-color: #ffffff;
   border-radius: 15px;
+  background-color: transparent;
 `;
 
 export const ComponentTop = styled.View`
@@ -46,6 +46,7 @@ export const ComponentBottom = styled.View`
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   font-size: 18px;
+  background-color: #ffffff;
 `;
 
 export const BottomText = styled.Text`
