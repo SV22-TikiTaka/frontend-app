@@ -14,26 +14,6 @@ export const buttonContainer = styled.View`
   justify-content: space-between;
   flex-direction: row;
 `;
-export const Iconbutton = styled.TouchableOpacity`
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  background-color: #d9d9d9;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-`;
-export const AddStory = styled.TouchableOpacity`
-  width: 70%;
-  height: 50px;
-  border-radius: 20px;
-  margin: 10px auto;
-  flex-direction: row;
-  background-color: #ff8f8f;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const VoteContainer = styled.View`
   width: 100%;
   justify-content: center;
@@ -42,14 +22,6 @@ export const VoteContainer = styled.View`
   margin-bottom: 90px;
 `;
 
-export const TextStory = styled.Text`
-  font-size: 15px;
-  color: #ffffff;
-  letter-spacing: -1px;
-  justify-content: space-between;
-  margin-left: 3px;
-  margin-right: 3px;
-`;
 export const styles = StyleSheet.create({
   shadow: {
     ...Platform.select({

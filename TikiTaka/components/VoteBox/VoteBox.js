@@ -70,7 +70,7 @@ const VoteBox = () => {
     }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, marginBottom:40,marginTop:20}}>
       <S.component ref = {viewRef} style={styles.shadow}>
         <S.componentTop>
           <S.styledText>HEY, YOU! VOTE!</S.styledText>
