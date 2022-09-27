@@ -9,14 +9,15 @@ import React, {useEffect, useState,useRef} from 'react';
 import styled from 'styled-components/native';
 import * as S from './style.js';
 import {styles} from './style';
-import Icon from 'react-native-vector-icons/Entypo';
+import {Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Sound from 'react-native-sound';
 import Share from 'react-native-share';
 import {captureRef} from 'react-native-view-shot';
 
 export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   const [toggleSound, setToggleSound] = useState(true);
-  const {reply, path} = currentLetter;
+  const {reply, type} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
     position: absolute;
     width: 100%;
@@ -30,9 +31,12 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   `;
 
   let music = '';
+  //currentLetter.sound
+  //https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8
 
-  if (path) {
-    music = new Sound(path, null, error => {
+  if (type === 'sound') {
+    console.log('내 소리 주소', currentLetter.sound);
+    music = new Sound(currentLetter.sound, null, error => {
       if (error) {
         console.log('play failed');
       }
@@ -63,6 +67,18 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
       }
     }
 
+  const playIcon = <Icon name="play" size={20} color="grey" />;
+  const pauseIcon = <Icon name="pause" size={20} color="grey" />;
+  //   <Icon
+  //   onPress={() => {
+  //     if (toggleSound) {
+  //       music.play();
+  //     }
+  //     setToggleSound(pre => !pre);
+  //   }}
+  //   name={toggleSound ? 'controller-play' : 'controller-paus'}
+  //   size={40}
+  // />
   return (
     <S.Modal>
       <BackClickClose onPress={toggleModal}>
@@ -73,20 +89,38 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
           <S.TopText>{modalQuestion}</S.TopText>
         </S.ComponentTop>
         <S.ComponentBottom>
-          {path ? (
-            <Icon
-              onPress={() => {
-                if (toggleSound) {
-                  music.play();
-                }
-                setToggleSound(pre => !pre);
-              }}
-              name={toggleSound ? 'controller-play' : 'controller-paus'}
-              size={40}
-            />
-          ) : null}
-
-          {reply ? <S.BottomText>{reply}</S.BottomText> : null}
+          {(() => {
+            if (type == 'text') {
+              return <S.BottomText>{reply}</S.BottomText>;
+            } else if (type == 'sound') {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    if (toggleSound) {
+                      if (music) {
+                        music?.play();
+                      }
+                    }
+                    setToggleSound(pre => !pre);
+                  }}>
+                  {toggleSound ? (
+                    <Text>{playIcon}</Text>
+                  ) : (
+                    <Text>{pauseIcon}</Text>
+                  )}
+                </TouchableOpacity>
+              );
+            } else if (type == 'vote') {
+              return currentLetter.count.map((item, index) => {
+                return (
+                  <S.BottomText>
+                    {currentLetter.options[index]} :{' '}
+                    {currentLetter.count[index]}
+                  </S.BottomText>
+                );
+              });
+            }
+          })()}
         </S.ComponentBottom>
       </S.ReplyBox>
 

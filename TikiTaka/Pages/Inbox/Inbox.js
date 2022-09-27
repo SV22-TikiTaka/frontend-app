@@ -25,29 +25,71 @@ export default function Inbox() {
 
   const closedMail = <Icon name="mail-outline" size={60} color="black" />;
   const openMail = <Icon name="mail-open-outline" size={60} color="black" />;
-
   const [Datalist, setDatalist] = useState([]);
-
+  let [textData, setTextData] = useState([]);
+  let [soundData, setSoundData] = useState([]);
+  let [voteData, setVoteData] = useState([]);
   //make datalist and push questions
   useEffect(() => {
-    axios
-      .get('http://0.0.0.0:8000/api/v1/comments/users/1/text')
-      .then(response => {
-        const comments = response.data;
-        const datalist = [];
+    (async () =>
+      await axios
+        .get(`http://localhost:8000/api/v1/comments/users/40/text`)
+        .then(response => {
+          const comments = response.data;
+          const datalist = [];
+          for (let i = 0; i < comments.length; i++) {
+            const data = new Object();
+            data.isOpen = false;
+            data.question_id = comments[i].question_id;
+            data.reply = comments[i].content;
+            data.type = comments[i].type;
 
-        for (let i = 0; i < comments.length - 1; i++) {
-          const data = new Object();
-          data.isOpen = false;
-          data.question_id = comments[i].question_id;
-          data.reply = comments[i].content;
-          data.type = comments[i].type;
+            datalist.push(data);
+          }
+          setTextData(datalist);
+        }))();
 
-          datalist.push(data);
-        }
-        setDatalist(datalist);
-      });
+    (async () =>
+      await axios
+        .get(`http://localhost:8000/api/v1/comments/users/40/sound`)
+        .then(response => {
+          const comments = response.data;
+          const datalist = [];
+          for (let i = 0; i < comments.length; i++) {
+            const data = new Object();
+            data.isOpen = false;
+            data.question_id = comments[i].question_id;
+            data.sound = comments[i].content;
+            data.type = comments[i].type;
+
+            datalist.push(data);
+          }
+          setSoundData(datalist);
+        }))();
+
+    (async () =>
+      await axios
+        .get(`http://localhost:8000/api/v1/comments/users/40/vote`)
+        .then(response => {
+          const comments = response.data;
+          const datalist = [];
+          for (let i = 0; i < comments.length; i++) {
+            const data = new Object();
+            data.isOpen = false;
+            data.question_id = comments[i].question_id;
+            data.count = comments[i].count;
+            data.type = 'vote';
+            data.options = comments[i].options;
+
+            datalist.push(data);
+          }
+          setVoteData(datalist);
+        }))();
   }, []);
+
+  useEffect(() => {
+    setDatalist([...textData, ...soundData, ...voteData]);
+  }, [textData, soundData, voteData]);
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentLetter, setCurrentLetter] = useState({});
