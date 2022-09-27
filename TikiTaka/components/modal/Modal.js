@@ -31,8 +31,11 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   `;
 
   let music = '';
+  //currentLetter.sound
+  //https://tikitaka-s3.s3.ap-northeast-2.amazonaws.com/8
 
   if (type === 'sound') {
+    console.log('내 소리 주소', currentLetter.sound);
     music = new Sound(currentLetter.sound, null, error => {
       if (error) {
         console.log('play failed');

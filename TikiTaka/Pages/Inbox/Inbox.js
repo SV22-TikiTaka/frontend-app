@@ -33,11 +33,11 @@ export default function Inbox() {
   useEffect(() => {
     (async () =>
       await axios
-        .get(`http://0.0.0.0:8000/api/v1/comments/users/1/text`)
+        .get(`http://localhost:8000/api/v1/comments/users/40/text`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
-          for (let i = 0; i < comments.length - 1; i++) {
+          for (let i = 0; i < comments.length; i++) {
             const data = new Object();
             data.isOpen = false;
             data.question_id = comments[i].question_id;
@@ -51,11 +51,11 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://0.0.0.0:8000/api/v1/comments/users/1/sound`)
+        .get(`http://localhost:8000/api/v1/comments/users/40/sound`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
-          for (let i = 0; i < comments.length - 1; i++) {
+          for (let i = 0; i < comments.length; i++) {
             const data = new Object();
             data.isOpen = false;
             data.question_id = comments[i].question_id;
@@ -69,11 +69,11 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://0.0.0.0:8000/api/v1/comments/users/1/vote`)
+        .get(`http://localhost:8000/api/v1/comments/users/40/vote`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
-          for (let i = 0; i < comments.length - 1; i++) {
+          for (let i = 0; i < comments.length; i++) {
             const data = new Object();
             data.isOpen = false;
             data.question_id = comments[i].question_id;
