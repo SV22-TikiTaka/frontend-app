@@ -32,8 +32,8 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
 
   let music = '';
 
-  if (type == 'sound') {
-    let music = new Sound(reply, null, error => {
+  if (type === 'sound') {
+    music = new Sound(currentLetter.sound, null, error => {
       if (error) {
         console.log('play failed');
       }
@@ -70,7 +70,9 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
                 <TouchableOpacity
                   onPress={() => {
                     if (toggleSound) {
-                      music.play();
+                      if (music) {
+                        music?.play();
+                      }
                     }
                     setToggleSound(pre => !pre);
                   }}>
