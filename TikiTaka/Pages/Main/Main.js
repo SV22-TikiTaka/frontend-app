@@ -93,7 +93,6 @@ export default function Main() {
           question={normal}
           setQuestion={setNormal}
           randomQuestion={randomNormal}
-          questionType = "normal"
         />
       ),
     },
@@ -106,7 +105,6 @@ export default function Main() {
           question={challenge}
           setQuestion={setChallenge}
           randomQuestion={randomChallenge}
-          questionType = "challenge"
         />
       ),
     },
