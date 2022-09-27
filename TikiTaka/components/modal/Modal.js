@@ -51,7 +51,6 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   //   name={toggleSound ? 'controller-play' : 'controller-paus'}
   //   size={40}
   // />
-  console.log(currentLetter);
   return (
     <S.Modal>
       <BackClickClose onPress={toggleModal}>
