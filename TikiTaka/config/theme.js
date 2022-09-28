@@ -14,6 +14,7 @@ const theme = {
     navGreen: '#779874',
     navcolor: 'black',
     shuffle:'rgba(0,0,0,0.1)',
+    modalbackground: 'rgba(0,0,0,0.5)',
   },
   dark: {
     theme: 'dark',
@@ -29,6 +30,7 @@ const theme = {
     navGreen: '#779874',
     navcolor: '#d4d4d4',
     shuffle:'rgba(225,225,225,0.3)',
+    modalbackground: 'rgba(225,225,225,0.5)',
   },
 };
 export default theme;

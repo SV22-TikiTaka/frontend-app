@@ -7,11 +7,12 @@
  */
 import React, {useState, useRef, useEffect, useContext} from 'react';
 //prettier-ignore
-import {View,StyleSheet,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
+import {View,Animated,Text,SafeAreaView,TextInput,Platform,Image,ScrollView,FlatList,TouchableOpacity,} from 'react-native';
 import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
@@ -19,8 +20,13 @@ import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
+import InfoModal from './../../components/modal/InfoModal';
+import Stickers from '../../assets/images/Stickers.png';
+import linkscreenshot from '../../assets/images/linkscreenshot.png';
+import stickerscreenshot from '../../assets/images/stickerscreenshot.png';
+import putlink from '../../assets/images/putlink.png';
 
-Icon.loadFont();
+Ionicons.loadFont();
 
 export default function Main() {
   const Title = 'MAIN';
@@ -28,11 +34,17 @@ export default function Main() {
   const theme = useContext(themeContext);
 
   const arrowRight = (
-    <Icon name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
+    <Ionicons name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
   const arrowLeft = (
-    <Icon name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
+    <Ionicons name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
+  const helpIcon = (
+    <FontAwesome name="question" size={30} color="white" />
+  );
+  const closeIcon = <Ionicons name = 'close-outline' size={35} color= {theme.background}/>;
+  const [visible, setVisible] = useState(false);
+  const scaleValue = useRef(new Animated.Value(0)).current;
 
   //this is for swiping the component box
   const ref = useRef(null);
@@ -110,7 +122,6 @@ export default function Main() {
     },
   ];
 
-
   return (
     <S.Main style={{backgroundColor: theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />
@@ -156,6 +167,43 @@ export default function Main() {
           <VoteBox />
         </S.VoteContainer>
       </ScrollView>
+
+      <InfoModal visible={visible} scaleValue = {scaleValue}>
+        <TouchableOpacity style = {styles.closeIconWrapper} onPress={()=>{setVisible(false)}}>
+          <Text >{closeIcon}</Text>
+        </TouchableOpacity> 
+        <Animated.View style = {[styles.shadow,styles.modalContainer, {backgroundColor:theme.background, transform:[{scale:scaleValue}]}]}>  
+          <Text style= {[styles.modalHeader,{color:theme.color}]}>How to add link to your instagram story</Text>
+          <ScrollView style={{marginTop:10 , flexDirection:'column'}}>
+              <Text style = {[styles.body,{color:theme.color}]}>
+                  1.     A link is copied to your clipboard when you click on the share button.
+              </Text>
+              <View style={{flexDirection:'row', alignItems:'center'}}>
+              <Text style = {[styles.body,{color:theme.color}]}>
+                  2.   Click 
+              </Text>
+                  <Image  style={{height:17, width:17, marginHorizontal :5, resizeMode:'contain',tintColor:theme.color}} source={Stickers}></Image>
+                  <Text style = {[styles.body,{color:theme.color}]}> icon </Text>
+              </View>
+              <Image source={stickerscreenshot} style={{width:273, height: 130, resizeMode:'center',}}/>
+              <Text style = {[styles.body,{color:theme.color}]}>
+                  3.   Click link sticker
+              </Text>
+              <Image source={linkscreenshot} style={{width:215, height: 130, resizeMode:'cover', alignSelf:'center'}}/>
+              <Text style = {[styles.body,{color:theme.color}]}>
+                  4.   Paste the link in here (& customize it!)
+              </Text>
+              <Image source={putlink} style={{width:215, height: 130, resizeMode:'cover', alignSelf:'center'}}/>
+              <Text style = {[styles.body,{color:theme.color}]}>
+                  5.   Customize your story & share it 😀
+              </Text>
+          </ScrollView>
+                </Animated.View>
+      </InfoModal>
+
+      <S.FAB style={styles.FABshadow} onPress = {() => setVisible(true)}>
+        <Text>{helpIcon}</Text>
+      </S.FAB>
     </S.Main>
   );
 }
