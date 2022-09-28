@@ -185,7 +185,7 @@ const VoteBox = () => {
           <View>
           {inputNum >= 3 ?  
           <TouchableOpacity
-            onPress={() => removeField(text[0].index)}
+            onPress={() => removeField(inputNum-2)}
             style={styles.deleteIcon}>
             <Text>{deleteIcon}</Text>
           </TouchableOpacity> : null }
