@@ -5,16 +5,34 @@
  * @format
  * @flow strict-local
  */
-import React from 'react';
-import {Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import styled from 'styled-components/native';
 import Logo from '../../assets/images/Logo.png';
 import Insta from '../../assets/images/instaLogo.png';
 import LinearGradient from 'react-native-linear-gradient';
 import * as S from './style.js';
 import {styles} from './style';
-
+import axios from 'axios';
+import Hyperlink from 'react-native-hyperlink';
 export default function Login() {
+  useEffect(() => {
+    (async () => {
+      await axios.get('http://localhost:8000/api/v1/authorize');
+    })();
+  }, []);
+
+  function openURL(url) {
+    //웹피이지 url에 접속
+    Linking.openURL(url);
+  }
   return (
     <S.Main>
       {/* 중앙 메인 로고 */}
@@ -33,10 +51,14 @@ export default function Login() {
           end={{x: 1.0, y: 1.0}}
           style={styles.grediant}>
           {/* 로그인 버튼 */}
-          <View style={styles.buttonContainer}>
-            <S.InstaImg source={Insta}></S.InstaImg>
-            <S.LoginText>Sign In With Instagram</S.LoginText>
-          </View>
+          <Hyperlink
+            linkStyle={{fontSize: 8, color: '#505050'}}
+            onPress={() => openURL(url)}>
+            <View style={styles.buttonContainer}>
+              <S.InstaImg source={Insta}></S.InstaImg>
+              <S.LoginText>Sign In With Instagram</S.LoginText>
+            </View>
+          </Hyperlink>
         </LinearGradient>
       </S.Sign>
     </S.Main>

@@ -19,7 +19,7 @@ import Anything from '../../assets/images/Anything.png';
 import Loading from '../../components/Loading/Loading.js';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
-
+import Hyperlink from 'react-native-hyperlink';
 Icon.loadFont();
 
 export default function Main() {
