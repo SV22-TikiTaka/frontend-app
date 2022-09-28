@@ -6,6 +6,8 @@ import SplashScreen from 'react-native-splash-screen';
 import { EventRegister } from 'react-native-event-listeners';
 import themeContext from './config/themeContext';
 import theme from './config/theme';
+import 'react-native-gesture-handler';
+import AuthNavigator from './navigation/AuthNavigator';
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -28,7 +30,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <themeContext.Provider value = {DarkMode === true? theme.dark : theme.light}>
       <NavigationContainer value = {DarkMode === true? theme.dark : theme.light}>
-        <Tabs />
+        <AuthNavigator />
       </NavigationContainer>
       </themeContext.Provider>
     </QueryClientProvider>
