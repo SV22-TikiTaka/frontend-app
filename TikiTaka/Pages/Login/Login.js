@@ -22,6 +22,8 @@ import * as S from './style.js';
 import {styles} from './style';
 import axios from 'axios';
 import Hyperlink from 'react-native-hyperlink';
+const link =
+  'https:api.instagram.com/oauth/authorize?client_id=1958586991003560&redirect_uri=https://letstikitaka.com/redirect&scope=user_profile,user_media&response_type=code';
 export default function Login() {
   useEffect(() => {
     (async () => {
@@ -53,7 +55,7 @@ export default function Login() {
           {/* 로그인 버튼 */}
           <Hyperlink
             linkStyle={{fontSize: 8, color: '#505050'}}
-            onPress={() => openURL(url)}>
+            onPress={() => openURL(link)}>
             <View style={styles.buttonContainer}>
               <S.InstaImg source={Insta}></S.InstaImg>
               <S.LoginText>Sign In With Instagram</S.LoginText>
