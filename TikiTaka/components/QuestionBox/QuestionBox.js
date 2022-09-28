@@ -1,15 +1,6 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import {
-  View,
-  Switch,
-  Text,
-  StyleSheet,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Linking,
-  Platform,
-} from 'react-native';
+//prettier-ignore
+import {View,Switch,Text,StyleSheet,Image,TextInput,TouchableOpacity,Linking,Platform,} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share';
@@ -18,13 +9,8 @@ import themeContext from '../../config/themeContext.js';
 import * as S from './style';
 import axios from 'axios';
 
-const QuestionBox = ({
-  QuestionBoxTitle,
-  QuestionBoxColor,
-  question,
-  setQuestion,
-  randomQuestion,
-}) => {
+//prettier-ignore
+const QuestionBox = ({QuestionBoxTitle,QuestionBoxColor,question,setQuestion,randomQuestion}) => {
   const shuffleIcon = <Icon name="shuffle-outline" size={20} />;
   const shareIcon = (
     <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />
@@ -91,7 +77,7 @@ const QuestionBox = ({
   async function getUrl() {
     try {
       const result = await axios.get(
-        'http://localhost:8000/api/v1/users/url/?user_id=40&question_id=28',
+        'http://localhost:8000/api/v1/users/url/?user_id=1&question_id=14',
       );
       console.log(result.data);
     } catch (error) {

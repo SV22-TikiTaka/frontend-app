@@ -110,6 +110,7 @@ export default function Main() {
     },
   ];
 
+
   return (
     <S.Main style={{backgroundColor: theme.background}}>
       <Header Title={Title} TitleColor={TitleColor} />

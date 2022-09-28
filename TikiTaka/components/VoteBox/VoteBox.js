@@ -6,12 +6,15 @@ import * as S from './style';
 import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share';
 import themeContext from '../../config/themeContext.js';
+import axios from 'axios';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const VoteBox = () => {
-  const addIcon = <Icon name="add-outline" size={23} color="grey" />;
-  const deleteIcon = <Icon name="trash-outline" size={23} color="red" />;
+  const addIcon = <Icon name="add-circle-outline" size={20} />;
+  const deleteIcon = <Icon name="trash-outline" size={20} color="red" />;
 
   const theme = useContext(themeContext);
+  const [voteQuestion, setVoteQueston] = useState("");
 
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
@@ -60,7 +63,7 @@ const VoteBox = () => {
             .catch(err => console.error(err));
     }
   });
-  const shareQuestionBox = async () => {
+  const shareVoteBox = async () => {
     try {
       const uri = await captureRef(viewRef, {
         format: 'png',
@@ -77,12 +80,68 @@ const VoteBox = () => {
       console.error(err);
     }
   };
+  const options = [];
+  options.push(first)
+  {text.map(val =>{
+    options.push(val.val)
+  })}
+  console.log(options)
+  console.log(voteQuestion)
+  
+  async function createVote() {
 
+    await axios({
+      url: 'http://0.0.0.0:8000/api/v1/questions/vote/',
+      method: 'post',
+      data: {
+        content: voteQuestion,
+        user_id: 1,
+        option: options,
+      },
+    })
+      .then(response => {
+        console.log('question created');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  const [url, setURL] = useState('');
+  async function getUrl() {
+    try {
+      const result = await axios.get(
+        'http://localhost:8000/api/v1/users/url/?user_id=1&question_id=12',
+      );
+      console.log(result.data);
+      setURL(result.data);
+      console.log(url)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const copyToClipboard = (input) => {
+    Clipboard.setString(input);
+    alert('URL Copied to Clipboard!');
+  };
+
+  const functionCombined = async () => {
+    await shareVoteBox();
+    await createVote();
+    await getUrl();
+  }
   return (
     <View style={{flex: 1, marginBottom: 40, marginTop: 20}}>
       <S.component ref={viewRef} style={styles.shadow}>
         <S.componentTop>
-          <S.styledText>HEY, YOU! VOTE!</S.styledText>
+        <TextInput
+              style={styles.questioninput}
+              placeholder={'INPUT QUESTION'}
+              value={voteQuestion}
+              onChangeText={setVoteQueston}
+              maxLength={20}
+              multiline={true}
+              cursorColor ='white'
+            />
         </S.componentTop>
         <S.componentBottom>
           {/* input fields */}
@@ -92,6 +151,9 @@ const VoteBox = () => {
               placeholder={'OPTION'}
               value={first}
               onChangeText={setFirst}
+              maxLength={10}
+              cursorColor ='#779874'
+              
             />
           </View>
           {text.map((element, index) => (
@@ -101,39 +163,49 @@ const VoteBox = () => {
                 placeholder={'OPTION'}
                 value={element.val}
                 onChangeText={value => handleChange(index, value)}
+                maxLength={10}
+                cursorColor ='#779874'
               />
-
-              {index === 0 ? null : (
-                <TouchableOpacity
-                  onPress={() => removeField(index)}
-                  style={styles.deleteIcon}>
-                  <Text>{deleteIcon}</Text>
-                </TouchableOpacity>
-              )}
             </View>
           ))}
-
-          {/*adding input box*/}
-          {inputNum >= 4 ? null : (
-            <TouchableOpacity style={styles.addInput} onPress={addField}>
-              <Text>{addIcon}</Text>
-            </TouchableOpacity>
-          )}
         </S.componentBottom>
       </S.component>
+
+      <View style={[styles.utils, {backgrounColor: theme.background}]}>
+         {/*adding input box*/}
+         {inputNum >= 4 ? 
+         <TouchableOpacity style={styles.addOption}>
+          <Text style={{color: theme.color}}>{addIcon}</Text>
+          <Text style = {[styles.addText,{color: theme.color}]}>ADD OPTION</Text>
+        </TouchableOpacity>  : 
+          <TouchableOpacity style={styles.addOption} onPress={addField}>
+            <Text style={{color: theme.color}}>{addIcon}</Text>
+            <Text style = {[styles.addText,{color: theme.color}]}>ADD OPTION</Text>
+          </TouchableOpacity>} 
+          <View>
+          {inputNum >= 3 ?  
+          <TouchableOpacity
+            onPress={() => removeField(text[0].index)}
+            style={styles.deleteIcon}>
+            <Text>{deleteIcon}</Text>
+          </TouchableOpacity> : null }
+          </View>
+      </View>
+      
+      <View>
       <S.ShareButton
         style={[styles.shadow, {backgroundColor: theme.background}]}
-        onPress={shareQuestionBox}>
+        onPressIn = {() => copyToClipboard(url)} onPress={functionCombined}>
         <S.ButtonText>{shareIcon}</S.ButtonText>
         {showInstagramStory ? (
           <S.ButtonText style={{color: theme.color}}>
-            {' '}
             SHARE TO INSTAGRAM STORY
           </S.ButtonText>
         ) : (
           <S.ButtonText style={{color: theme.color}}> SHARE</S.ButtonText>
         )}
       </S.ShareButton>
+    </View>
     </View>
   );
 };
@@ -155,21 +227,18 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  addInput: {
-    borderColor: 'grey',
-    borderRadius: 15,
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    paddingHorizontal: 10,
-    marginTop: 10,
-    marginLeft: 10,
-    width: 245,
-    paddingVertical: 1.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   text: {
     fontFamily: 'SBAggroM',
+  },
+  questioninput:{
+    lineHeight: 30,
+    fontSize:19,
+    color:'white',
+    fontFamily: 'SBAggroM',
+    borderColor: '#779874',
+    paddingHorizontal: 33,
+    marginHorizontal: 15,
+    flex:1,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -178,19 +247,39 @@ const styles = StyleSheet.create({
     lineHeight: 23,
     paddingVertical: 2,
     fontFamily: 'SBAggroM',
-    borderColor: 'black',
+    borderColor: '#779874',
     borderRadius: 15,
-    borderWidth: 1,
-    paddingHorizontal: 10,
+    borderWidth: 1.5,
+    paddingHorizontal: 20,
     marginTop: 10,
-    marginLeft: 10,
-    width: 245,
+    marginHorizontal: 15,
+    flex:1
+  },
+  addOption:{
+    flexDirection:'row',
+    alignItems:'center',
+    marginHorizontal:20,
+
+  },
+  addText:{
+    fontFamily: 'SBAggroM',
+    fontSize:11,
+    paddingTop:3,
   },
   deleteIcon: {
     justifyContent: 'center',
+    marginHorizontal:20,
+  },
+  utils: {
+    marginHorizontal: 50,
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 8,
-    marginLeft: 5,
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderRadius: 20,
+    paddingVertical: 5,
+    borderColor: '#ff8f8f',
+    marginTop: 10,
   },
 });
 

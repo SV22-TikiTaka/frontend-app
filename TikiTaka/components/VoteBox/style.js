@@ -4,7 +4,7 @@ export const component = styled.View`
   width: 290px;
   min-height: 190px;
   border-radius: 15px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px auto;
   border-color: #779874;
   border-width: 1px;
 `;
@@ -14,8 +14,11 @@ export const componentTop = styled.View`
   min-height: 75px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  padding-bottom: 5px;
+  padding-top:5px;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 `;
 export const componentBottom = styled.View`
   flex-basis: auto;
@@ -23,7 +26,8 @@ export const componentBottom = styled.View`
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
+  padding-top: 5px;
 `;
 export const styledText = styled.Text`
   font-family: 'SBAggroB';
@@ -33,7 +37,7 @@ export const styledText = styled.Text`
 
 export const ShareButton = styled.TouchableOpacity`
   border-radius: 20px;
-  margin: 10px auto;
+  margin: 15px auto;
   flex-direction: row;
   background-color: white;
   justify-content: center;
