@@ -1,19 +1,11 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import {
-  View,
-  Switch,
-  Text,
-  StyleSheet,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Linking,
-  Platform,
-} from 'react-native';
+//prettier-ignore
+import {View,Switch,Text,StyleSheet,Image,TextInput,TouchableOpacity,Linking,Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share';
 import themeContext from '../../config/themeContext.js';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 import * as S from './style';
 import axios from 'axios';
@@ -76,28 +68,39 @@ const QuestionBox = ({
       method: 'post',
       data: {
         content: question,
-        user_id: 40,
+        user_id: 1,
         type: 'normal',
         comment_type: optionToggle ? 'text' : 'sound',
       },
     })
       .then(response => {
-        console.log('question created');
+        console.log('question created' + response.data);
       })
       .catch(err => {
         console.log(err);
       });
   }
+
+ 
+  const [url, setURL] = useState('');
   async function getUrl() {
     try {
       const result = await axios.get(
-        'http://localhost:8000/api/v1/users/url/?user_id=40&question_id=28',
+        'http://localhost:8000/api/v1/users/url/?user_id=1&question_id=8',
       );
       console.log(result.data);
+      setURL(result.data);
+      console.log(url)
     } catch (error) {
       console.log(error);
     }
-  }
+  } 
+  
+  const copyToClipboard = (text) => {
+    Clipboard.setString(text);
+    alert('URL Copied to Clipboard!');
+  };
+
   const functionCombined = async () => {
     await shareQuestionBox();
     await createQuestion();
@@ -156,7 +159,7 @@ const QuestionBox = ({
       <View>
         <S.ShareButton
           style={[styles.shadow, {backgroundColor: theme.background}]}
-          onPress={functionCombined}>
+          onPressIn = {() => copyToClipboard(url)} onPress={functionCombined}>
           <S.ButtonText>{shareIcon}</S.ButtonText>
           {showInstagramStory ? (
             <S.ButtonText style={{color: theme.color}}>
