@@ -12,10 +12,8 @@ import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import Modal from '../../components/modal/Modal.js';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {data} from './data.js';
 import themeContext from '../../config/themeContext.js';
 import styled from 'styled-components/native';
-import {showUser} from '../Settings/Settings.js';
 import axios from 'axios';
 
 export default function Inbox() {

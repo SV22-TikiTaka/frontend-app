@@ -15,16 +15,13 @@ export const QuestionContainer = styled.TouchableOpacity`
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 15px;
-  border-color: ${props => props.typeColor};
-  border-width: 1px;
+  border-width: 2px;
 `;
 export const QuestionText = styled.Text`
   font-size: 16px;
   font-family: 'SBAggroM';
   font-weight: normal;
   text-transform: uppercase;
-  color: ${props => props.typeColor};
-  border-color: ${props => props.typeColor};
 `;
 export const AnswerContainer = styled.View`
   margin-left: 30px;
@@ -53,7 +50,6 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     padding: 10,
-    color: '#FF8F8F',
   },
   separator: {
     height: 0.5,
