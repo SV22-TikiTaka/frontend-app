@@ -76,7 +76,7 @@ const QuestionBox = ({
       method: 'post',
       data: {
         content: question,
-        user_id: 1,
+        user_id: 40,
         type: 'normal',
         comment_type: optionToggle ? 'text' : 'sound',
       },
@@ -88,10 +88,20 @@ const QuestionBox = ({
         console.log(err);
       });
   }
-
-  const functionCombined = () => {
-    shareQuestionBox();
-    createQuestion();
+  async function getUrl() {
+    try {
+      const result = await axios.get(
+        'http://localhost:8000/api/v1/users/url/?user_id=40&question_id=28',
+      );
+      console.log(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const functionCombined = async () => {
+    await shareQuestionBox();
+    await createQuestion();
+    await getUrl();
   };
 
   //content 값이랑 queston type 어떻게 받을지 생각
