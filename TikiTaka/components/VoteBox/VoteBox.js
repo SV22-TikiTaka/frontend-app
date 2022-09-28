@@ -1,4 +1,4 @@
-import React, {useState, useRef,useEffect,useContext} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 //prettier-ignore
 import {View,StyleSheet,TouchableOpacity,Text,TextInput,Platform, Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -9,9 +9,9 @@ import themeContext from '../../config/themeContext.js';
 
 const VoteBox = () => {
   const addIcon = <Icon name="add-outline" size={23} color="grey" />;
-  const deleteIcon = <Icon name="trash-outline" size={23} color="red"/>;
+  const deleteIcon = <Icon name="trash-outline" size={23} color="red" />;
 
-  const theme =  useContext(themeContext);
+  const theme = useContext(themeContext);
 
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
@@ -42,36 +42,45 @@ const VoteBox = () => {
   };
 
   //share to instagram
-  const shareIcon = <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />;
+  const shareIcon = (
+    <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />
+  );
 
-  const[showInstagramStory, setShowInstagramStory] = useState(false);
+  const [showInstagramStory, setShowInstagramStory] = useState(false);
   const viewRef = useRef();
 
   useEffect(() => {
-    {Platform.OS === 'ios'? Linking.canOpenURL('instagram://').then((val) => setShowInstagramStory(val)).catch((err) => console.error(err))
-  :Share.isPackageInstalled('com.instagram.android').then(({isInstalled}) => setShowInstagramStory(isInstalled)).catch((err) => console.error(err))}
-  })
-  const shareQuestionBox = async() => {
-    try{
+    {
+      Platform.OS === 'ios'
+        ? Linking.canOpenURL('instagram://')
+            .then(val => setShowInstagramStory(val))
+            .catch(err => console.error(err))
+        : Share.isPackageInstalled('com.instagram.android')
+            .then(({isInstalled}) => setShowInstagramStory(isInstalled))
+            .catch(err => console.error(err));
+    }
+  });
+  const shareQuestionBox = async () => {
+    try {
       const uri = await captureRef(viewRef, {
         format: 'png',
-        quality:0.7
+        quality: 0.7,
       });
-      if(showInstagramStory){
+      if (showInstagramStory) {
         await Share.shareSingle({
           stickerImage: uri,
           social: Share.Social.INSTAGRAM_STORIES,
-        })
+        });
       }
       await Share.open({url: uri});
-    } catch(err){
+    } catch (err) {
       console.error(err);
     }
-    }
+  };
 
   return (
-    <View style={{flex: 1, marginBottom:40,marginTop:20}}>
-      <S.component ref = {viewRef} style={styles.shadow}>
+    <View style={{flex: 1, marginBottom: 40, marginTop: 20}}>
+      <S.component ref={viewRef} style={styles.shadow}>
         <S.componentTop>
           <S.styledText>HEY, YOU! VOTE!</S.styledText>
         </S.componentTop>
@@ -112,12 +121,19 @@ const VoteBox = () => {
           )}
         </S.componentBottom>
       </S.component>
-          <S.ShareButton style = {[styles.shadow,{backgroundColor:theme.background}]} onPress = {shareQuestionBox} >
-            <S.ButtonText>{shareIcon}</S.ButtonText>
-            {showInstagramStory? 
-            <S.ButtonText style = {{color:theme.color}}> SHARE TO INSTAGRAM STORY</S.ButtonText> 
-            : <S.ButtonText style = {{color:theme.color}}> SHARE</S.ButtonText>}
-          </S.ShareButton> 
+      <S.ShareButton
+        style={[styles.shadow, {backgroundColor: theme.background}]}
+        onPress={shareQuestionBox}>
+        <S.ButtonText>{shareIcon}</S.ButtonText>
+        {showInstagramStory ? (
+          <S.ButtonText style={{color: theme.color}}>
+            {' '}
+            SHARE TO INSTAGRAM STORY
+          </S.ButtonText>
+        ) : (
+          <S.ButtonText style={{color: theme.color}}> SHARE</S.ButtonText>
+        )}
+      </S.ShareButton>
     </View>
   );
 };

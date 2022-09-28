@@ -9,26 +9,32 @@ import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
 
 const Settings = () => {
-  const [user, setUser] = useState(['https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png','username','fullname',0,0]);
-  useEffect(()=> {
-      axios.get('http://0.0.0.0:8000/api/v1/users/1') // + user.id 로 나중에 바꿔야함.
-     .then(response => {
-      const info = response.data;
-      const datalist = [];
-      datalist.push(info.profile_image_url);
-      datalist.push(info.username);
-      datalist.push(info.full_name);
-      datalist.push(info.follower);
-      datalist.push(info.following);
-      setUser(datalist)
-     });
-      console.log(user);
-    },[]);
-  
+  const [user, setUser] = useState([
+    'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
+    'username',
+    'fullname',
+    0,
+    0,
+  ]);
+  useEffect(() => {
+    axios
+      .get('http://0.0.0.0:8000/api/v1/users/1') // + user.id 로 나중에 바꿔야함.
+      .then(response => {
+        const info = response.data;
+        const datalist = [];
+        datalist.push(info.profile_image_url);
+        datalist.push(info.username);
+        datalist.push(info.full_name);
+        datalist.push(info.follower);
+        datalist.push(info.following);
+        setUser(datalist);
+      });
+    console.log(user);
+  }, []);
 
   const Title = 'SETTINGS';
   const TitleColor = '#779874';
-  const userimage = {uri : user[0]};
+  const userimage = {uri: user[0]};
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
   const NotificationsToggleSwitch = () =>
     setNotificationsToggle(previousState => !previousState);
@@ -49,16 +55,22 @@ const Settings = () => {
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account style={[styles.shadow, {backgroundColor: theme.background}]}>
-          {user?
-           <S.UserImage source = {userimage}/>:
-          <S.UserImage source = {{uri: 'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png'}}/>}
+          {user ? (
+            <S.UserImage source={userimage} />
+          ) : (
+            <S.UserImage
+              source={{
+                uri: 'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
+              }}
+            />
+          )}
           <S.InfoWrapper>
             <S.UserContainer>
               <S.UserID style={{color: theme.color}}>
                 {user ? user[1] : null}
               </S.UserID>
               <S.UserName style={{color: theme.subcolor}}>
-                {user ? user[2]: null}
+                {user ? user[2] : null}
               </S.UserName>
             </S.UserContainer>
             <S.FollowingContainer>
