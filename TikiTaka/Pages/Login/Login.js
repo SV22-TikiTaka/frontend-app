@@ -27,7 +27,7 @@ export default class Login extends Component {
     AsyncStorage.getItem('user_info', (err, result) => {
       console.log(result);
       if (result) {
-        this.setState({...result});
+        this.props.navigation.navigate('Home');
       }
     });
   }
