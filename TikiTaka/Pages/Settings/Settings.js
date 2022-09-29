@@ -7,8 +7,16 @@ import intToString from '../../utils/intToString';
 import {EventRegister} from 'react-native-event-listeners';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Settings = () => {
+
+  const [userInfo, setUserInfo] = useState([])
+
+  AsyncStorage.getItem('user_info', (err, result) => {
+    const user = JSON.parse(result);
+    setUserInfo([user.token, user.user_id]);
+  })
   const [user, setUser] = useState([
     'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
     'username',

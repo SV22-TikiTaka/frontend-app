@@ -13,6 +13,7 @@ import * as S from './style.js';
 import {styles} from './style';
 import InstagramLogin from 'react-native-instagram-login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 //this.props.navigation.navigate('Home')
 export default class Login extends Component {

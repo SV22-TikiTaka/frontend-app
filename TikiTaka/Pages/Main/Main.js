@@ -32,12 +32,29 @@ export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
   const theme = useContext(themeContext);
-  useEffect(() => {
-    AsyncStorage.getItem('user_info', (err, result) => {
-      console.log('여긴 메인페이진데?');
-      console.log(result);
+  const [token, setToken] = useState('');
+
+  AsyncStorage.getItem('user_info', (err, result) => {
+    const user = JSON.parse(result)
+    setToken(user.token);
+  })
+
+    axios.put('http://0.0.0.0:8000/api/v1/users/by-access-token', {}, 
+    {
+      headers:{
+        Authorization: 'Bearer' + token 
+      }
+    })
+  .then((res => {
+    AsyncStorage.setItem('user_id',res.id, () => {
+    console.log(res.id)
     });
-  });
+  }))
+
+  
+
+ 
+
   const arrowRight = (
     <Ionicons name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
