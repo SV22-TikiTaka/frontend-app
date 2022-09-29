@@ -31,7 +31,7 @@ export default function Inbox() {
   useEffect(() => {
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/40/text`)
+        .get(`http://localhost:8000/api/v1/comments/users/1/text`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
@@ -49,7 +49,7 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/40/sound`)
+        .get(`http://localhost:8000/api/v1/comments/users/1/sound`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
@@ -67,7 +67,7 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/40/vote`)
+        .get(`http://localhost:8000/api/v1/comments/users/1/vote`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
