@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
       paddingHorizontal:20,
       paddingVertical:30,
       borderRadius:15,
-      maxHeight:300,
+      maxHeight:350,
   },
   modalHeader:{
       fontFamily:'SBAggroB',
