@@ -12,7 +12,7 @@ import * as S from './style.js';
 import Header from '../../components/Header/Header.js';
 import {styles} from './style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import QuestionBox from '../../components/QuestionBox/QuestionBox';
 import VoteBox from '../../components/VoteBox/VoteBox';
 import Challenge from '../../assets/images/Challenge.png';
@@ -25,24 +25,29 @@ import Stickers from '../../assets/images/Stickers.png';
 import linkscreenshot from '../../assets/images/linkscreenshot.png';
 import stickerscreenshot from '../../assets/images/stickerscreenshot.png';
 import putlink from '../../assets/images/putlink.png';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 Ionicons.loadFont();
 
 export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
   const theme = useContext(themeContext);
-
+  useEffect(() => {
+    AsyncStorage.getItem('user_info', (err, result) => {
+      console.log('여긴 메인페이진데?');
+      console.log(result);
+    });
+  });
   const arrowRight = (
     <Ionicons name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
   const arrowLeft = (
     <Ionicons name="chevron-back-circle-outline" size={30} color="#ff8f8f" />
   );
-  const helpIcon = (
-    <FontAwesome name="question" size={30} color="white" />
+  const helpIcon = <Ionicons name="help-outline" size={30} color="white" />;
+  const closeIcon = (
+    <Ionicons name="close-outline" size={35} color={theme.background} />
   );
-  const closeIcon = <Ionicons name = 'close-outline' size={35} color= {theme.background}/>;
   const [visible, setVisible] = useState(false);
   const scaleValue = useRef(new Animated.Value(0)).current;
 
@@ -168,40 +173,80 @@ export default function Main() {
         </S.VoteContainer>
       </ScrollView>
 
-      <InfoModal visible={visible} scaleValue = {scaleValue}>
-        <TouchableOpacity style = {styles.closeIconWrapper} onPress={()=>{setVisible(false)}}>
-          <Text >{closeIcon}</Text>
-        </TouchableOpacity> 
-        <Animated.View style = {[styles.shadow,styles.modalContainer, {backgroundColor:theme.background, transform:[{scale:scaleValue}]}]}>  
-          <Text style= {[styles.modalHeader,{color:theme.color}]}>How to add link to your instagram story</Text>
-          <ScrollView style={{marginTop:10 , flexDirection:'column'}}>
-              <Text style = {[styles.body,{color:theme.color}]}>
-                  1.     A link is copied to your clipboard when you click on the share button.
-              </Text>
-              <View style={{flexDirection:'row', alignItems:'center'}}>
-              <Text style = {[styles.body,{color:theme.color}]}>
-                  2.   Click 
-              </Text>
-                  <Image  style={{height:17, width:17, marginHorizontal :5, resizeMode:'contain',tintColor:theme.color}} source={Stickers}></Image>
-                  <Text style = {[styles.body,{color:theme.color}]}> icon </Text>
-              </View>
-              <Image source={stickerscreenshot} style={{width:273, height: 130, resizeMode:'center',}}/>
-              <Text style = {[styles.body,{color:theme.color}]}>
-                  3.   Click link sticker
-              </Text>
-              <Image source={linkscreenshot} style={{width:215, height: 130, resizeMode:'cover', alignSelf:'center'}}/>
-              <Text style = {[styles.body,{color:theme.color}]}>
-                  4.   Paste the link in here (& customize it!)
-              </Text>
-              <Image source={putlink} style={{width:215, height: 130, resizeMode:'cover', alignSelf:'center'}}/>
-              <Text style = {[styles.body,{color:theme.color}]}>
-                  5.   Customize your story & share it 😀
-              </Text>
+      <InfoModal visible={visible} scaleValue={scaleValue}>
+        <TouchableOpacity
+          style={styles.closeIconWrapper}
+          onPress={() => {
+            setVisible(false);
+          }}>
+          <Text>{closeIcon}</Text>
+        </TouchableOpacity>
+        <Animated.View
+          style={[
+            styles.shadow,
+            styles.modalContainer,
+            {
+              backgroundColor: theme.background,
+              transform: [{scale: scaleValue}],
+            },
+          ]}>
+          <Text style={[styles.modalHeader, {color: theme.color}]}>
+            How to add link to your instagram story
+          </Text>
+          <ScrollView style={{marginTop: 10, flexDirection: 'column'}}>
+            <Text style={[styles.body, {color: theme.color}]}>
+              1. A link is copied to your clipboard when you click on the share
+              button.
+            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={[styles.body, {color: theme.color}]}>2. Click</Text>
+              <Image
+                style={{
+                  height: 17,
+                  width: 17,
+                  marginHorizontal: 5,
+                  resizeMode: 'contain',
+                  tintColor: theme.color,
+                }}
+                source={Stickers}></Image>
+              <Text style={[styles.body, {color: theme.color}]}> icon </Text>
+            </View>
+            <Image
+              source={stickerscreenshot}
+              style={{width: 273, height: 130, resizeMode: 'center'}}
+            />
+            <Text style={[styles.body, {color: theme.color}]}>
+              3. Click link sticker
+            </Text>
+            <Image
+              source={linkscreenshot}
+              style={{
+                width: 215,
+                height: 130,
+                resizeMode: 'cover',
+                alignSelf: 'center',
+              }}
+            />
+            <Text style={[styles.body, {color: theme.color}]}>
+              4. Paste the link in here (& customize it!)
+            </Text>
+            <Image
+              source={putlink}
+              style={{
+                width: 215,
+                height: 130,
+                resizeMode: 'cover',
+                alignSelf: 'center',
+              }}
+            />
+            <Text style={[styles.body, {color: theme.color}]}>
+              5. Customize your story & share it 😀
+            </Text>
           </ScrollView>
-                </Animated.View>
+        </Animated.View>
       </InfoModal>
 
-      <S.FAB style={styles.FABshadow} onPress = {() => setVisible(true)}>
+      <S.FAB style={styles.FABshadow} onPress={() => setVisible(true)}>
         <Text>{helpIcon}</Text>
       </S.FAB>
     </S.Main>
