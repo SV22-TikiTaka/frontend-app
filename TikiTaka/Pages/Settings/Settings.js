@@ -11,37 +11,54 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Settings = () => {
 
-  const [userId, setUserId] = useState("")
-
-  AsyncStorage.getItem('user_id', (err, result) => {
-    setUserId(JSON.parse(result));
-  })
-  const [user, setUser] = useState([
-    'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
-    'username',
-    'fullname',
-    0,
-    0,
-  ]);
-  useEffect(() => {
-    axios
-      .get(`https://letstikitaka.com/api/v1/users/${userId}`) // + user.id 로 나중에 바꿔야함.
-      .then(response => {
-        const info = response.data;
-        const datalist = [];
-        datalist.push(info.profile_image_url);
-        datalist.push(info.username);
-        datalist.push(info.full_name);
-        datalist.push(info.follower);
-        datalist.push(info.following);
-        setUser(datalist);
-      })
-    console.log(user);
+  const [user, setUser] = useState([]); 
+  
+  useEffect(() => { 
+    AsyncStorage.getItem('user_id', (err, result) => {
+     axios.get(`https://letstikitaka.com/api/v1/users/${JSON.parse(result)}`)
+     .then((response) => {
+      const info = response.data;
+      const result = [];
+      result.push(
+        <>
+        <S.UserImage source={{uri : info.profile_image_url}} />
+        <S.InfoWrapper>
+            <S.UserContainer>
+              <S.UserID style={{color: theme.color}}>
+                {info.username}
+              </S.UserID>
+              <S.UserName style={{color: theme.subcolor}}>
+                {info.full_name}
+              </S.UserName>
+            </S.UserContainer>
+            <S.FollowingContainer>
+              <S.FollowingInfo>
+                <S.FollowingText style={{color: theme.subcolor}}>
+                  Followers
+                </S.FollowingText>
+                <S.FollowingNumberText style={{color: theme.color}}>
+                  {intToString(info.follower)}
+                </S.FollowingNumberText>
+              </S.FollowingInfo>
+              <S.FollowingInfo>
+                <S.FollowingText style={{color: theme.subcolor}}>
+                  Following
+                </S.FollowingText>
+                <S.FollowingNumberText style={{color: theme.color}}>
+                  {intToString(info.following)}
+                </S.FollowingNumberText>
+              </S.FollowingInfo>
+            </S.FollowingContainer>
+          </S.InfoWrapper>
+          </>
+      ) 
+      setUser(result);
+    });
+     })
   }, []);
 
   const Title = 'SETTINGS';
   const TitleColor = '#779874';
-  const userimage = {uri: user[0]};
   const [NotificationsToggle, setNotificationsToggle] = useState(false);
   const NotificationsToggleSwitch = () =>
     setNotificationsToggle(previousState => !previousState);
@@ -62,43 +79,7 @@ const Settings = () => {
       <S.Container>
         <S.AccountTitle>ACCOUNT INFO.</S.AccountTitle>
         <S.Account style={[styles.shadow, {backgroundColor: theme.background}]}>
-          {user ? (
-            <S.UserImage source={userimage} />
-          ) : (
-            <S.UserImage
-              source={{
-                uri: 'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
-              }}
-            />
-          )}
-          <S.InfoWrapper>
-            <S.UserContainer>
-              <S.UserID style={{color: theme.color}}>
-                {user ? user[1] : null}
-              </S.UserID>
-              <S.UserName style={{color: theme.subcolor}}>
-                {user ? user[2] : null}
-              </S.UserName>
-            </S.UserContainer>
-            <S.FollowingContainer>
-              <S.FollowingInfo>
-                <S.FollowingText style={{color: theme.subcolor}}>
-                  Followers
-                </S.FollowingText>
-                <S.FollowingNumberText style={{color: theme.color}}>
-                  {user ? intToString(user[3]) : null}
-                </S.FollowingNumberText>
-              </S.FollowingInfo>
-              <S.FollowingInfo>
-                <S.FollowingText style={{color: theme.subcolor}}>
-                  Following
-                </S.FollowingText>
-                <S.FollowingNumberText style={{color: theme.color}}>
-                  {user ? intToString(user[4]) : null}
-                </S.FollowingNumberText>
-              </S.FollowingInfo>
-            </S.FollowingContainer>
-          </S.InfoWrapper>
+          {user}
         </S.Account>
         <S.SettingTitle>SETTINGS</S.SettingTitle>
         <S.Setting style={[styles.shadow, {backgroundColor: theme.background}]}>

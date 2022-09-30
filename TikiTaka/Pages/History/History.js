@@ -104,11 +104,7 @@ const History = () => {
   const Title = 'HISTORY';
   const TitleColor = '#FF8F8F';
   const theme = useContext(themeContext);
-  const [userId, setUserId] = useState('');
 
-  AsyncStorage.getItem('user_id', (err, result) => {
-    setUserId(JSON.parse(result));
-  });
   if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
@@ -123,8 +119,9 @@ const History = () => {
 
   //make datalist and push questions
   useEffect(() => {
+    AsyncStorage.getItem('user_id', (err, result) => {
     (async () =>{
-    const response = await axios.get(`https://letstikitaka.com/api/v1/questions/history/${userId}`);
+    const response = await axios.get(`https://letstikitaka.com/api/v1/questions/history/${JSON.parse(result)}`);
     const questions = response.data;
     const datalist = questions.map(question => {
       return{
@@ -136,6 +133,7 @@ const History = () => {
     })
     setData(datalist) 
     }) ();
+   });
   },[]); 
 
   return (
