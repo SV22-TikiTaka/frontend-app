@@ -32,12 +32,21 @@ export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
   const theme = useContext(themeContext);
-  useEffect(() => {
-    AsyncStorage.getItem('user_info', (err, result) => {
-      console.log('여긴 메인페이진데?');
-      console.log(result);
-    });
-  });
+
+  useEffect(()=>{
+    AsyncStorage.getItem('user_token', (err, result) => {
+      axios({
+        method:'put',
+        url:'https://letstikitaka.com/api/v1/users/by-access-token',
+        headers: {'access-token' : result,}
+      }).then(res => {
+        AsyncStorage.setItem('user_id', JSON.stringify(res.data.id), () => {
+        })
+      })
+    })
+  },[])
+ 
+
   const arrowRight = (
     <Ionicons name="chevron-forward-circle-outline" size={30} color="#ff8f8f" />
   );
@@ -68,7 +77,7 @@ export default function Main() {
 
   const randomNormal = async () => {
     const response = await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=normal',
+      url: 'https://letstikitaka.com/api/v1/questions/random?type=normal',
       method: 'get',
     });
     const normalQuestion = response.data;
@@ -87,7 +96,7 @@ export default function Main() {
 
   const randomChallenge = async () => {
     const response = await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=challenge',
+      url: 'https://letstikitaka.com/api/v1/questions/random?type=challenge',
       method: 'get',
     });
     const challengeQuestion = response.data;
@@ -110,6 +119,7 @@ export default function Main() {
           question={normal}
           setQuestion={setNormal}
           randomQuestion={randomNormal}
+          questionType = 'normal'
         />
       ),
     },
@@ -122,6 +132,7 @@ export default function Main() {
           question={challenge}
           setQuestion={setChallenge}
           randomQuestion={randomChallenge}
+          questionType = 'challenge'
         />
       ),
     },

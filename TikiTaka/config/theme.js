@@ -31,6 +31,7 @@ const theme = {
     navcolor: '#d4d4d4',
     shuffle:'rgba(225,225,225,0.3)',
     modalbackground: 'rgba(225,225,225,0.5)',
+    modalButton: 'transparent'
   },
 };
 export default theme;

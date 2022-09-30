@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useContext} from 'react';
 import styled from 'styled-components/native';
 import * as S from './style.js';
 import {styles} from './style';
@@ -14,8 +14,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Sound from 'react-native-sound';
 import Share from 'react-native-share';
 import {captureRef} from 'react-native-view-shot';
+import themeContext from '../../config/themeContext.js';
 
 export default function Modal({toggleModal, currentLetter, modalQuestion}) {
+  const theme = useContext(themeContext);
   const [toggleSound, setToggleSound] = useState(true);
   const {reply, type} = currentLetter;
   const BackClickClose = styled.TouchableWithoutFeedback`
@@ -87,7 +89,7 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   //   size={40}
   // />
   return (
-    <S.Modal>
+    <S.Modal style={{backgroundColor: theme.modalbackground}}>
       <BackClickClose onPress={toggleModal}>
         <Close></Close>
       </BackClickClose>
@@ -131,7 +133,7 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
         </S.ComponentBottom>
       </S.ReplyBox>
 
-      <S.ReplyButton onPress={shareModal} style={styles.buttonContainer}>
+      <S.ReplyButton onPress={shareModal} style={[styles.buttonContainer]}>
         <S.ButtonText>REPLY</S.ButtonText>
       </S.ReplyButton>
     </S.Modal>
