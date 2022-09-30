@@ -7,7 +7,7 @@ import {styles} from './style';
 import {DATA} from './data';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const ExpandableComponent = ({item, onClickFuntion}) => {
@@ -104,7 +104,11 @@ const History = () => {
   const Title = 'HISTORY';
   const TitleColor = '#FF8F8F';
   const theme = useContext(themeContext);
+  const [userId, setUserId] = useState('');
 
+  AsyncStorage.getItem('user_id', (err, result) => {
+    setUserId(JSON.parse(result));
+  });
   if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
@@ -120,7 +124,7 @@ const History = () => {
   //make datalist and push questions
   useEffect(() => {
     (async () =>{
-    const response = await axios.get( 'http://0.0.0.0:8000/api/v1/questions/history/1');
+    const response = await axios.get(`https://letstikitaka.com/api/v1/questions/history/${userId}`);
     const questions = response.data;
     const datalist = questions.map(question => {
       return{
