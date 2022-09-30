@@ -16,6 +16,8 @@ const VoteBox = () => {
   const theme = useContext(themeContext);
   const [voteQuestion, setVoteQueston] = useState('');
 
+  const questionId = useRef(0);
+
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
   const [inputNum, setInputNum] = useState(2);
@@ -107,7 +109,8 @@ const VoteBox = () => {
       },
     })
       .then(response => {
-        console.log('question created');
+        questionId.current = response.data.id;
+        console.log('question created' + response.data.id);
       })
       .catch(err => {
         console.log(err);
@@ -117,7 +120,7 @@ const VoteBox = () => {
   async function getUrl() {
     try {
       const result = await axios.get(
-        `https://letstikitaka.com/api/v1/users/url/?user_id=${userId}&question_id=12`,
+        `https://letstikitaka.com/api/v1/users/url/?user_id=${userId}&question_id=${questionId.current}`,
       );
       console.log(result.data);
       setURL(result.data);
@@ -132,9 +135,9 @@ const VoteBox = () => {
   };
 
   const functionCombined = async () => {
-    await shareVoteBox();
     await createVote();
     await getUrl();
+    await shareVoteBox();
   };
   return (
     <View style={{flex: 1, marginBottom: 40, marginTop: 20}}>
