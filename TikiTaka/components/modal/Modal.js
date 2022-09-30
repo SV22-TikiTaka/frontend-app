@@ -89,7 +89,7 @@ export default function Modal({toggleModal, currentLetter, modalQuestion}) {
   //   size={40}
   // />
   return (
-    <S.Modal style = {{backgroundColor: theme.modalbackground}}>
+    <S.Modal style={{backgroundColor: theme.modalbackground}}>
       <BackClickClose onPress={toggleModal}>
         <Close></Close>
       </BackClickClose>

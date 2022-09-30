@@ -15,11 +15,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import themeContext from '../../config/themeContext.js';
 import styled from 'styled-components/native';
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Inbox() {
   const Title = 'INBOX';
   const TitleColor = '#779874';
   const theme = useContext(themeContext);
+
+  const [userId, setUserId] = useState('');
+
+  AsyncStorage.getItem('user_id', (err, result) => {
+    setUserId(JSON.parse(result));
+  });
 
   const closedMail = <Icon name="mail-outline" size={60} color="black" />;
   const openMail = <Icon name="mail-open-outline" size={60} color="black" />;
@@ -31,7 +37,7 @@ export default function Inbox() {
   useEffect(() => {
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/1/text`)
+        .get(`https://letstikitaka.com/api/v1/comments/users/${userId}/text`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
@@ -49,7 +55,7 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/1/sound`)
+        .get(`https://letstikitaka.com/api/v1/comments/users/${userId}/sound`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
@@ -67,7 +73,7 @@ export default function Inbox() {
 
     (async () =>
       await axios
-        .get(`http://localhost:8000/api/v1/comments/users/1/vote`)
+        .get(`https://letstikitaka.com/api/v1/comments/users/${userId}/vote`)
         .then(response => {
           const comments = response.data;
           const datalist = [];
@@ -106,7 +112,7 @@ export default function Inbox() {
       let questionId = letter[0].question_id;
       (async () =>
         axios
-          .get(`http://0.0.0.0:8000/api/v1/questions/${questionId}`)
+          .get(`https://letstikitaka.com/api/v1/questions/${questionId}`)
           .then(res => {
             console.log(res.data);
             setModalQuestion(res.data.content);

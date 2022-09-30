@@ -8,17 +8,23 @@ import Share from 'react-native-share';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
 import Clipboard from '@react-native-clipboard/clipboard';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const VoteBox = () => {
   const addIcon = <Icon name="add-circle-outline" size={20} />;
   const deleteIcon = <Icon name="trash-outline" size={20} color="red" />;
 
   const theme = useContext(themeContext);
-  const [voteQuestion, setVoteQueston] = useState("");
+  const [voteQuestion, setVoteQueston] = useState('');
 
   const [first, setFirst] = useState('');
   const [text, setText] = useState([{val: ''}]);
   const [inputNum, setInputNum] = useState(2);
+
+  const [userId, setUserId] = useState('');
+
+  AsyncStorage.getItem('user_id', (err, result) => {
+    setUserId(JSON.parse(result));
+  });
 
   const handleChange = (i, e) => {
     const newVal = [...text];
@@ -81,21 +87,22 @@ const VoteBox = () => {
     }
   };
   const options = [];
-  options.push(first)
-  {text.map(val =>{
-    options.push(val.val)
-  })}
-  console.log(options)
-  console.log(voteQuestion)
-  
-  async function createVote() {
+  options.push(first);
+  {
+    text.map(val => {
+      options.push(val.val);
+    });
+  }
+  console.log(options);
+  console.log(voteQuestion);
 
+  async function createVote() {
     await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/vote/',
+      url: 'https://letstikitaka.com/api/v1/questions/vote/',
       method: 'post',
       data: {
         content: voteQuestion,
-        user_id: 1,
+        user_id: userId,
         option: options,
       },
     })
@@ -110,16 +117,16 @@ const VoteBox = () => {
   async function getUrl() {
     try {
       const result = await axios.get(
-        'http://localhost:8000/api/v1/users/url/?user_id=1&question_id=12',
+        `https://letstikitaka.com/api/v1/users/url/?user_id=${userId}&question_id=12`,
       );
       console.log(result.data);
       setURL(result.data);
-      console.log(url)
+      console.log(url);
     } catch (error) {
       console.log(error);
     }
   }
-  const copyToClipboard = (input) => {
+  const copyToClipboard = input => {
     Clipboard.setString(input);
     alert('URL Copied to Clipboard!');
   };
@@ -128,20 +135,20 @@ const VoteBox = () => {
     await shareVoteBox();
     await createVote();
     await getUrl();
-  }
+  };
   return (
     <View style={{flex: 1, marginBottom: 40, marginTop: 20}}>
       <S.component ref={viewRef} style={styles.shadow}>
         <S.componentTop>
-        <TextInput
-              style={styles.questioninput}
-              placeholder={'INPUT QUESTION'}
-              value={voteQuestion}
-              onChangeText={setVoteQueston}
-              maxLength={20}
-              multiline={true}
-              cursorColor ='white'
-            />
+          <TextInput
+            style={styles.questioninput}
+            placeholder={'INPUT QUESTION'}
+            value={voteQuestion}
+            onChangeText={setVoteQueston}
+            maxLength={20}
+            multiline={true}
+            cursorColor="white"
+          />
         </S.componentTop>
         <S.componentBottom>
           {/* input fields */}
@@ -152,8 +159,7 @@ const VoteBox = () => {
               value={first}
               onChangeText={setFirst}
               maxLength={10}
-              cursorColor ='#779874'
-              
+              cursorColor="#779874"
             />
           </View>
           {text.map((element, index) => (
@@ -164,7 +170,7 @@ const VoteBox = () => {
                 value={element.val}
                 onChangeText={value => handleChange(index, value)}
                 maxLength={10}
-                cursorColor ='#779874'
+                cursorColor="#779874"
               />
             </View>
           ))}
@@ -172,40 +178,48 @@ const VoteBox = () => {
       </S.component>
 
       <View style={[styles.utils, {backgrounColor: theme.background}]}>
-         {/*adding input box*/}
-         {inputNum >= 4 ? 
-         <TouchableOpacity style={styles.addOption}>
-          <Text style={{color: theme.color}}>{addIcon}</Text>
-          <Text style = {[styles.addText,{color: theme.color}]}>ADD OPTION</Text>
-        </TouchableOpacity>  : 
+        {/*adding input box*/}
+        {inputNum >= 4 ? (
+          <TouchableOpacity style={styles.addOption}>
+            <Text style={{color: theme.color}}>{addIcon}</Text>
+            <Text style={[styles.addText, {color: theme.color}]}>
+              ADD OPTION
+            </Text>
+          </TouchableOpacity>
+        ) : (
           <TouchableOpacity style={styles.addOption} onPress={addField}>
             <Text style={{color: theme.color}}>{addIcon}</Text>
-            <Text style = {[styles.addText,{color: theme.color}]}>ADD OPTION</Text>
-          </TouchableOpacity>} 
-          <View>
-          {inputNum >= 3 ?  
-          <TouchableOpacity
-            onPress={() => removeField(inputNum-2)}
-            style={styles.deleteIcon}>
-            <Text>{deleteIcon}</Text>
-          </TouchableOpacity> : null }
-          </View>
-      </View>
-      
-      <View>
-      <S.ShareButton
-        style={[styles.shadow, {backgroundColor: theme.background}]}
-        onPressIn = {() => copyToClipboard(url)} onPress={functionCombined}>
-        <S.ButtonText>{shareIcon}</S.ButtonText>
-        {showInstagramStory ? (
-          <S.ButtonText style={{color: theme.color}}>
-            SHARE TO INSTAGRAM STORY
-          </S.ButtonText>
-        ) : (
-          <S.ButtonText style={{color: theme.color}}> SHARE</S.ButtonText>
+            <Text style={[styles.addText, {color: theme.color}]}>
+              ADD OPTION
+            </Text>
+          </TouchableOpacity>
         )}
-      </S.ShareButton>
-    </View>
+        <View>
+          {inputNum >= 3 ? (
+            <TouchableOpacity
+              onPress={() => removeField(inputNum - 2)}
+              style={styles.deleteIcon}>
+              <Text>{deleteIcon}</Text>
+            </TouchableOpacity>
+          ) : null}
+        </View>
+      </View>
+
+      <View>
+        <S.ShareButton
+          style={[styles.shadow, {backgroundColor: theme.background}]}
+          onPressIn={() => copyToClipboard(url)}
+          onPress={functionCombined}>
+          <S.ButtonText>{shareIcon}</S.ButtonText>
+          {showInstagramStory ? (
+            <S.ButtonText style={{color: theme.color}}>
+              SHARE TO INSTAGRAM STORY
+            </S.ButtonText>
+          ) : (
+            <S.ButtonText style={{color: theme.color}}> SHARE</S.ButtonText>
+          )}
+        </S.ShareButton>
+      </View>
     </View>
   );
 };
@@ -230,15 +244,15 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'SBAggroM',
   },
-  questioninput:{
+  questioninput: {
     lineHeight: 30,
-    fontSize:19,
-    color:'white',
+    fontSize: 19,
+    color: 'white',
     fontFamily: 'SBAggroM',
     borderColor: '#779874',
     paddingHorizontal: 33,
     marginHorizontal: 15,
-    flex:1,
+    flex: 1,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -253,22 +267,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 10,
     marginHorizontal: 15,
-    flex:1
+    flex: 1,
   },
-  addOption:{
-    flexDirection:'row',
-    alignItems:'center',
-    marginHorizontal:20,
-
+  addOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 20,
   },
-  addText:{
+  addText: {
     fontFamily: 'SBAggroM',
-    fontSize:11,
-    paddingTop:3,
+    fontSize: 11,
+    paddingTop: 3,
   },
   deleteIcon: {
     justifyContent: 'center',
-    marginHorizontal:20,
+    marginHorizontal: 20,
   },
   utils: {
     marginHorizontal: 50,
