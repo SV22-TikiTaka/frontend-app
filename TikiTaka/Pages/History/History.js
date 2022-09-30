@@ -7,7 +7,7 @@ import {styles} from './style';
 import {DATA} from './data';
 import themeContext from '../../config/themeContext.js';
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const ExpandableComponent = ({item, onClickFuntion}) => {
@@ -119,8 +119,9 @@ const History = () => {
 
   //make datalist and push questions
   useEffect(() => {
+    AsyncStorage.getItem('user_id', (err, result) => {
     (async () =>{
-    const response = await axios.get( 'http://0.0.0.0:8000/api/v1/questions/history/1');
+    const response = await axios.get(`https://letstikitaka.com/api/v1/questions/history/${JSON.parse(result)}`);
     const questions = response.data;
     const datalist = questions.map(question => {
       return{
@@ -132,6 +133,7 @@ const History = () => {
     })
     setData(datalist) 
     }) ();
+   });
   },[]); 
 
   return (
