@@ -34,6 +34,7 @@ export const InfoWrapper = styled.View`
 export const UserImage = styled.Image`
   width: 85px;
   height: 85px;
+  border-radius: 50px;
 `;
 
 export const UserContainer = styled.View`

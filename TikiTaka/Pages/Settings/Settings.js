@@ -11,11 +11,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Settings = () => {
 
-  const [userInfo, setUserInfo] = useState([])
+  const [userId, setUserId] = useState("")
 
-  AsyncStorage.getItem('user_info', (err, result) => {
-    const user = JSON.parse(result);
-    setUserInfo([user.token, user.user_id]);
+  AsyncStorage.getItem('user_id', (err, result) => {
+    setUserId(JSON.parse(result));
   })
   const [user, setUser] = useState([
     'https://www.pngitem.com/pimgs/m/678-6785829_my-account-instagram-profile-icon-hd-png-download.png',
@@ -26,7 +25,7 @@ const Settings = () => {
   ]);
   useEffect(() => {
     axios
-      .get('http://0.0.0.0:8000/api/v1/users/1') // + user.id 로 나중에 바꿔야함.
+      .get(`https://letstikitaka.com/api/v1/users/${userId}`) // + user.id 로 나중에 바꿔야함.
       .then(response => {
         const info = response.data;
         const datalist = [];
@@ -36,7 +35,7 @@ const Settings = () => {
         datalist.push(info.follower);
         datalist.push(info.following);
         setUser(datalist);
-      });
+      })
     console.log(user);
   }, []);
 

@@ -6,12 +6,20 @@ import {captureRef} from 'react-native-view-shot';
 import Share from 'react-native-share';
 import themeContext from '../../config/themeContext.js';
 import Clipboard from '@react-native-clipboard/clipboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as S from './style';
 import axios from 'axios';
 
 //prettier-ignore
-const QuestionBox = ({QuestionBoxTitle,QuestionBoxColor,question,setQuestion,randomQuestion}) => {
+const QuestionBox = ({QuestionBoxTitle,QuestionBoxColor,question,setQuestion,randomQuestion,questionType}) => {
+  const [userId, setUserId] = useState("")
+  const questionId = useRef(0);
+
+  AsyncStorage.getItem('user_id', (err, result) => {
+    setUserId(JSON.parse(result));
+  })
+
   const shuffleIcon = <Icon name="shuffle-outline" size={20} />;
   const shareIcon = (
     <Icon name="paper-plane-outline" size={20} color="#ff8f8f" />
@@ -59,17 +67,18 @@ const QuestionBox = ({QuestionBoxTitle,QuestionBoxColor,question,setQuestion,ran
 
   async function createQuestion() {
     await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/',
+      url: 'https://letstikitaka.com/api/v1/questions/',
       method: 'post',
       data: {
         content: question,
-        user_id: 1,
-        type: 'normal',
-        comment_type: optionToggle ? 'text' : 'sound',
+        user_id: userId,
+        type: questionType,
+        comment_type: optionToggle ? 'sound' : 'text',
       },
     })
       .then(response => {
-        console.log('question created' + response.data);
+        questionId.current = (response.data.id)
+        console.log('question created' + response.data.id);
       })
       .catch(err => {
         console.log(err);
@@ -81,7 +90,7 @@ const QuestionBox = ({QuestionBoxTitle,QuestionBoxColor,question,setQuestion,ran
   async function getUrl() {
     try {
       const result = await axios.get(
-        'http://localhost:8000/api/v1/users/url/?user_id=1&question_id=8',
+        `https://letstikitaka.com/api/v1/users/url/?user_id=${userId}&question_id=${questionId.current}`,
       );
       console.log(result.data);
       setURL(result.data);

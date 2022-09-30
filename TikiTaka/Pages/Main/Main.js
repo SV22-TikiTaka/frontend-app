@@ -32,27 +32,19 @@ export default function Main() {
   const Title = 'MAIN';
   const TitleColor = '#ff8f8f';
   const theme = useContext(themeContext);
-  const [token, setToken] = useState('');
 
-  AsyncStorage.getItem('user_info', (err, result) => {
-    const user = JSON.parse(result)
-    setToken(user.token);
-  })
-
-    axios.put('http://0.0.0.0:8000/api/v1/users/by-access-token', {}, 
-    {
-      headers:{
-        Authorization: 'Bearer' + token 
-      }
+  useEffect(()=>{
+    AsyncStorage.getItem('user_token', (err, result) => {
+      axios({
+        method:'put',
+        url:'https://letstikitaka.com/api/v1/users/by-access-token',
+        headers: {'access-token' : result,}
+      }).then(res => {
+        AsyncStorage.setItem('user_id', JSON.stringify(res.data.id), () => {
+        })
+      })
     })
-  .then((res => {
-    AsyncStorage.setItem('user_id',res.id, () => {
-    console.log(res.id)
-    });
-  }))
-
-  
-
+  },[])
  
 
   const arrowRight = (
@@ -85,7 +77,7 @@ export default function Main() {
 
   const randomNormal = async () => {
     const response = await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=normal',
+      url: 'https://letstikitaka.com/api/v1/questions/random?type=normal',
       method: 'get',
     });
     const normalQuestion = response.data;
@@ -104,7 +96,7 @@ export default function Main() {
 
   const randomChallenge = async () => {
     const response = await axios({
-      url: 'http://0.0.0.0:8000/api/v1/questions/random?type=challenge',
+      url: 'https://letstikitaka.com/api/v1/questions/random?type=challenge',
       method: 'get',
     });
     const challengeQuestion = response.data;
@@ -127,6 +119,7 @@ export default function Main() {
           question={normal}
           setQuestion={setNormal}
           randomQuestion={randomNormal}
+          questionType = 'normal'
         />
       ),
     },
@@ -139,6 +132,7 @@ export default function Main() {
           question={challenge}
           setQuestion={setChallenge}
           randomQuestion={randomChallenge}
+          questionType = 'challenge'
         />
       ),
     },

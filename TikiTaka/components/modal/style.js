@@ -61,19 +61,21 @@ export const ReplyButton = styled.TouchableHighlight`
 `;
 
 export const ButtonText = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'SBAggroB';
+  color:black;
 `;
 
 
 export const styles = StyleSheet.create({
   buttonContainer: {
-    borderRadius: 20,
+    borderRadius: 15,
     backgroundColor: '#ffffff',
     borderColor: '#ff8f8f',
     borderWidth: 2,
-    paddingVertical: 12,
-    paddingHorizontal: 70,
+    
+    paddingVertical: 10,
+    paddingHorizontal: 60,
     marginTop: 30,
   },
 });
